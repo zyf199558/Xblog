@@ -8,22 +8,23 @@
 namespace App\Http\ViewComposers;
 
 use App\Http\Repositories\PageRepository;
+use App\Services\PageService;
 use Illuminate\View\View;
 
 class PagesComposer
 {
 
-    protected $pageRepository;
+    protected $pageService;
 
     /**
      * Create a new profile composer.
      *
      * @internal param UserRepository $users
-     * @param PageRepository $pageRepository
+     * @param PageService $pageService
      */
-    public function __construct(PageRepository $pageRepository)
+    public function __construct(PageService $pageService)
     {
-        $this->pageRepository = $pageRepository;
+        $this->pageService = $pageService;
     }
 
     /**
@@ -34,13 +35,7 @@ class PagesComposer
      */
     public function compose(View $view)
     {
-        $pages = $this->pageRepository->getAll()->reject(function ($page) {
-            $result = $page->configuration ? $page->configuration->config['display'] : 'false';
-            return $result == 'false';
-        })->sortBy(function ($page, $key) {
-            $result = $page->configuration ? $page->configuration->config['sort_order'] : 1;
-            return -$result;
-        });
+        $pages = $this->pageService->getPages();
         $view->with('pages', $pages);
     }
 }

@@ -10,6 +10,7 @@ namespace App\Services;
 
 
 use App\Http\Repositories\PostRepository;
+use App\Post;
 
 class PostService
 {
@@ -29,6 +30,11 @@ class PostService
         if ($page_size == null)
             $page_size = get_config('page_size', 7);
         return $this->postRepository->pagedPosts($page_size);
+    }
+
+    public function getRecommendedPosts(Post $post, $limit = 5)
+    {
+        return $this->postRepository->recommendedPosts($post, $limit);
     }
 
     public function getPost($slug)
