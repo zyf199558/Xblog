@@ -81,6 +81,22 @@ if (!function_exists('get_page')) {
     }
 }
 
+// Tag
+if (!function_exists('get_tags')) {
+    function get_tags()
+    {
+        return app(TagService::class)->getAll();
+    }
+}
+
+// Category
+if (!function_exists('get_categories')) {
+    function get_categories()
+    {
+        return app(CategoryService::class)->getAll();
+    }
+}
+
 // Theme
 if (!function_exists('get_current_theme')) {
     function get_current_theme()

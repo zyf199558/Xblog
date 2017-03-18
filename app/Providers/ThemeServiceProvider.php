@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use File;
-use Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Lang;
+use Route;
 use View;
 
 class ThemeServiceProvider extends ServiceProvider
@@ -37,6 +37,7 @@ class ThemeServiceProvider extends ServiceProvider
         $routes = $themeDirection . DIRECTORY_SEPARATOR . 'routes.php';
         $views = $themeDirection . DIRECTORY_SEPARATOR . 'views';
         View::addNameSpace($themeObject->name, $views);
+        Lang::addNamespace($themeObject->name, $themeDirection . 'lang');
         Route::group([
             'middleware' => 'web',
             'namespace' => $namespace,
