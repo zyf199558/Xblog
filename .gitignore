@@ -11,3 +11,10 @@ _ide_helper.php
 !/themes
 /themes/*
 !/themes/xblog
+
+!/public
+/public/*
+!/public/*.*
+!/public/css/
+!/public/js/
+!/public/build/

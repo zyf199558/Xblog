@@ -15,10 +15,24 @@ use App\Services\ThemeService;
  */
 
 // Post
+if (!function_exists('get_post_count')) {
+    function get_post_count()
+    {
+        return app(PostService::class)->getCount();
+    }
+}
+
 if (!function_exists('get_posts')) {
     function get_posts($page_size = null)
     {
         return app(PostService::class)->getPosts($page_size);
+    }
+}
+
+if (!function_exists('get_all_posts')) {
+    function get_all_posts()
+    {
+        return app(PostService::class)->getAllPosts();
     }
 }
 

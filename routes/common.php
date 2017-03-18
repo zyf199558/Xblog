@@ -30,7 +30,7 @@ Route::get('sitemap', 'GeneratedController@index');
 Route::get('sitemap.xml', 'GeneratedController@index');
 
 // Feed
-Route::get('feed.xml', 'GeneratedController@feed');
+Route::get('feed.xml', 'GeneratedController@feed')->name('feed');
 
 
 // Comment

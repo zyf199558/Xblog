@@ -32,6 +32,11 @@ class PostService
         return $this->postRepository->pagedPosts($page_size);
     }
 
+    public function getAllPosts()
+    {
+        return $this->postRepository->achieve();
+    }
+
     public function getRecommendedPosts(Post $post, $limit = 5)
     {
         return $this->postRepository->recommendedPosts($post, $limit);
@@ -40,6 +45,11 @@ class PostService
     public function getPost($slug)
     {
         return $this->postRepository->get($slug);
+    }
+
+    public function getCount()
+    {
+        return Post::count();
     }
 
     public function getPostById($id)
