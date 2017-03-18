@@ -169,7 +169,6 @@ return [
         Illuminate\Session\SessionServiceProvider::class,
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
-        Illuminate\View\ViewServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -178,6 +177,7 @@ return [
         /*
          * Application Service Providers...
          */
+        App\Providers\ViewServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
@@ -188,6 +188,8 @@ return [
         Mews\Purifier\PurifierServiceProvider::class,
         App\Providers\CacheServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
+        App\Providers\ThemeServiceProvider::class,
+        Chumper\Zipper\ZipperServiceProvider::class,
         //Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
@@ -236,6 +238,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'XblogConfig' => App\Facades\XblogConfig::class,
+        'Zipper' => Chumper\Zipper\Zipper::class,
     ],
 
 ];

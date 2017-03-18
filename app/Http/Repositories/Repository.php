@@ -22,6 +22,14 @@ abstract class Repository
 
     public abstract function tag();
 
+    public function find($id)
+    {
+        $model = $this->remember($this->tag() . '.id' . $id, function () use ($id) {
+            return $this->model()->findOrFail($id);
+        });
+        return $model;
+    }
+
     private function getXblogCache()
     {
         if ($this->xblogCache == null) {

@@ -142,6 +142,19 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="theme" class="col-sm-2 control-label">主题</label>
+                        <div class="col-sm-8">
+                            <select id="theme" name="theme" class="form-control">
+                                @foreach($themes as $theme)
+                                    <option value="{{ $theme->name }}" {{ get_config('theme')==$theme->name?' selected' : '' }}>
+                                        {{ $theme->display_name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label for="google_trace_id" class="col-sm-2 control-label">跟踪ID</label>
                         <div class="col-sm-8">
                             <input type="text" name="google_trace_id" class="form-control" id="google_trace_id"

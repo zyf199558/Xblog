@@ -124,7 +124,17 @@ class PostController extends Controller
     public function download($id)
     {
         $post = Post::withoutGlobalScopes()->where('id', $id)->with(['tags', 'category'])->first();
+        $info = $this->getPostContent($post);
+        return response($info, 200,
+            [
+                "Content-Type" => 'application/force-download',
+                'Content-Disposition' => "attachment; filename=\"" . $post->title . ".md\""
+            ]
+        );
+    }
 
+    private function getPostContent(Post $post)
+    {
         $info = "title: " . $post->title;
         $info = $info . "\ndate: " . $post->created_at->format('Y-m-d H:i');
         $info = $info . "\npermalink: " . $post->slug;
@@ -134,12 +144,7 @@ class PostController extends Controller
             $info = $info . "- $tag->name\n";
         }
         $info = $info . "---\n\n" . $post->content;
-        return response($info, 200,
-            [
-                "Content-Type" => 'application/force-download',
-                'Content-Disposition' => "attachment; filename=\"" . $post->title . ".md\""
-            ]
-        );
+        return $info;
     }
 
     public function restore($id)

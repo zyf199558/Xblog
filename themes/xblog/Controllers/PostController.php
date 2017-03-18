@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Themes\Xblog\Controllers;
 
 use App\Http\Repositories\CategoryRepository;
 use App\Http\Repositories\CommentRepository;
@@ -36,7 +36,7 @@ class PostController extends Controller
 
     public function index()
     {
-        $page_size = XblogConfig::getValue('page_size', 7);
+        $page_size = get_config('page_size', 7);
         $posts = $this->postRepository->pagedPosts($page_size);
         return view('post.index', compact('posts'));
     }

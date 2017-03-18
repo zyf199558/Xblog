@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Themes\Xblog\Controllers;
 
 use App\Http\Repositories\PostRepository;
 use App\Post;

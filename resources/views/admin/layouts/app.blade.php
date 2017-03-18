@@ -16,8 +16,8 @@
     @yield('css')
     <script>
         window.XblogConfig = <?php echo json_encode([
-                'csrfToken' => csrf_token(),
-                'github_username' => isset($github_username) ? $github_username :  '',
+            'csrfToken' => csrf_token(),
+            'github_username' => isset($github_username) ? $github_username : '',
         ]);?>
     </script>
 </head>
@@ -25,12 +25,12 @@
 @include('admin.layouts.header')
 <div id="content-wrap">
     <div class="container">
-        @include('partials.errors')
-        @include('partials.success')
+        @include('admin.partials.errors')
+        @include('admin.partials.success')
         @yield('content')
     </div>
 </div>
-@include('layouts.footer')
+@include('admin.layouts.footer')
 @if(isset($site_js) && $site_js)
     <script src="{{ $site_js }}"></script>
 @else

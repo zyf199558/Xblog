@@ -143,3 +143,10 @@ if (!function_exists('httpUrl')) {
         return $url;
     }
 }
+
+if (!function_exists('static_resources')) {
+    function static_resources($path)
+    {
+        return $path;
+    }
+}
