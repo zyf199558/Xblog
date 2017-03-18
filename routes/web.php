@@ -44,8 +44,7 @@ Route::patch('/user/upload/profile', ['uses' => 'UserController@uploadProfile', 
 Route::patch('/user/upload/info', ['uses' => 'UserController@update', 'as' => 'user.update.info']);
 
 // Comment
-Route::get('/commentable/{commentable_id}/comments', ['uses' => 'CommentController@show', 'as' => 'comment.show']);
-Route::resource('comment', 'CommentController', ['only' => ['store', 'destroy', 'edit', 'update']]);
+Route::resource('comment', 'CommentController', ['only' => ['store', 'destroy', 'update']]);
 
 
 // SiteMap

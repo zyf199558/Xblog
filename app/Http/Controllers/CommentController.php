@@ -18,11 +18,6 @@ class CommentController extends Controller
         $this->commentRepository = $commentRepository;
     }
 
-    public function edit(Comment $comment)
-    {
-        return view('comment.edit', compact('comment'));
-    }
-
     public function update(Request $request, Comment $comment)
     {
         $this->checkPolicy('manager', $comment);
@@ -60,15 +55,6 @@ class CommentController extends Controller
         if ($comment = $this->commentRepository->create($request))
             return response()->json(['status' => 200, 'msg' => 'success']);
         return response()->json(['status' => 500, 'msg' => 'failed']);
-    }
-
-
-    public function show(Request $request, $commentable_id)
-    {
-        $commentable_type = $request->get('commentable_type');
-        $comments = $this->commentRepository->getByCommentable($commentable_type, $commentable_id);
-        $redirect = $request->get('redirect');
-        return view('comment.show', compact('comments', 'commentable', 'redirect'));
     }
 
     public function destroy($comment_id)
