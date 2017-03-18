@@ -42,7 +42,7 @@ class ThemeService
         return $this->currentTheme = json_decode((File::get($themeDirection . DIRECTORY_SEPARATOR . 'theme.json')));
     }
 
-    private function getThemePath($themeName = null)
+    public function getThemePath($themeName = null)
     {
         if ($themeName == null)
             $themeName = $this->getCurrentTheme()->name;
