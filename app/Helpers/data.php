@@ -68,3 +68,10 @@ if (!function_exists('get_config')) {
         return app('XblogConfig')->getValue($key, $default);
     }
 }
+
+if (!function_exists('resource')) {
+    function resource($path = '')
+    {
+        return '/' . get_current_theme()->name . '/' . $path;
+    }
+}

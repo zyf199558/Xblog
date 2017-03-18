@@ -26,9 +26,9 @@ class ThemeService
         if ($this->themes != null)
             return $this->themes;
         $this->themes = new Collection();
-        $themeDirections = File::directories(base_path('themes/'));
+        $themeDirections = File::directories(base_path('themes' . DIRECTORY_SEPARATOR));
         foreach ($themeDirections as $themeDirection) {
-            $theme = json_decode((File::get($themeDirection . '/theme.json')));
+            $theme = json_decode((File::get($themeDirection . DIRECTORY_SEPARATOR . 'theme.json')));
             $this->themes->push($theme);
         }
         return $this->themes;
@@ -38,13 +38,33 @@ class ThemeService
     {
         if ($this->currentTheme != null)
             return $this->currentTheme;
-        $themeDirection = base_path('themes/' . get_config('theme', 'xblog'));
-        return $this->currentTheme = json_decode((File::get($themeDirection . '/theme.json')));
+        $themeDirection = $this->getThemePath(get_config('theme', 'xblog'));
+        return $this->currentTheme = json_decode((File::get($themeDirection . DIRECTORY_SEPARATOR . 'theme.json')));
     }
 
     private function getThemePath($themeName)
     {
-        return base_path('themes/' . $themeName);
+        return base_path('themes' . DIRECTORY_SEPARATOR . $themeName);
+    }
+
+    public function getThemeResourcesPath($themeName)
+    {
+        return $this->getThemePath($themeName) . DIRECTORY_SEPARATOR . 'resources';
+    }
+
+    public function getThemePublicPath($path = '', $themeName = null)
+    {
+        if ($themeName == null)
+            $themeName = $this->getCurrentTheme()->name;
+        return public_path($themeName . DIRECTORY_SEPARATOR . $path);
+    }
+
+    public function deleteThemePublicPath($themeName = null)
+    {
+        if ($themeName == null)
+            $themeName = $this->getCurrentTheme()->name;
+        $path = $this->getThemePublicPath('', $themeName);
+        return !File::exists($path) || File::deleteDirectory($path);
     }
 
     public function exists($themeName)
@@ -54,17 +74,22 @@ class ThemeService
 
     public function delete($themeName)
     {
-        if ($themeName == 'xblog' || !$this->exists($themeName))
+        if ($themeName == 'xblog' || $this->getCurrentTheme()->name == $themeName || !$this->exists($themeName))
             return false;
         $path = $this->getThemePath($themeName);
-
-        return File::deleteDirectory($path);
+        return $this->deleteThemePublicPath($themeName) && File::deleteDirectory($path);
     }
 
     public function setTheme($themeName)
     {
         if (!$this->exists($themeName))
             return false;
-        return XblogConfig::saveSetting('theme', $themeName);
+        $result = true;
+        if (File::exists($this->getThemeResourcesPath($themeName))) {
+            $result = $this->deleteThemePublicPath() && File::copyDirectory(
+                    $this->getThemeResourcesPath($themeName),
+                    $this->getThemePublicPath('', $themeName));
+        }
+        return $result && (bool)XblogConfig::saveSetting('theme', $themeName);
     }
 }
