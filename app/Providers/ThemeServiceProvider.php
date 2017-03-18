@@ -29,26 +29,14 @@ class ThemeServiceProvider extends ServiceProvider
         //
     }
 
-    public function getThemes()
-    {
-        $themes = File::directories(base_path('themes/'));
-        foreach ($themes as $theme) {
-            $themeObj = json_decode((File::get($theme . '/theme.json')));
-            echo $themeObj->name . "\n";
-            echo $themeObj->description . "\n";
-            echo $themeObj->namespace_suffix . "\n";
-        }
-    }
-
     public function map()
     {
-        $theme = get_config('theme', 'xblog');
-        $themeDir = base_path('themes\\' . $theme);
-        $themeObj = json_decode((File::get($themeDir . '/theme.json')));
-        $namespace = "Themes\\$themeObj->namespace_suffix\\Controllers";
-        $routes = $themeDir . '\\routes.php';
-        $views = $themeDir . '\\views';
-        View::addNameSpace($theme, $views);
+        $themeObject = get_current_theme();
+        $themeDirection = get_theme_path($themeObject->name);
+        $namespace = "Themes\\" . $themeObject->namespace_suffix . '\\Controllers';
+        $routes = $themeDirection . DIRECTORY_SEPARATOR . 'routes.php';
+        $views = $themeDirection . DIRECTORY_SEPARATOR . 'views';
+        View::addNameSpace($themeObject->name, $views);
         Route::group([
             'middleware' => 'web',
             'namespace' => $namespace,

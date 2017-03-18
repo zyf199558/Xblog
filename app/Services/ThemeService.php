@@ -42,14 +42,16 @@ class ThemeService
         return $this->currentTheme = json_decode((File::get($themeDirection . DIRECTORY_SEPARATOR . 'theme.json')));
     }
 
-    private function getThemePath($themeName)
+    private function getThemePath($themeName = null)
     {
-        return base_path('themes' . DIRECTORY_SEPARATOR . $themeName);
+        if ($themeName == null)
+            $themeName = $this->getCurrentTheme()->name;
+        return base_path('themes' . DIRECTORY_SEPARATOR . $themeName . DIRECTORY_SEPARATOR);
     }
 
     public function getThemeResourcesPath($themeName)
     {
-        return $this->getThemePath($themeName) . DIRECTORY_SEPARATOR . 'resources';
+        return $this->getThemePath($themeName) . 'resources';
     }
 
     public function getThemePublicPath($path = '', $themeName = null)

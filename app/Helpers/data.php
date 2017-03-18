@@ -62,6 +62,13 @@ if (!function_exists('get_current_theme')) {
     }
 }
 
+if (!function_exists('get_theme_path')) {
+    function get_theme_path($themeName = null)
+    {
+        return app(ThemeService::class)->getThemePath($themeName);
+    }
+}
+
 if (!function_exists('get_config')) {
     function get_config($key, $default = null)
     {
