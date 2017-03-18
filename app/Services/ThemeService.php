@@ -10,6 +10,7 @@ namespace App\Services;
 
 
 use App\Facades\XblogConfig;
+use Artisan;
 use File;
 use Illuminate\Support\Collection;
 
@@ -92,6 +93,6 @@ class ThemeService
                     $this->getThemeResourcesPath($themeName),
                     $this->getThemePublicPath('', $themeName));
         }
-        return $result && (bool)XblogConfig::saveSetting('theme', $themeName);
+        return $result && (bool)XblogConfig::saveSetting('theme', $themeName) && Artisan::call('optimize') == 0;
     }
 }
