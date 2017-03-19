@@ -35,16 +35,16 @@ class ThemeServiceProvider extends ServiceProvider
         $themeObject = get_current_theme();
         $themeDirection = get_theme_path($themeObject->name);
         $namespace = "Themes\\" . $themeObject->namespace_suffix . '\\Controllers';
-        $routes = $themeDirection . DIRECTORY_SEPARATOR . 'routes.php';
+        $routes = $themeDirection . 'routes.php';
         $routes_exists = File::exists($routes);
         $use_default_route = isset($themeObject->use_default_route) && $themeObject->use_default_route;
-        if (!$routes_exists || $use_default_route) {
-            $this->mapDefault();
-        }
         if ($routes_exists) {
             $this->mapTheme($namespace, $routes);
         }
-        $views = $themeDirection . DIRECTORY_SEPARATOR . 'views';
+        if (!$routes_exists || $use_default_route) {
+            $this->mapDefault();
+        }
+        $views = $themeDirection . 'views';
         View::addNameSpace($themeObject->name, $views);
         Lang::addNamespace($themeObject->name, $themeDirection . 'lang');
 

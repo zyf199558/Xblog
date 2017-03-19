@@ -19,7 +19,7 @@
                 <div class="col-xs-{{ intval(12 / $count) }} border-right center-block">
                     <div class="description-block">
                         <a href="{{ $value['url'] }}" title="{{ ucfirst($key) }}" class="description-header"><i
-                                    class="{{ $value['fa'].' fa-lg' }}"
+                                    class="{{ 'fa fa-'.$value['icon'].' fa-lg' }}"
                                     aria-hidden="true"></i></a>
                     </div>
                 </div>
