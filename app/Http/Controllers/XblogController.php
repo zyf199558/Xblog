@@ -9,8 +9,12 @@
 namespace App\Http\Controllers;
 
 
+use Lufficc\Post\PostHelper;
+
 class XblogController extends Controller
 {
+    use PostHelper;
+
     public function index()
     {
         $posts = get_posts(10);
@@ -27,6 +31,7 @@ class XblogController extends Controller
     {
         $post = get_post($slug);
         $recommendedPosts = get_recommended_posts($post);
+        $this->onPostShowing($post);
         return view('post', compact('post', 'recommendedPosts'));
     }
 
