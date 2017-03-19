@@ -11,10 +11,12 @@ namespace App\Services;
 
 use App\Http\Repositories\PostRepository;
 use App\Post;
+use Lufficc\Post\PostHelper;
 
 class PostService
 {
     protected $postRepository;
+    use PostHelper;
 
     /**
      * PostService constructor.
@@ -44,7 +46,9 @@ class PostService
 
     public function getPost($slug)
     {
-        return $this->postRepository->get($slug);
+        $post = $this->postRepository->get($slug);
+        $this->onPostShowing($post);
+        return $post;
     }
 
     public function getCount()
