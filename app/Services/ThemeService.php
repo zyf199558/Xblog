@@ -40,7 +40,13 @@ class ThemeService
         if ($this->currentTheme != null)
             return $this->currentTheme;
         $themeDirection = $this->getThemePath(get_config('theme', 'xblog'));
-        return $this->currentTheme = json_decode((File::get($themeDirection . DIRECTORY_SEPARATOR . 'theme.json')));
+        return $this->currentTheme = json_decode((File::get($themeDirection . 'theme.json')));
+    }
+
+    public function getThemeObject($themeName)
+    {
+        $themeDirection = $this->getThemePath($themeName);
+        return $this->currentTheme = json_decode((File::get($themeDirection . 'theme.json')));
     }
 
     public function getThemePath($themeName = null)

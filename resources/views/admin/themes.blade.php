@@ -36,7 +36,11 @@
                         <tbody>
                         @foreach($themes as $theme)
                             <tr>
-                                <td>{{ $theme->display_name }}</td>
+                                <td>{{ $theme->display_name }}
+                                    @if(isset($theme->version))
+                                        <span class="role-label">{{ $theme->version }}</span>
+                                    @endif
+                                </td>
                                 <td>{{ $theme->description }}</td>
                                 <td>
                                     @if(!(get_current_theme()->name == $theme->name))

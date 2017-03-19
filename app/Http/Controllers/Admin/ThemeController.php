@@ -12,6 +12,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Services\ThemeService;
 use Chumper\Zipper\Facades\Zipper;
+use Exception;
 use File;
 use Illuminate\Http\Request;
 
@@ -54,6 +55,15 @@ class ThemeController extends Controller
             'theme' => 'required|file '
         ]);
         $themeFile = $request->file('theme');
+        try {
+            return $this->doUpload($themeFile);
+        } catch (Exception $exception) {
+            return back()->withErrors($exception->getMessage());
+        }
+    }
+
+    private function doUpload($themeFile)
+    {
         $zipper = Zipper::make($themeFile->getRealPath());
         foreach ($zipper->listFiles('/\.json/i') as $path) {
             $content = $zipper->getFileContent($path);
@@ -71,12 +81,27 @@ class ThemeController extends Controller
             return back()->withErrors('Invalid theme');
         }
 
-        if (File::exists(base_path('themes/' . $theme->name))) {
-            return back()->withErrors(" $theme->display_name already existed!");
+        $msg = '';
+        if (File::exists(base_path('themes' . DIRECTORY_SEPARATOR . $theme->name))) {
+            $oldTheme = $this->themeService->getThemeObject($theme->name);
+            if (isset($theme->version)) {
+                if (!isset($oldTheme->version))
+                    $oldTheme->version = '0.0.0';
+                if ($theme->version == $oldTheme->version) {
+                    return back()->withErrors(" $theme->display_name already existed! (Version:$oldTheme->version)");
+                }
+                if ($theme->version > $oldTheme->version)
+                    $msg = " [Upgrade to $theme->version]";
+                else
+                    $msg = " [Downgrade to $theme->version]";
+
+            } else {
+                return back()->withErrors(" $theme->display_name already existed!");
+            }
         }
 
         Zipper::make($themeFile->getRealPath())->extractTo(base_path('themes'));
-        return back()->with('success', "Upload $theme->display_name successfully!");
+        return back()->with('success', "Upload $theme->display_name successfully!" . $msg);
     }
 
 }
