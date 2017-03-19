@@ -25,10 +25,12 @@ class FileViewFinder extends LaravelFileViewFinder
         if (!starts_with($name, 'admin')) {
             $themeNamespace = get_config('theme', 'xblog');
             if ($themeNamespace) {
-                foreach ($this->hints[$themeNamespace] as $path) {
-                    foreach ($this->getPossibleViewFiles($name) as $file) {
-                        if ($this->files->exists($viewPath = $path . '/' . $file)) {
-                            return $this->views[$name] = $viewPath;
+                if (isset($this->hints[$themeNamespace])) {
+                    foreach ($this->hints[$themeNamespace] as $path) {
+                        foreach ($this->getPossibleViewFiles($name) as $file) {
+                            if ($this->files->exists($viewPath = $path . '/' . $file)) {
+                                return $this->views[$name] = $viewPath;
+                            }
                         }
                     }
                 }
