@@ -29,7 +29,7 @@
             @endif
             <div class="form-group">
                 <label for="comment-content">评论内容<span class="required">*</span></label>
-                <textarea {{ $final_allow_comment?' ':' disabled ' }} placeholder="支持Markdown" style="resize: vertical"
+                <textarea {{ $final_allow_comment?' ':' disabled ' }} placeholder="支持Markdown, 审核后才会显示" style="resize: vertical"
                           id="comment-content" name="content"
                           rows="5" spellcheck="false"
                           class="form-control markdown-content autosize-target"></textarea>
