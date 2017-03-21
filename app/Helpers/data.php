@@ -76,7 +76,7 @@ if (!function_exists('get_posts_by_category')) {
 if (!function_exists('get_comments')) {
     function get_comments($commentable_type, $commentable_id)
     {
-        return app(CommentService::class)->getByCommentable($commentable_type, $commentable_id);
+        return app(CommentService::class)->getComments($commentable_type, $commentable_id);
     }
 }
 

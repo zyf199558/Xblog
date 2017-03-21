@@ -27,7 +27,7 @@
 
                                 <?php $commentableData = $comment->getCommentableData();?>
 
-                                <tr class="{{ $comment->trashed() ? 'danger':'' }}">
+                                <tr class="{{ $comment->trashed() ? 'danger':($comment->isVerified() ? 'success' : '') }}">
                                     <td>
                                         @if($comment->user_id)
                                             <a href="{{ route('user.show',$comment->username) }}">{{ $comment->username }}</a>
@@ -71,7 +71,6 @@
                                                     <i class="fa fa-repeat fa-fw"></i>
                                                 </button>
                                             </form>
-
                                         @else
                                             <button type="submit"
                                                     class="btn btn-danger swal-dialog-target"
@@ -85,6 +84,15 @@
                                                 <i class="fa fa-pencil fa-fw"></i>
                                             </a>
                                         @endif
+                                        <form style="display: inline-block" method="post"
+                                              action="{{ route('comment.verify',$comment->id) }}">
+                                            {{ csrf_field() }}
+                                            <button type="submit" class="btn btn-info"
+                                                    data-toggle="tooltip" data-placement="top"
+                                                    title="{{ $comment->isVerified()?'Un Verify':'Verify' }}">
+                                                <i class="fa fa-{{ $comment->isVerified()?'hand-o-down':'hand-o-up' }} fa-fw"></i>
+                                            </button>
+                                        </form>
                                         <?php $ip = $comment->ip ?>
                                         @if($ip == null)
                                             <button disabled

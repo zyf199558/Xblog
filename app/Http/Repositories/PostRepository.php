@@ -103,10 +103,11 @@ class PostRepository extends Repository
         $posts = $this->remember('post.achieve', function () {
             return Post::select([
                 'id',
+                'category_id',
                 'title',
                 'slug',
                 'created_at',
-            ])->orderBy('created_at', 'desc')->get();
+            ])->with(['tags', 'category'])->orderBy('created_at', 'desc')->get();
         });
         return $posts;
     }

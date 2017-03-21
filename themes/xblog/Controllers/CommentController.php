@@ -26,7 +26,7 @@ class CommentController extends Controller
     public function show(Request $request, $commentable_id)
     {
         $commentable_type = $request->get('commentable_type');
-        $comments = $this->commentRepository->getByCommentable($commentable_type, $commentable_id);
+        $comments = $this->commentRepository->getByCommentable($commentable_type, $commentable_id, isAdminById(auth()->id()));
         $redirect = $request->get('redirect');
         return view('comment.show', compact('comments', 'commentable', 'redirect'));
     }

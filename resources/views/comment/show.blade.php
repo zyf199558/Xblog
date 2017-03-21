@@ -18,7 +18,7 @@
         <div class="comment-info">
             <div class="comment-head">
                 <span class="name">
-                    <a href="{{ $href }}">{{ $comment->username }}</a>
+                    <a href="{{ $href }}"{{ !$comment->isVerified()?" style=color:red":'' }}>{{ $comment->username }}</a>
                     @if(isAdminById($comment->user_id))
                         <label class="role-label">博主</label>
                     @endif
@@ -55,6 +55,13 @@
                    onclick="replySomeone('{{ $comment->username }}')">
                     回复
                 </a>
+                @if(isAdminById(auth()->id()) && !$comment->isVerified())
+                    <a class="comment-operation-item"
+                       title="Verify"
+                       href="{{ route('comment.verify',$comment->id) }}">
+                        Verify
+                    </a>
+                @endif
             </div>
         </div>
     </div>

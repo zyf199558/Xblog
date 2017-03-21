@@ -18,8 +18,9 @@ class CommentController extends Controller
         $this->commentRepository = $commentRepository;
     }
 
-    public function update(Request $request, Comment $comment)
+    public function update(Request $request, $comment_id)
     {
+        $comment = $this->findComment($comment_id);
         $this->checkPolicy('manager', $comment);
 
         if ($this->commentRepository->update($request->get('content'), $comment)) {
@@ -52,24 +53,33 @@ class CommentController extends Controller
             }
         }
 
-        if ($comment = $this->commentRepository->create($request))
-            return response()->json(['status' => 200, 'msg' => 'success']);
-        return response()->json(['status' => 500, 'msg' => 'failed']);
+        if ($comment = $this->commentRepository->create($request)) {
+            if ($request->expectsJson()) {
+                return response()->json(['status' => 200, 'msg' => 'success']);
+            }
+            return back()->with('success', 'Success');
+        }
+        if ($request->expectsJson()) {
+            return response()->json(['status' => 500, 'msg' => 'failed']);
+        }
+        return back()->withErrors('Failed');
     }
 
     public function destroy($comment_id)
     {
-        if (request('force') == 'true') {
-            $comment = Comment::withTrashed()->findOrFail($comment_id);
-        } else {
-            $comment = Comment::findOrFail($comment_id);
-        }
+        $force = (request('force') == 'true');
+        $comment = $this->findComment($comment_id);
 
         $this->checkPolicy('manager', $comment);
 
-        if ($this->commentRepository->delete($comment, request('force') == 'true')) {
+        if ($this->commentRepository->delete($comment, $force)) {
             return back()->with('success', '删除成功');
         }
         return back()->withErrors('删除失败');
+    }
+
+    protected function findComment($id)
+    {
+        return Comment::withoutGlobalScopes()->findOrFail($id);
     }
 }

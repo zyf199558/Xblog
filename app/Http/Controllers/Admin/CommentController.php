@@ -24,7 +24,7 @@ class CommentController extends Controller
 
     public function restore($comment_id)
     {
-        $comment = Comment::withTrashed()->findOrFail($comment_id);
+        $comment = $this->findComment($comment_id);
 
         $this->checkPolicy('restore', $comment);
 
@@ -34,5 +34,24 @@ class CommentController extends Controller
             return redirect()->route('admin.comments')->with('success', '恢复成功');
         }
         return redirect()->route('admin.comments')->withErrors('恢复失败');
+    }
+
+    public function verify($comment_id)
+    {
+        $comment = $this->findComment($comment_id);
+        if ($comment->isVerified()) {
+            $comment->status = 0;
+        } else {
+            $comment->status = 1;
+        }
+        if ($comment->save()) {
+            return back()->with('success', 'Verified successfully.');
+        }
+        return back()->withErrors('Verified failed.');
+    }
+
+    protected function findComment($id)
+    {
+        return Comment::withoutGlobalScopes()->findOrFail($id);
     }
 }

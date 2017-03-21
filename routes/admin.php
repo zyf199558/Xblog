@@ -48,6 +48,7 @@ Route::post('/theme/{name}', ['uses' => 'ThemeController@change', 'as' => 'theme
  * comment
  */
 Route::post('/comment/{comment}/restore', ['uses' => 'CommentController@restore', 'as' => 'comment.restore']);
+Route::match(['get', 'post'], '/comment/{comment}/verify', ['uses' => 'CommentController@verify', 'as' => 'comment.verify']);
 
 /***
  * post
