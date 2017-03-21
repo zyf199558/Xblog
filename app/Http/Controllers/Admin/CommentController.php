@@ -39,15 +39,18 @@ class CommentController extends Controller
     public function verify($comment_id)
     {
         $comment = $this->findComment($comment_id);
+        $msg = 'Verified successfully.';
         if ($comment->isVerified()) {
+            $msg = 'UNVerified successfully.';
             $comment->status = 0;
         } else {
             $comment->status = 1;
         }
         if ($comment->save()) {
-            return back()->with('success', 'Verified successfully.');
+            $this->commentRepository->clearAllCache();
+            return back()->with('success', $msg);
         }
-        return back()->withErrors('Verified failed.');
+        return back()->withErrors('Action failed.');
     }
 
     protected function findComment($id)
