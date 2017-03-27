@@ -12,6 +12,8 @@ use App\Http\Requests;
 use App\Notifications\UserRegistered;
 use App\Post;
 use Carbon\Carbon;
+use Chumper\Zipper\Facades\Zipper;
+use File;
 use Gate;
 use Illuminate\Http\Request;
 use League\HTMLToMarkdown\HtmlConverter;
@@ -131,6 +133,20 @@ class PostController extends Controller
                 'Content-Disposition' => "attachment; filename=\"" . $post->title . ".md\""
             ]
         );
+    }
+
+    public function downloadAll()
+    {
+        $path = storage_path('post' . DIRECTORY_SEPARATOR . 'all.zip');
+        if (File::exists($path)) {
+            File::delete($path);
+        }
+        $zipper = Zipper::make($path);
+        foreach (Post::withoutGlobalScopes()->get() as $post) {
+            $zipper->folder('posts')->addString($post->title . '.md', $this->getPostContent($post));
+        }
+        $zipper->close();
+        return response()->download($path);
     }
 
     private function getPostContent(Post $post)

@@ -1,5 +1,6 @@
 <?php
 
+use App\Scopes\VerifiedCommentScope;
 use Illuminate\Foundation\Inspiring;
 use Lufficc\MarkDownParser;
 
@@ -58,3 +59,15 @@ Artisan::command('xssProtection', function () {
     }
 
 })->describe("protect user comments from xss");;
+
+Artisan::command('comment:delete-uv', function () {
+    $result = \App\Comment::withoutGlobalScope(VerifiedCommentScope::class)->where('status', 0)->delete();
+    $this->comment("Delete $result comments.");
+    cache()->flush();
+})->describe("delete un verified comments");;
+
+Artisan::command('ip:delete-ub', function () {
+    $result = \App\Ip::where('blocked', 0)->delete();
+    $this->comment("Delete $result ips.");
+    cache()->flush();
+})->describe("delete un verified comments");;

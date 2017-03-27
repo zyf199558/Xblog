@@ -8,6 +8,7 @@ use App\Comment;
 use App\Http\Repositories\CommentRepository;
 use App\Http\Repositories\PostRepository;
 use App\Http\Requests;
+use App\Scopes\VerifiedCommentScope;
 use Gate;
 use Illuminate\Http\Request;
 
@@ -56,5 +57,12 @@ class CommentController extends Controller
     protected function findComment($id)
     {
         return Comment::withoutGlobalScopes()->findOrFail($id);
+    }
+
+    protected function deleteUnVerifiedComments()
+    {
+        $result = Comment::withoutGlobalScope(VerifiedCommentScope::class)->where('status', 0)->delete();
+        $this->commentRepository->clearAllCache();
+        return back()->with('success', "Delete $result comments.");
     }
 }

@@ -8,6 +8,8 @@ Homestead.json
 _ide_helper.php
 .vscode/
 
+/storage/
+
 !/themes
 /themes/*
 !/themes/xblog
@@ -18,3 +20,4 @@ _ide_helper.php
 !/public/css/
 !/public/js/
 !/public/build/
+

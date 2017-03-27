@@ -5,7 +5,10 @@
         <div class="col-md-12">
             <div class="widget widget-default">
                 <div class="widget-header">
-                    <h6><i class="fa fa-sticky-note fa-fw"></i>文章</h6>
+                    <h6>
+                        <i class="fa fa-sticky-note fa-fw"></i>文章
+                        <a class="meta-item" href="{{ route('post.download-all') }}">Download All</a>
+                    </h6>
                 </div>
                 <div class="widget-body">
                     <table class="table table-hover table-bordered table-responsive">
