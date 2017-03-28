@@ -16,6 +16,7 @@ class CommentController extends Controller
     public function __construct(CommentRepository $commentRepository)
     {
         $this->commentRepository = $commentRepository;
+        $this->middleware('auth', ['only' => ['destroy', 'update']]);
     }
 
     public function update(Request $request, $comment_id)

@@ -61,7 +61,7 @@ class CommentController extends Controller
 
     protected function deleteUnVerifiedComments()
     {
-        $result = Comment::withoutGlobalScope(VerifiedCommentScope::class)->where('status', 0)->delete();
+        $result = Comment::withoutGlobalScope(VerifiedCommentScope::class)->where('status', 0)->forceDelete();
         $this->commentRepository->clearAllCache();
         return back()->with('success', "Delete $result comments.");
     }
