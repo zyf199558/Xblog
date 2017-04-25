@@ -9,8 +9,9 @@
             }
             $imgSrc = $comment->user ? $comment->user->avatar : config('app.avatar');
             $imgSrc = processImageViewUrl($imgSrc, 40, 40);
+            $commentFragment = "comment-$comment->id"
             ?>
-            <a name="comment{{ $loop->index + 1 }}" href="{{ $href }}">
+            <a name="{{ $commentFragment }}" href="{{ $href }}">
                 <img width="40px" height="40px" class="img-circle"
                      src="{{ $imgSrc }}">
             </a>
@@ -24,7 +25,7 @@
                     @endif
                 </span>
                 <span class="comment-operation pull-right">
-                    <a href="#comment{{ $loop->index + 1 }}"
+                    <a href="{{ $commentFragment }}"
                        style="color: #ccc;font-size: 12px">#{{ $loop->index	+ 1 }}</a>
             </span>
             </div>
@@ -45,7 +46,7 @@
                     </a>
                     <a class="comment-operation-item"
                        title="编辑"
-                       href="{{ route('comment.edit',[$comment->id,'redirect'=>(isset($redirect) && $redirect.'#'.$loop->index ? $redirect : '')]) }}">
+                       href="{{ route('comment.edit',[$comment->id,'redirect'=>(isset($redirect) ? $redirect.'#'.$commentFragment : request()->fullUrl().'#'.$commentFragment)]) }}">
                         编辑
                     </a>
                 @endcan
