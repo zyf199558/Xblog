@@ -8,48 +8,41 @@
 
 namespace Lufficc;
 
-use Qiniu\Auth;
-use Qiniu\Storage\BucketManager;
-use Qiniu\Storage\UploadManager;
+use Storage;
 
 class FileUploadManager
 {
-    private $bucket;
-    private $token;
-    private $uploadManager;
-    private $bucketManager;
+    private $disk;
 
     /**
      * FileUploadManager constructor.
+     * @param $disk
      */
-    public function __construct()
+    public function __construct($disk)
     {
-        $accessKey = config('filesystems.disks.qiniu.access_key');
-        $secretKey = config('filesystems.disks.qiniu.secret_key');
-        $this->bucket = config('filesystems.disks.qiniu.bucket');
-        $auth = new Auth($accessKey, $secretKey);
-        $this->token = $auth->uploadToken($this->bucket);
-        $this->uploadManager = new UploadManager();
-        $this->bucketManager = new BucketManager($auth);
+        $this->disk = Storage::disk('qiniu');
     }
 
     public function uploadFile($key, $filePath)
     {
-        list($ret, $err) = $this->uploadManager->putFile($this->token, $key, $filePath);
-        if ($err !== null) {
-            return false;
-        } else {
+        if ($this->disk->put($key, file_get_contents($filePath))) {
             return true;
+        } else {
+            return false;
         }
+    }
+
+    public function url($key)
+    {
+        return $this->disk->url($key);
     }
 
     public function deleteFile($key)
     {
-        $err = $this->bucketManager->delete($this->bucket, $key);
-        if ($err !== null) {
-            return false;
-        } else {
+        if ($this->disk->delete($key)) {
             return true;
+        } else {
+            return false;
         }
     }
 }

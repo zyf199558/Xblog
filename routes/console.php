@@ -17,7 +17,7 @@ use Lufficc\MarkDownParser;
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
-})->describe('inspire');;
+})->describe('inspire');
 
 
 Artisan::command('post {action}', function ($action) {
@@ -37,7 +37,7 @@ Artisan::command('post {action}', function ($action) {
             break;
     }
 
-})->describe('post { des2html | content2html }');;
+})->describe('post { des2html | content2html }');
 
 
 Artisan::command('avatar', function () {
@@ -58,16 +58,33 @@ Artisan::command('xssProtection', function () {
         $this->comment("----------------------------------------------------------------------------------------");
     }
 
-})->describe("protect user comments from xss");;
+})->describe("protect user comments from xss");
 
 Artisan::command('comment:delete-uv', function () {
     $result = \App\Comment::withoutGlobalScope(VerifiedCommentScope::class)->where('status', 0)->delete();
     $this->comment("Delete $result comments.");
     cache()->flush();
-})->describe("delete un verified comments");;
+})->describe("delete un verified comments");
 
 Artisan::command('ip:delete-ub', function () {
     $result = \App\Ip::where('blocked', 0)->delete();
     $this->comment("Delete $result ips.");
     cache()->flush();
-})->describe("delete un verified comments");;
+})->describe("delete un verified comments");
+
+Artisan::command('files:generate-url {disk}', function ($disk) {
+    $files = \App\File::all();
+    $storage = Storage::disk($disk);
+    $count = 0;
+    foreach ($files as $file) {
+        if (isset($file->url) || $file->url) {
+            continue;
+        }
+        $file->url = $storage->url($file->key);
+        $file->disk = $disk;
+        $file->save();
+        $count += 1;
+    }
+    $this->comment("generated $count urls.");
+    cache()->flush();
+})->describe("generate url with disk");

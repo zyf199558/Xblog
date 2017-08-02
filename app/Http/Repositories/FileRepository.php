@@ -84,7 +84,7 @@ abstract class FileRepository extends Repository
                 'type' => $this->type()
             ]);
             if ($fileModel->save()) {
-                $result = getUrlByFileName($key);
+                $result = $this->fileUploadManager->url($key);
             } else {
                 $result = false;
             }

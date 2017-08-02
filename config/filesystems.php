@@ -62,12 +62,8 @@ return [
             'bucket' => 'your-bucket',
         ],
         'qiniu' => [
-            'driver'  => 'qiniu',
-            'domains' => [
-                'default'   => env('QINIU_DEFAULT_DOMAIN'), //你的七牛域名
-                'https'     => env('QINIU_HTTPS_DOMAIN'),         //你的HTTPS域名
-                'custom'    => env('QINIU_CUSTOM_DOMAIN'),                //你的自定义域名
-            ],
+            'driver'    => 'qiniu',
+            'domain'   => env('QINIU_DOMAIN'),
             'access_key'=> env('QINIU_AK'),  //AccessKey
             'secret_key'=> env('QINIU_SK'),  //SecretKey
             'bucket'    => env('QINIU_BUCKET'),  //Bucket名字
