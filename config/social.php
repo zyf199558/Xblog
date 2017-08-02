@@ -9,19 +9,19 @@ return [
  */
     'facebook' => [
         'url'  => 'https://www.facebook.com/lufficc',
-        'fa'   => 'fa fa-facebook fa-fw',
+        'icon'   => 'facebook',
     ],
     'twitter'  => [
         'url'  => 'https://twitter.com/lufficc',
-        'fa'   => 'fa fa-twitter fa-fw',
+        'icon'   => 'twitter',
     ],
     'weibo'    => [
         'url'  => 'http://weibo.com/u/2363498941',
-        'fa'   => 'fa fa-weibo fa-fw',
+        'icon'   => 'weibo',
     ],
     'github'  => [
         'url' =>'https://github.com/lufficc',
-        'fa'   => 'fa fa-github fa-fw',
+        'icon'   => 'github',
     ],
 
 ];

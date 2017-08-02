@@ -25,7 +25,7 @@
             @foreach(config('social') as $key => $value)
                 <a href="{{ $value['url'] }}" target="_blank"
                    aria-label="{{ $author or 'author' }} 的 {{ ucfirst($key) }} 地址">
-                    <i class="{{ $value['fa'] }}" title="{{ ucfirst($key) }}"></i>
+                    <i class="fa fa-{{ $value['icon'] }} fa-fw" title="{{ ucfirst($key) }}"></i>
                 </a>
             @endforeach
         </p>

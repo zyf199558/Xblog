@@ -94,14 +94,14 @@
                                     <td>
                                         <button id="clipboard-btn" class="btn btn-default"
                                                 type="button"
-                                                data-clipboard-text="{{ getUrlByFileName($file->key) }}"
+                                                data-clipboard-text="{{ $file->url }}"
                                                 data-toggle="tooltip"
                                                 data-placement="left"
                                                 title="Copied">
                                             <i class="fa fa-copy fa-fw"></i>
                                         </button>
                                         <a class="btn btn-info"
-                                           href="{{ getUrlByFileName($file->key) }}"
+                                           href="{{ $file->url }}"
                                                 data-method="delete">
                                             <i class="fa fa-cloud-download fa-fw"></i>
                                         </a>

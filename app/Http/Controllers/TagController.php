@@ -28,7 +28,7 @@ class TagController extends Controller
     public function show($name)
     {
         $tag = $this->tagRepository->get($name);
-        $page_size = $page_size = XblogConfig::getValue('page_size', 7);
+        $page_size = $page_size = get_config('page_size', 7);
 
         $posts = $this->tagRepository->pagedPostsByTag($tag, $page_size);
         return view('tag.show', compact('posts', 'name'));

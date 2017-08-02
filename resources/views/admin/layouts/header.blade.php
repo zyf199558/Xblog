@@ -24,7 +24,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ auth()->user()->name }}
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ route('post.index') }}">回到站点</a></li>
+                                <li><a href="{{ url('/') }}">回到站点</a></li>
                                 <li><a href="{{ route('user.show',auth()->user()->name) }}">个人中心</a></li>
                                 <li class="divider"></li>
                                 <li><a href="{{ url('/logout') }}" onclick="event.preventDefault();

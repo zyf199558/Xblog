@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Scopes\VerifiedCommentScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -11,6 +12,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Comment extends Model
 {
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new VerifiedCommentScope());
+    }
+
     use SoftDeletes;
 
     protected $fillable = ['content'];
@@ -34,6 +47,11 @@ class Comment extends Model
     public function commentable()
     {
         return $this->morphTo();
+    }
+
+    public function isVerified()
+    {
+        return $this->status == 1;
     }
 
 

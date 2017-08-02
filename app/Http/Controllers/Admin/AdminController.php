@@ -49,7 +49,8 @@ class AdminController extends Controller
                                 TagRepository $tagRepository,
                                 PageRepository $pageRepository,
                                 ImageRepository $imageRepository,
-                                MapRepository $mapRepository)
+                                MapRepository $mapRepository
+    )
     {
         $this->postRepository = $postRepository;
         $this->commentRepository = $commentRepository;
@@ -65,7 +66,7 @@ class AdminController extends Controller
     {
         $info = [];
         $info['post_count'] = $this->postRepository->count();
-        $info['comment_count'] = $this->commentRepository->count();
+        $info['comment_count'] = Comment::withoutGlobalScopes()->count();
         $info['user_count'] = $this->userRepository->count();
         $info['category_count'] = $this->categoryRepository->count();
         $info['tag_count'] = $this->tagRepository->count();

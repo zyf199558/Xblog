@@ -188,6 +188,8 @@ return [
         Mews\Purifier\PurifierServiceProvider::class,
         App\Providers\CacheServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
+        Chumper\Zipper\ZipperServiceProvider::class,
+        Overtrue\LaravelFilesystem\Qiniu\QiniuStorageServiceProvider::class,
         //Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
@@ -236,6 +238,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'XblogConfig' => App\Facades\XblogConfig::class,
+        'Zipper' => Chumper\Zipper\Zipper::class,
     ],
 
 ];

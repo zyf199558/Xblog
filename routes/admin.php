@@ -40,6 +40,8 @@ Route::get('/ips', ['uses' => 'AdminController@ips', 'as' => 'admin.ips']);
  * comment
  */
 Route::post('/comment/{comment}/restore', ['uses' => 'CommentController@restore', 'as' => 'comment.restore']);
+Route::match(['get', 'post'], '/comment/{comment}/verify', ['uses' => 'CommentController@verify', 'as' => 'comment.verify']);
+Route::delete('comment/un-verified', ['uses' => 'CommentController@deleteUnVerifiedComments', 'as' => 'comment.delete-un-verified']);
 
 /***
  * post
@@ -50,6 +52,7 @@ Route::get('/post/{slug}/preview', ['uses' => 'PostController@preview', 'as' => 
 Route::post('/post/{post}/publish', ['uses' => 'PostController@publish', 'as' => 'post.publish']);
 Route::get('/post/{post}/download', ['uses' => 'PostController@download', 'as' => 'post.download']);
 Route::post('/post/{post}/config', ['uses' => 'PostController@updateConfig', 'as' => 'post.config']);
+Route::get('/post/download-all', ['uses' => 'PostController@downloadAll', 'as' => 'post.download-all']);
 
 /**
  * tag

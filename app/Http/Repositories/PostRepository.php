@@ -103,17 +103,18 @@ class PostRepository extends Repository
         $posts = $this->remember('post.achieve', function () {
             return Post::select([
                 'id',
+                'category_id',
                 'title',
                 'slug',
                 'created_at',
-            ])->orderBy('created_at', 'desc')->get();
+            ])->with(['tags', 'category'])->orderBy('created_at', 'desc')->get();
         });
         return $posts;
     }
 
-    public function recommendedPosts(Post $post)
+    public function recommendedPosts(Post $post, $limit = 5)
     {
-        $recommendedPosts = $this->remember('post.recommend.' . $post->slug, function () use ($post) {
+        $recommendedPosts = $this->remember('post.recommend.' . $post->slug, function () use ($post, $limit) {
             $category = $post->category;
             $tags = [];
             foreach ($post->tags as $tag) {
@@ -124,7 +125,7 @@ class PostRepository extends Repository
                 ->Where('id', '<>', $post->id)
                 ->orderBy('view_count', 'desc')
                 ->select(Post::selectArrayWithOutContent)
-                ->limit(5)
+                ->limit($limit)
                 ->get();
             return $recommendedPosts;
         });

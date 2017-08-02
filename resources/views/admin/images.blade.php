@@ -37,20 +37,20 @@
                         {{ $image->name }}
                     </label>
                     <div class="js-imgLiquid" style="width: 100% ;height: 250px;">
-                        <img src="{{ getImageViewUrl($image->key,null,250) }}">
+                        <img src="{{ getImageViewUrl($image->url,null,250) }}">
                     </div>
                     <div class="widget-footer">
                         <div class="widget-meta">
                             <button id="clipboard-btn" class="btn btn-default"
                                     type="button"
-                                    data-clipboard-text="{{ getUrlByFileName($image->key) }}"
+                                    data-clipboard-text="{{ $image->url }}"
                                     data-toggle="tooltip"
                                     data-placement="left"
                                     title="Copied">
                                 <i class="fa fa-copy fa-fw"></i>
                             </button>
                             <a  class="btn btn-primary"
-                                    href="{{ getUrlByFileName($image->key) }}"
+                                    href="{{ $image->url }}"
                                     target="_blank">
                                 <i class="fa fa-eye fa-fw"></i>
                             </a>

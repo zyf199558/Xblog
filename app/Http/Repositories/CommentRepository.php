@@ -8,6 +8,7 @@
 namespace App\Http\Repositories;
 
 use App\Comment;
+use App\Scopes\VerifiedCommentScope;
 use Illuminate\Http\Request;
 use Lufficc\Exception\CommentNotAllowedException;
 use Lufficc\MarkDownParser;
@@ -47,16 +48,21 @@ class CommentRepository extends Repository
         return $count;
     }
 
-    private function getCacheKey($commentable_type, $commentable_id)
+    private function getCacheKey($commentable_type, $commentable_id, $includeUnVerified)
     {
-        return $commentable_type . '.' . $commentable_id . 'comments';
+        return $commentable_type . '.' . $commentable_id . 'comments.' . $includeUnVerified;
     }
 
-    public function getByCommentable($commentable_type, $commentable_id)
+    public function getByCommentable($commentable_type, $commentable_id, $includeUnVerified = null)
     {
-        $comments = $this->remember($this->getCacheKey($commentable_type, $commentable_id), function () use ($commentable_type, $commentable_id) {
+        if ($includeUnVerified == null) $includeUnVerified = isAdminById(auth()->id());
+        $comments = $this->remember($this->getCacheKey($commentable_type, $commentable_id, $includeUnVerified), function () use ($commentable_type, $commentable_id, $includeUnVerified) {
             $commentable = app($commentable_type)->where('id', $commentable_id)->select(['id'])->firstOrFail();
-            return $commentable->comments()->with(['user'])->orderBy('id', 'asc')->get();
+            $query = $commentable->comments()->with(['user'])->orderBy('id', 'asc');
+            if ($includeUnVerified) {
+                $query->withoutGlobalScope(VerifiedCommentScope::class);
+            }
+            return $query->get();
         });
         return $comments;
     }
@@ -86,6 +92,8 @@ class CommentRepository extends Repository
             $comment->user_id = $user->id;
             $comment->username = $user->name;
             $comment->email = $user->email;
+            if (isAdminById($user->id))
+                $comment->status = 1;
         } else {
             $comment->username = $request->get('username');
             $comment->email = $request->get('email');

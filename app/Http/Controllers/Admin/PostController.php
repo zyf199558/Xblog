@@ -12,6 +12,8 @@ use App\Http\Requests;
 use App\Notifications\UserRegistered;
 use App\Post;
 use Carbon\Carbon;
+use Chumper\Zipper\Facades\Zipper;
+use File;
 use Gate;
 use Illuminate\Http\Request;
 use League\HTMLToMarkdown\HtmlConverter;
@@ -124,7 +126,31 @@ class PostController extends Controller
     public function download($id)
     {
         $post = Post::withoutGlobalScopes()->where('id', $id)->with(['tags', 'category'])->first();
+        $info = $this->getPostContent($post);
+        return response($info, 200,
+            [
+                "Content-Type" => 'application/force-download',
+                'Content-Disposition' => "attachment; filename=\"" . $post->title . ".md\""
+            ]
+        );
+    }
 
+    public function downloadAll()
+    {
+        $path = storage_path('post' . DIRECTORY_SEPARATOR . 'all.zip');
+        if (File::exists($path)) {
+            File::delete($path);
+        }
+        $zipper = Zipper::make($path);
+        foreach (Post::withoutGlobalScopes()->get() as $post) {
+            $zipper->folder('posts')->addString($post->title . '.md', $this->getPostContent($post));
+        }
+        $zipper->close();
+        return response()->download($path);
+    }
+
+    private function getPostContent(Post $post)
+    {
         $info = "title: " . $post->title;
         $info = $info . "\ndate: " . $post->created_at->format('Y-m-d H:i');
         $info = $info . "\npermalink: " . $post->slug;
@@ -134,12 +160,7 @@ class PostController extends Controller
             $info = $info . "- $tag->name\n";
         }
         $info = $info . "---\n\n" . $post->content;
-        return response($info, 200,
-            [
-                "Content-Type" => 'application/force-download',
-                'Content-Disposition' => "attachment; filename=\"" . $post->title . ".md\""
-            ]
-        );
+        return $info;
     }
 
     public function restore($id)
