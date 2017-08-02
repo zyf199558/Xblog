@@ -62,12 +62,11 @@ return [
             'bucket' => 'your-bucket',
         ],
         'qiniu' => [
-            'driver'    => 'qiniu',
-            'domain'   => env('QINIU_DOMAIN'),
-            'access_key'=> env('QINIU_AK'),  //AccessKey
-            'secret_key'=> env('QINIU_SK'),  //SecretKey
-            'bucket'    => env('QINIU_BUCKET'),  //Bucket名字
-            'notify_url'=> '',  //持久化处理回调地址
+            'driver'     => 'qiniu',
+            'access_key' => env('QINIU_AK'),  //AccessKey
+            'secret_key' => env('QINIU_SK'),  //SecretKey
+            'bucket'     => env('QINIU_BUCKET'),  //Bucket
+            'domain'     => env('QINIU_DOMAIN')
         ],
     ],
 
