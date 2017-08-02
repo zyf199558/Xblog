@@ -81,10 +81,12 @@ abstract class FileRepository extends Repository
                 'name' => $file->getClientOriginalName(),
                 'key' => $key,
                 'size' => $file->getSize(),
-                'type' => $this->type()
+                'type' => $this->type(),
+                'url' => $this->fileUploadManager->url($key),
+                'disk' => 'qiniu'
             ]);
             if ($fileModel->save()) {
-                $result = $this->fileUploadManager->url($key);
+                $result = $fileModel->url;
             } else {
                 $result = false;
             }

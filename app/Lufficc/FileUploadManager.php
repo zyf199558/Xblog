@@ -12,20 +12,10 @@ use Storage;
 
 class FileUploadManager
 {
-    private $disk;
-
-    /**
-     * FileUploadManager constructor.
-     * @param $disk
-     */
-    public function __construct($disk)
-    {
-        $this->disk = Storage::disk('qiniu');
-    }
-
     public function uploadFile($key, $filePath)
     {
-        if ($this->disk->put($key, file_get_contents($filePath))) {
+        $disk = Storage::disk('qiniu');
+        if ($disk->put($key, file_get_contents($filePath))) {
             return true;
         } else {
             return false;
@@ -34,12 +24,14 @@ class FileUploadManager
 
     public function url($key)
     {
-        return $this->disk->url($key);
+        $disk = Storage::disk('qiniu');
+        return $disk->url($key);
     }
 
     public function deleteFile($key)
     {
-        if ($this->disk->delete($key)) {
+        $disk = Storage::disk('qiniu');
+        if ($disk->delete($key)) {
             return true;
         } else {
             return false;

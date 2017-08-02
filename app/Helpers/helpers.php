@@ -56,22 +56,6 @@ if (!function_exists('getUrlEndWithSlash')) {
     }
 }
 
-if (!function_exists('getUrlByFileName')) {
-    function getUrlByFileName($fileName)
-    {
-        /**
-         * https domain first
-         */
-        $qiniu_domain = config('filesystems.disks.qiniu.domains.https');
-        if ($qiniu_domain) {
-            $qiniu_domain = getUrlEndWithSlash($qiniu_domain);
-        } else {
-            $qiniu_domain = getUrlEndWithSlash($qiniu_domain = config('filesystems.disks.qiniu.domains.default'));
-        }
-        return $qiniu_domain . $fileName;
-    }
-}
-
 if (!function_exists('processImageViewUrl')) {
 
     function processImageViewUrl($rawImageUrl, $width = null, $height = null, $mode = 1)
@@ -88,15 +72,15 @@ if (!function_exists('processImageViewUrl')) {
 if (!function_exists('getImageViewUrl')) {
     /**
      * @see http://developer.qiniu.com/code/v6/api/kodo-api/image/imageview2.html
-     * @param $key
+     * @param $url
      * @param null $width
      * @param null $height
      * @param int $mode
      * @return string
      */
-    function getImageViewUrl($key, $width = null, $height = null, $mode = 1)
+    function getImageViewUrl($url, $width = null, $height = null, $mode = 1)
     {
-        return processImageViewUrl(getUrlByFileName($key), $width, $height, $mode);
+        return processImageViewUrl($url, $width, $height, $mode);
     }
 }
 

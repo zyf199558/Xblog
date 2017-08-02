@@ -189,6 +189,7 @@ return [
         App\Providers\CacheServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
         Chumper\Zipper\ZipperServiceProvider::class,
+        Overtrue\LaravelFilesystem\Qiniu\QiniuStorageServiceProvider::class,
         //Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
