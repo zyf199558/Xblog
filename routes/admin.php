@@ -35,14 +35,6 @@ Route::get('/categories', ['uses' => 'AdminController@categories', 'as' => 'admi
 Route::get('/images', ['uses' => 'ImageController@images', 'as' => 'admin.images']);
 Route::get('/files', ['uses' => 'FileController@files', 'as' => 'admin.files']);
 Route::get('/ips', ['uses' => 'AdminController@ips', 'as' => 'admin.ips']);
-Route::get('/themes', ['uses' => 'AdminController@themes', 'as' => 'admin.themes']);
-
-/**
- * Themes
- */
-Route::post('/theme', ['uses' => 'ThemeController@upload', 'as' => 'theme.upload']);
-Route::delete('/theme/{name}', ['uses' => 'ThemeController@destroy', 'as' => 'theme.destroy']);
-Route::post('/theme/{name}', ['uses' => 'ThemeController@change', 'as' => 'theme.change']);
 
 /**
  * comment

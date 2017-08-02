@@ -74,14 +74,6 @@
                                        value="disqus">Disqus
                             </label>
                         </div>
-                        <div class="radio">
-                            <label class="col-sm-offset-2">
-                                <input type="radio"
-                                       {{ isset($comment_type) && $comment_type == 'duoshuo' ? ' checked':'' }}
-                                       name="comment_type"
-                                       value="duoshuo">多说
-                            </label>
-                        </div>
                     </div>
 
                     <div class="form-group">
@@ -142,19 +134,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="theme" class="col-sm-2 control-label">主题</label>
-                        <div class="col-sm-8">
-                            <select id="theme" name="theme" class="form-control">
-                                @foreach($themes as $theme)
-                                    <option value="{{ $theme->name }}" {{ get_config('theme')==$theme->name?' selected' : '' }}>
-                                        {{ $theme->display_name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
                         <label for="google_trace_id" class="col-sm-2 control-label">跟踪ID</label>
                         <div class="col-sm-8">
                             <input type="text" name="google_trace_id" class="form-control" id="google_trace_id"
@@ -192,14 +171,6 @@
                         <div class="col-sm-8">
                             <input type="text" name="disqus_shortname" class="form-control" id="avatar"
                                    value="{{ $disqus_shortname or ''}}">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="avatar" class="col-sm-2 control-label">多说 ID</label>
-                        <div class="col-sm-8">
-                            <input type="text" name="duoshuo_shortname" class="form-control" id="avatar"
-                                   value="{{ $duoshuo_shortname or ''}}">
                         </div>
                     </div>
 

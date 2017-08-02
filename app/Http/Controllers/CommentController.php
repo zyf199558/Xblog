@@ -16,7 +16,7 @@ class CommentController extends Controller
     public function __construct(CommentRepository $commentRepository)
     {
         $this->commentRepository = $commentRepository;
-        $this->middleware('auth', ['only' => ['destroy', 'update']]);
+        $this->middleware('auth', ['only' => ['destroy', 'update', 'edit']]);
     }
 
     public function update(Request $request, $comment_id)
@@ -31,6 +31,19 @@ class CommentController extends Controller
             return back()->with('success', '修改成功');
         }
         return back()->withErrors('修改失败');
+    }
+
+    public function edit(Comment $comment)
+    {
+        return view('comment.edit', compact('comment'));
+    }
+
+    public function show(Request $request, $commentable_id)
+    {
+        $commentable_type = $request->get('commentable_type');
+        $comments = $this->commentRepository->getByCommentable($commentable_type, $commentable_id, isAdminById(auth()->id()));
+        $redirect = $request->get('redirect');
+        return view('comment.show', compact('comments', 'commentable', 'redirect'));
     }
 
     public function store(Request $request)

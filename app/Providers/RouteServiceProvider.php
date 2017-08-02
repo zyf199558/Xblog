@@ -37,7 +37,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->mapAdminRoutes();
         $this->mapApiRoutes();
-        $this->mapCommonRoutes();
+        $this->mapWebRoutes();
     }
 
 
@@ -73,13 +73,13 @@ class RouteServiceProvider extends ServiceProvider
         });
     }
 
-    protected function mapCommonRoutes()
+    protected function mapWebRoutes()
     {
         Route::group([
             'middleware' => 'web',
             'namespace' => $this->namespace,
         ], function ($router) {
-            require base_path('routes/common.php');
+            require base_path('routes/web.php');
         });
     }
 }

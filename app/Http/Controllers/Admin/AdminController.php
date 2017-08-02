@@ -15,7 +15,6 @@ use App\Http\Repositories\UserRepository;
 use App\Http\Requests;
 use App\Ip;
 use App\Page;
-use App\Services\ThemeService;
 use DB;
 use App\User;
 use Illuminate\Http\Request;
@@ -30,7 +29,6 @@ class AdminController extends Controller
     protected $pageRepository;
     protected $imageRepository;
     protected $mapRepository;
-    protected $themeService;
 
     /**
      * AdminController constructor.
@@ -42,7 +40,6 @@ class AdminController extends Controller
      * @param PageRepository $pageRepository
      * @param ImageRepository $imageRepository
      * @param MapRepository $mapRepository
-     * @param ThemeService $themeService
      * @internal param MapRepository $mapRepository
      */
     public function __construct(PostRepository $postRepository,
@@ -52,8 +49,7 @@ class AdminController extends Controller
                                 TagRepository $tagRepository,
                                 PageRepository $pageRepository,
                                 ImageRepository $imageRepository,
-                                MapRepository $mapRepository,
-                                ThemeService $themeService
+                                MapRepository $mapRepository
     )
     {
         $this->postRepository = $postRepository;
@@ -64,7 +60,6 @@ class AdminController extends Controller
         $this->pageRepository = $pageRepository;
         $this->imageRepository = $imageRepository;
         $this->mapRepository = $mapRepository;
-        $this->themeService = $themeService;
     }
 
     public function index()
@@ -88,14 +83,7 @@ class AdminController extends Controller
 
     public function settings()
     {
-        $themes = $this->themeService->getThemes();
-        return view('admin.settings', compact('themes'));
-    }
-
-    public function themes()
-    {
-        $themes = $this->themeService->getThemes();
-        return view('admin.themes', compact('themes'));
+        return view('admin.settings');
     }
 
     public function saveSettings(Request $request)

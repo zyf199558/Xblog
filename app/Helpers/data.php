@@ -111,21 +111,6 @@ if (!function_exists('get_categories')) {
     }
 }
 
-// Theme
-if (!function_exists('get_current_theme')) {
-    function get_current_theme()
-    {
-        return app(ThemeService::class)->getCurrentTheme();
-    }
-}
-
-if (!function_exists('get_theme_path')) {
-    function get_theme_path($themeName = null)
-    {
-        return app(ThemeService::class)->getThemePath($themeName);
-    }
-}
-
 // Config
 if (!function_exists('get_config')) {
     function get_config($key, $default = null)
@@ -134,10 +119,3 @@ if (!function_exists('get_config')) {
     }
 }
 
-// Resource
-if (!function_exists('resource')) {
-    function resource($path = '')
-    {
-        return '/' . get_current_theme()->name . '/' . $path;
-    }
-}

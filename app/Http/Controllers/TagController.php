@@ -1,6 +1,6 @@
 <?php
 
-namespace Themes\Xblog\Controllers;
+namespace App\Http\Controllers;
 
 use App\Http\Repositories\TagRepository;
 use App\Tag;
