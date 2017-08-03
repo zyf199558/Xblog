@@ -8,9 +8,9 @@
                     <h6>
                         <i class="fa fa-comments fa-fw"></i>评论
                         <a class="meta-item swal-dialog-target"
-                              data-dialog-msg="Delete all unverified comments? "
-                              data-url="{{ route('comment.delete-un-verified') }}"
-                              data-method="delete">Delete Un Verified</a>
+                           data-dialog-msg="Delete all unverified comments? "
+                           data-url="{{ route('comment.delete-un-verified') }}"
+                           data-method="delete">Delete Un Verified</a>
                     </h6>
                 </div>
                 <div class="widget-body">
@@ -50,7 +50,7 @@
                                                 {{ $commentableData['title'] }}
                                             @else
                                                 <a target="_blank"
-                                                   href="{{ $commentableData['url'] }}">{{$commentableData['title'] }}
+                                                   href="{{ $commentableData['url'].'#comment-'.$comment->id }}">{{$commentableData['title'] }}
                                                 </a>
                                             @endif
                                         @endif

@@ -13,7 +13,7 @@ class AuthController extends Controller
 {
 
     protected $userRepository;
-    protected $redirect = '/';
+    protected $redirect = '/blog';
 
     /**
      * UserController constructor.
