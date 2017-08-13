@@ -16,6 +16,17 @@
                     <li><a href="{{ route('post.create') }}">写作</a></li>
                     <li><a href="{{ route('admin.images') }}">图片</a></li>
                     <li><a href="{{ route('admin.files') }}">文件</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">资源<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ route('admin.posts') }}">文章</a></li>
+                            <li><a href="{{ route('admin.categories') }}">分类</a></li>
+                            <li><a href="{{ route('admin.tags') }}">标签</a></li>
+                            <li><a href="{{ route('admin.users') }}">用户</a></li>
+                            <li><a href="{{ route('admin.comments') }}">评论</a></li>
+                            <li><a href="{{ route('admin.ips') }}">IP</a></li>
+                        </ul>
+                    </li>
                     <li><a href="{{ route('admin.settings') }}">设置</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">

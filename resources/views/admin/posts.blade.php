@@ -7,7 +7,9 @@
                 <div class="widget-header">
                     <h6>
                         <i class="fa fa-sticky-note fa-fw"></i>文章
-                        <a class="meta-item" href="{{ route('post.download-all') }}">Download All</a>
+                        <a class="meta-item" href="{{ route('post.download-all') }}">
+                            <i class="fa fa-download"></i>
+                        </a>
                     </h6>
                 </div>
                 <div class="widget-body">

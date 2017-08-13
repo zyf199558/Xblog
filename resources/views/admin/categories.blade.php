@@ -5,12 +5,14 @@
         <div class="col-md-12">
             <div class="widget widget-default">
                 <div class="widget-header">
-                    <h6><i class="fa fa-folder fa-fw"></i>分类</h6>
+                    <h6>
+                        <i class="fa fa-folder fa-fw"></i>分类
+                        <a class="meta-item" data-toggle="modal" data-target="#add-category-modal">
+                            <i class="fa fa-plus-square"></i>
+                        </a>
+                    </h6>
                 </div>
                 <div class="widget-body">
-                    <a class="btn pull-right" role="button" data-toggle="modal" data-target="#add-category-modal">
-                        <i class="fa fa-folder-o"></i>
-                    </a>
                     <table class="table table-hover table-striped table-bordered table-responsive" style="overflow: auto">
                         <thead>
                         <tr>
