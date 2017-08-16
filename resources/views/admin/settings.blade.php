@@ -246,10 +246,18 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">背景图片</label>
+                        <label class="col-sm-2 control-label">Header背景图片</label>
                         <div class="col-sm-8">
-                            <input class="form-control" type="text" name="background_image"
-                                   value="{{ $background_image or ''}}">
+                            <input class="form-control" type="text" name="header_bg_image"
+                                   value="{{ $header_bg_image or ''}}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Home背景图片</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text" name="home_bg_image"
+                                   value="{{ $home_bg_image or ''}}">
                         </div>
                     </div>
 

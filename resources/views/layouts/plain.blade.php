@@ -16,6 +16,14 @@
     <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
     <link href="{{ elixir('css/home.css') }}" rel="stylesheet">
     @include('widget.google_analytics')
+    @if(isset($home_bg_image) && $home_bg_image)
+        <style>
+            .container {
+                background: url("{{ $home_bg_image }}") no-repeat center center;
+                background-size: cover;
+            }
+        </style>
+    @endif
 </head>
 <body>
 <div class="container">
