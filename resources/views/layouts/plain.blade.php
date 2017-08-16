@@ -16,10 +16,14 @@
     <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
     <link href="{{ elixir('css/home.css') }}" rel="stylesheet">
     @include('widget.google_analytics')
-    @if(isset($home_bg_image) && $home_bg_image)
+    @if(isset($home_bg_images) && $home_bg_images)
+        <?php
+        $images = preg_split('/[\n\r]+/', $home_bg_images);
+        $image = $images[rand(0, count($images) - 1)];
+        ?>
         <style>
             .container {
-                background: url("{{ $home_bg_image }}") no-repeat center center;
+                background: url("{{ $image }}") no-repeat center center;
                 background-size: cover;
             }
         </style>

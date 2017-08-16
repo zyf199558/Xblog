@@ -256,8 +256,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Home背景图片</label>
                         <div class="col-sm-8">
-                            <input class="form-control" type="text" name="home_bg_image"
-                                   value="{{ $home_bg_image or ''}}">
+                            <textarea class="form-control" placeholder="可以多个, 一行一个" rows="3" name="home_bg_images">{{ $home_bg_images or ''}}</textarea>
                         </div>
                     </div>
 
