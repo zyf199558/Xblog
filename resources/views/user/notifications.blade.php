@@ -55,8 +55,7 @@
                                                     基本提醒
                                                 @endif
                                             </td>
-                                            <td data-toggle="tooltip" data-placement="top"
-                                                title="{{ $notificationData['content'] }}">{!! $notificationData['content'] !!}</td>
+                                            <td data-toggle="tooltip" data-placement="top">{!! $notificationData['html_content'] !!}</td>
                                             <td>{{ $notificationData['ip_id']?$notificationData['ip_id']:'NONE' }}</td>
                                             <td>
                                                 <a class="btn btn-info"
