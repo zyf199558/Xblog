@@ -1,6 +1,7 @@
 /**
  * @author lufficc
  */
+require('./boot');
 (function ($) {
     var Xblog = {
         init: function () {

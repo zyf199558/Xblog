@@ -10,14 +10,7 @@ _ide_helper.php
 
 /storage/
 
-!/themes
-/themes/*
-!/themes/xblog
-
-!/public
-/public/*
-!/public/*.*
-!/public/css/
-!/public/js/
-!/public/build/
-
+/public/css/
+/public/fonts/
+/public/js/
+/public/mix-manifest.json
