@@ -1,25 +1,26 @@
 @extends('admin.layouts.app')
 @section('content')
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="widget widget-default">
-                <div class="widget-header">
-                    <h3>修改分类</h3>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    修改分类
                 </div>
-                <div class="widget-body">
-                    <form role="form" class="form-horizontal" action="{{ route('category.update',$category->id) }}"
+                <div class="card-body">
+                    <form class="form-horizontal" action="{{ route('category.update',$category->id) }}"
                           method="post">
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                        <div class="form-group">
                             <label for="name" class="col-md-4 control-label">分类名称</label>
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name"
+                                <input id="name" type="text"
+                                       class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
                                        value="{{ $category->name }}"
                                        autofocus>
 
                                 @if ($errors->has('name'))
-                                    <span class="help-block">
+                                    <div class="invalid-feedback">
                                         <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
+                                    </div>
                                 @endif
                             </div>
                         </div>

@@ -4,11 +4,11 @@
 @section('description',$page->display_name)
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1 col-sm-12 phone-no-padding">
+        <div class="row justify-content-center">
+            <div class="col-md-10 col-sm-12 phone-no-padding">
                 <ol class="breadcrumb">
-                    <li><a href="{{ route('post.index') }}">博客</a></li>
-                    <li class="active">{{ ucfirst($page->display_name) }}</li>
+                    <li class="breadcrumb-item"><a href="{{ route('post.index') }}">博客</a></li>
+                    <li class="breadcrumb-item active">{{ ucfirst($page->display_name) }}</li>
                 </ol>
                 @can('update',$page)
                     <div class="btn-group">

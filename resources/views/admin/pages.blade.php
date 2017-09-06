@@ -3,16 +3,14 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="widget widget-default">
-                <div class="widget-header">
-                    <h6>
-                        <i class="fa fa-file fa-fw"></i>页面
-                        <a class="meta-item" href="{{ route('page.create') }}">
-                            <i class="fa fa-plus-square"></i>
-                        </a>
-                    </h6>
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-file fa-fw"></i>页面
+                    <a class="meta-item" href="{{ route('page.create') }}">
+                        <i class="fa fa-plus-square"></i>
+                    </a>
                 </div>
-                <div class="widget-body">
+                <div class="card-body">
                     @if($pages->isEmpty())
                         <div class="center-block">No pages.</div>
                     @else

@@ -32,7 +32,7 @@
                 <textarea {{ $final_allow_comment?' ':' disabled ' }} placeholder="支持Markdown, 审核后才会显示" style="resize: vertical"
                           id="comment-content" name="content"
                           rows="5" spellcheck="false"
-                          class="form-control markdown-content autosize-target"></textarea>
+                          class="form-control autosize-target"></textarea>
                 <span class="help-block required">
                     <strong id="comment_error_msg"></strong>
                 </span>

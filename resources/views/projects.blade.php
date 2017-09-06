@@ -4,18 +4,18 @@
     <div class="container">
         <div id="repo-template" style="display:none">
             <div class="col-md-4 col-sm-6">
-                <div class="widget widget-default">
-                    <div class="widget-header">
+                <div class="card mb-3">
+                    <div class="card-header">
                         <a href="[repo.html_url]" target="_blank" class="collection-card-image geopattern"
                            data-pattern-id="[repo.name]">
                             <h3 class="collection-card-title" style="white-space: nowrap;text-overflow: ellipsis;">[repo.name]</h3>
                         </a>
                     </div>
-                    <div class="widget-body"
+                    <div class="card-body"
                          style=" height: 9em;overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;">
                         <p>[repo.description]</p>
                     </div>
-                    <div class="widget-footer">
+                    <div class="card-footer">
                         <div class="widget-meta">
                         <span class="meta-item">
                             <i class="fa fa-code"></i>
@@ -34,7 +34,7 @@
                 </div>
             </div>
         </div>
-        <div class="projects row">
+        <div class="projects row justify-content-center">
             <div class="center-block">
                 <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
                 <h3>加载中...</h3>

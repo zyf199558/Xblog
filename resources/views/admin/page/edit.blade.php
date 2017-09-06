@@ -6,11 +6,11 @@
     <div id="upload-img-url" data-upload-img-url="{{ route('upload.image') }}" style="display: none"></div>
     <div class="row">
         <div class="col-md-12">
-            <div id="data" class="widget widget-default" data-id="{{ $page->id . '.by@' . request()->ip() }}">
-                <div class="widget-header">
-                    <h6><i class="fa fa-pencil fa-fw"></i>修改页面</h6>
+            <div id="data" class="card" data-id="{{ $page->id . '.by@' . request()->ip() }}">
+                <div class="card-header">
+                    <i class="fa fa-pencil fa-fw"></i>修改页面
                 </div>
-                <div class="widget-body edit-form">
+                <div class="card-body edit-form">
                     <form role="form" class="form-horizontal" action="{{ route('page.update',$page->id) }}" method="post">
 
                         @include('admin.page.form-content')

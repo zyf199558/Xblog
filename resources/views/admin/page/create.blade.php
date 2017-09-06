@@ -6,11 +6,11 @@
     <div id="upload-img-url" data-upload-img-url="{{ route('upload.image') }}" style="display: none"></div>
     <div class="row">
         <div class="col-md-12">
-            <div class="widget widget-default">
-                <div class="widget-header">
-                    <h6><i class="fa fa-file fa-fw"></i>创建页面</h6>
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-file fa-fw"></i>创建页面
                 </div>
-                <div class="widget-body edit-form">
+                <div class="card-body edit-form">
                     <form role="form" class="form-horizontal" action="{{ route('page.store') }}" method="post">
 
                         @include('admin.page.form-content')

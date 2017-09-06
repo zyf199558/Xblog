@@ -10,13 +10,13 @@
         <h5 class="widget-user-desc">{{ $description or 'Description' }}</h5>
     </div>
     <div class="widget-user-image">
-        <img class="img-circle" src="{{ $avatar or 'https://raw.githubusercontent.com/lufficc/images/master/Xblog/logo.png' }}" alt="User Avatar">
+        <img class="rounded-circle" src="{{ $avatar or 'https://raw.githubusercontent.com/lufficc/images/master/Xblog/logo.png' }}" alt="User Avatar">
     </div>
     <div class="widget-user-footer">
         <div class="row">
             <?php $count = count(config('social'))?>
             @foreach(config('social') as $key => $value)
-                <div class="col-xs-{{ intval(12 / $count) }} border-right center-block">
+                <div class="col-{{ intval(12 / $count) }} border-right center-block">
                     <div class="description-block">
                         <a href="{{ $value['url'] }}" title="{{ ucfirst($key) }}" class="description-header"><i
                                     class="{{ 'fa fa-'.$value['icon'].' fa-lg' }}"

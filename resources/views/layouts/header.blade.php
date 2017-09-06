@@ -8,33 +8,32 @@
 @endif
 <header class="main-header">
     <div class="container-fluid" style="margin-top: -15px">
-        <nav class="navbar site-navbar" role="navigation">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#blog-navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="{{ route('post.index') }}"
-                   class="navbar-brand">{{ $author or 'Blog' }}</a>
-            </div>
-            <div class="collapse navbar-collapse fix-top" id="blog-navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li><a class="menu-item" href="{{ route('achieve') }}">归档</a></li>
+        <nav class="navbar navbar-dark navbar-expand-lg">
+            <a href="{{ route('post.index') }}" id="blog-navbar-brand" class="navbar-brand">{{ $author or 'Blog' }}</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse"
+                    data-target="#blog-navbar-collapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="blog-navbar-collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="{{ route('achieve') }}">归档</a></li>
                     @if(XblogConfig::getValue('github_username'))
-                        <li><a class="menu-item" href="{{ route('projects') }}">项目</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('projects') }}">项目</a></li>
                     @endif
                     @foreach($pages as $page)
-                        <li><a class="menu-item"
-                               href="{{ route('page.show',$page->name) }}">{{ $page->display_name }}</a></li>
+                        <li class="nav-item"><a class="nav-link"
+                                                href="{{ route('page.show',$page->name) }}">{{ $page->display_name }}</a>
+                        </li>
                     @endforeach
                 </ul>
-                <ul class="nav navbar-nav navbar-right blog-navbar">
+                <ul class="nav navbar-nav ml-auto justify-content-end">
+                    <form class="form-inline" role="search" method="get" action="{{ route('search') }}">
+                        <input type="text" class="form-control" name="q" placeholder="搜索" required>
+                    </form>
                     @if(Auth::check())
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
+                               data-toggle="dropdown">
                                 <?php
                                 $user = auth()->user();
                                 $unreadNotificationsCount = $user->unreadNotifications->count();
@@ -45,41 +44,37 @@
                                 {{ $user->name }}
                                 <span class="caret"></span>
                             </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ route('user.show',auth()->user()->name) }}">个人中心</a></li>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="{{ route('user.show',auth()->user()->name) }}">个人中心</a>
                                 @if(isAdmin(Auth::user()))
-                                    <li><a href="{{ route('admin.index') }}">后台管理</a></li>
+                                    <a class="dropdown-item" href="{{ route('admin.index') }}">后台管理</a>
                                 @endif
-                                <li><a href="{{ route('user.notifications') }}">
-                                        <?php
-                                        $user = auth()->user();
-                                        $unreadNotificationsCount = $user->unreadNotifications->count();
-                                        ?>
-                                        @if($unreadNotificationsCount)
-                                            <span class="badge required">{{ $unreadNotificationsCount }}</span>
-                                        @endif
-                                        通知中心
-                                    </a></li>
-                                <li class="divider"></li>
-                                <li><a href="{{ url('/logout') }}" onclick="event.preventDefault();
+                                <a class="dropdown-item" href="{{ route('user.notifications') }}">
+                                    <?php
+                                    $user = auth()->user();
+                                    $unreadNotificationsCount = $user->unreadNotifications->count();
+                                    ?>
+                                    @if($unreadNotificationsCount)
+                                        <span class="badge required">{{ $unreadNotificationsCount }}</span>
+                                    @endif
+                                    通知中心
+                                </a>
+                                <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
-                                        退出登录
-                                    </a>
-                                </li>
+                                    退出登录
+                                </a>
                                 <form id="logout-form" action="{{ url('/logout') }}" method="POST"
                                       style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
-                            </ul>
+                            </div>
                         </li>
                     @else
-                        <li><a href="{{ url('login') }}">登录</a></li>
-                        <li><a href="{{ url('register') }}">注册</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('login') }}">登录</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('register') }}">注册</a></li>
                     @endif
+
                 </ul>
-                <form class="navbar-form navbar-right" role="search" method="get" action="{{ route('search') }}">
-                    <input type="text" class="form-control" name="q" placeholder="搜索" required>
-                </form>
             </div>
         </nav>
     </div>

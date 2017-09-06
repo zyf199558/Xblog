@@ -24,7 +24,7 @@ class ImageController extends Controller
      */
     public function images()
     {
-        $images = $this->imageRepository->getAll();
+        $images = $this->imageRepository->getAll(18);
         $image_count = $this->imageRepository->count();
         return view('admin.images', compact('images','image_count'));
     }

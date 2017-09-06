@@ -1,90 +1,92 @@
 @extends('admin.layouts.app')
 @section('title','图片')
 @section('content')
-    <div class="row">
-        <div class="widget widget-default">
-            <div class="widget-header">
+    <div class="container">
+        <div class="card mb-3">
+            <div class="card-header">
                 <h6><i class="fa fa-file-image-o fa-fw"></i>图片({{ $image_count }})</h6>
             </div>
-            <div class="widget-body">
-                <form role="form" class="form-horizontal" action="{{ route('upload.image') }}"
+            <div class="card-body">
+                <form class="form-inline justify-content-center" action="{{ route('upload.image') }}"
                       datatype="image"
                       required="required"
                       enctype="multipart/form-data" method="post">
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label for="image" class="col-xs-2 col-xs-offset-1 control-label">
+                        <label for="image" class="form-control-label mr-3">
                             <i class="fa fa-file-image-o fa-lg fa-fw"></i>
                         </label>
-                        <div class="col-xs-6">
-                            <input id="image" class="form-control" accept="image/*" type="file" name="image">
-                        </div>
-                        <div class="col-xs-2">
-                            <button type="submit" class="btn btn-primary">
-                                上传
-                            </button>
-                        </div>
+                        <input id="image" class="form-control-file" accept="image/*" type="file" name="image">
                     </div>
+                    <button type="submit" class="btn btn-primary">
+                        上传
+                    </button>
                 </form>
             </div>
         </div>
-    </div>
-    <div class="row">
-        @forelse($images as $image)
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="widget widget-default">
-                    <label style="padding: 5px 10px;width: 100%;margin: 0">
-                        {{ $image->name }}
-                    </label>
-                    <div class="js-imgLiquid" style="width: 100% ;height: 250px;">
-                        <img src="{{ getImageViewUrl($image->url,null,250) }}">
-                    </div>
-                    <div class="widget-footer">
-                        <div class="widget-meta">
-                            <button id="clipboard-btn" class="btn btn-default"
-                                    type="button"
-                                    data-clipboard-text="{{ $image->url }}"
-                                    data-toggle="tooltip"
-                                    data-placement="left"
-                                    title="Copied">
-                                <i class="fa fa-copy fa-fw"></i>
-                            </button>
-                            <a  class="btn btn-primary"
-                                    href="{{ $image->url }}"
-                                    target="_blank">
-                                <i class="fa fa-eye fa-fw"></i>
-                            </a>
-                            <button class="btn btn-danger swal-dialog-target"
-                                    data-dialog-msg="确定删除{{ $image->name }}？"
-                                    data-url="{{ route('delete.file').'?key='.$image->key.'&type=image' }}"
-                                    data-key="{{ $image->key }}">
-                                <i class="fa fa-trash-o fa-fw"></i>
-                            </button>
-                            {{ formatBytes($image->size) }}
-                            <i class="fa fa-clock-o fa-fw"></i>
-                            {{ $image->created_at->format('Y-m-d') }}
+        <div class="row" id="images" data-masonry='{ "itemSelector": ".col", "columnWidth":".col" }'>
+            @forelse($images as $image)
+                <div class="col col-md-3 col-sm-4 col-6 mb-3">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ getImageViewUrl($image->url,null,250) }}">
+                        <div class="card-body">
+                            <p class="card-text">{{ $image->name }}</p>
+                            <small class="text-secondary">
+                                {{ formatBytes($image->size) }}
+                                <i class="fa fa-clock-o fa-fw"></i>
+                                {{ $image->created_at->format('Y-m-d') }}
+                            </small>
+                        </div>
+                        <div class="card-footer">
+                            <div class="widget-meta">
+                                <button id="clipboard-btn" class="btn btn-default"
+                                        type="button"
+                                        data-clipboard-text="{{ $image->url }}"
+                                        data-toggle="tooltip"
+                                        data-placement="left"
+                                        title="Copied">
+                                    <i class="fa fa-copy fa-fw"></i>
+                                </button>
+                                <a class="btn btn-primary"
+                                   href="{{ $image->url }}"
+                                   target="_blank">
+                                    <i class="fa fa-eye fa-fw"></i>
+                                </a>
+                                <button class="btn btn-danger swal-dialog-target"
+                                        data-dialog-msg="确定删除{{ $image->name }}？"
+                                        data-url="{{ route('delete.file').'?key='.$image->key.'&type=image' }}"
+                                        data-key="{{ $image->key }}">
+                                    <i class="fa fa-trash-o fa-fw"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        @empty
-            <h3 class="center-block meta-item">没有图片</h3>
-        @endforelse
-    </div>
-    @if($images->lastPage() > 1)
-        <div class="row">
-            <div class="col-md-12">
-                {{ $images->links() }}
-            </div>
+            @empty
+                <h4 class="text-secondary mt-3">没有图片</h4>
+            @endforelse
         </div>
-    @endif
+        @if($images->lastPage() > 1)
+            <div class="row">
+                <div class="col-md-12">
+                    {{ $images->links() }}
+                </div>
+            </div>
+        @endif
+    </div>
+
 @endsection
 @section('script')
     <script src="//cdn.bootcss.com/clipboard.js/1.5.12/clipboard.min.js"></script>
+    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+    <script src="//cdn.bootcss.com/masonry/4.2.0/masonry.pkgd.min.js"></script>
     <script>
         new Clipboard('.btn');
         $('.btn').tooltip({
             trigger: 'click',
+        });
+        $('#images').imagesLoaded().progress(function () {
+            $('#images').masonry();
         });
     </script>
 @endsection

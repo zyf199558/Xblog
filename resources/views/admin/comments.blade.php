@@ -3,17 +3,15 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="widget widget-default">
-                <div class="widget-header">
-                    <h6>
-                        <i class="fa fa-comments fa-fw"></i>评论
-                        <a class="meta-item swal-dialog-target"
-                           data-dialog-msg="Delete all unverified comments? "
-                           data-url="{{ route('comment.delete-un-verified') }}"
-                           data-method="delete">Delete Un Verified</a>
-                    </h6>
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-comments fa-fw"></i>评论
+                    <a class="meta-item swal-dialog-target"
+                       data-dialog-msg="Delete all unverified comments? "
+                       data-url="{{ route('comment.delete-un-verified') }}"
+                       data-method="delete">Delete Un Verified</a>
                 </div>
-                <div class="widget-body">
+                <div class="card-body">
                     @if($comments->isEmpty())
                         <h3 class="center-block meta-item">No Comments</h3>
                     @else
@@ -33,7 +31,7 @@
 
                                 <?php $commentableData = $comment->getCommentableData();?>
 
-                                <tr class="{{ $comment->trashed() ? 'danger':($comment->isVerified() ? 'success' : '') }}">
+                                <tr class="{{ $comment->trashed() ? 'table-danger':($comment->isVerified() ? 'table-success' : '') }}">
                                     <td>
                                         @if($comment->user_id)
                                             <a href="{{ route('user.show',$comment->username) }}">{{ $comment->username }}</a>

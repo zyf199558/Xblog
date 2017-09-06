@@ -3,20 +3,17 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="widget widget-default">
-                <div class="widget-header">
-                    <h6>
-                        <i class="fa fa-internet-explorer fa-fw"></i>
-                        IP
-                        <a class="meta-item" href="{{ route('admin.ips',['blocked'=>1]) }}">Blocked</a>
-                    </h6>
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-internet-explorer fa-fw"></i>
+                    IP
+                    <a class="meta-item" href="{{ route('admin.ips',['blocked'=>1]) }}">Blocked</a>
                 </div>
-                <div class="widget-body">
+                <div class="card-body">
                     @if($ips->isEmpty())
-                        <div style="text-align: center;"> -_- NO IP.</div>
+                        <div class="text-center"> -_- NO IP.</div>
                     @else
-                        <table class="table table-hover table-striped table-bordered table-responsive"
-                               style="overflow: auto">
+                        <table class="table table-hover table-striped table-bordered table-responsive">
                             <thead>
                             <tr>
                                 <th>IP</th>

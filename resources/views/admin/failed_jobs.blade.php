@@ -3,26 +3,24 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="widget widget-default">
-                <div class="widget-header">
-                    <h6>
-                        <i class="fa fa-close fa-fw"></i>
-                        Failed Jobs
-                        @if(!$failed_jobs->isEmpty())
-                            <a class="meta-item swal-dialog-target"
-                               data-dialog-title="Failed Jobs"
-                               data-dialog-msg="Flush {{ count($failed_jobs) }} failed jobs ?"
-                               data-url="{{ route('admin.failed-jobs.flush') }}">
-                                Flush
-                            </a>
-                        @endif
-                    </h6>
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-close fa-fw"></i>
+                    Failed Jobs
+                    @if(!$failed_jobs->isEmpty())
+                        <a class="meta-item swal-dialog-target"
+                           data-dialog-title="Failed Jobs"
+                           data-dialog-msg="Flush {{ count($failed_jobs) }} failed jobs ?"
+                           data-url="{{ route('admin.failed-jobs.flush') }}">
+                            Flush
+                        </a>
+                    @endif
                 </div>
-                <div class="widget-body">
+                <div class="card-body">
                     @if($failed_jobs->isEmpty())
                         <div style="text-align: center;"> Congratulations! You don't have failed jobs.</div>
                     @else
-                        <table class="table table-hover table-bordered table-responsive" style="overflow: auto">
+                        <table class="table table-hover table-bordered table-responsive">
                             <thead>
                             <tr>
                                 <th>ID</th>

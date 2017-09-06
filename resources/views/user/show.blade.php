@@ -2,8 +2,8 @@
 @section('title','博客')
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 col-sm-12">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-sm-12">
                 <div class="widget widget-user" style="overflow: hidden">
                     <?php
                     if ($user->profile_image)
@@ -16,7 +16,7 @@
                         <h5 class="widget-user-desc">{{ $user->description or 'No description'}}</h5>
                     </div>
                     <div class="widget-user-image" id="upload-avatar">
-                        <img style="background-color: #607D8B" class="img-circle" src="{{ $user->avatar  }}" alt="User Avatar">
+                        <img style="background-color: #607D8B" class="rounded-circle" src="{{ $user->avatar  }}" alt="User Avatar">
                     </div>
                     <div class="widget-user-body mt-30">
                         @can('manager',$user)

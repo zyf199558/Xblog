@@ -7,12 +7,12 @@
     <div id="upload-img-url" data-upload-img-url="{{ route('upload.image') }}" style="display: none"></div>
     <div class="row">
         <div class="col-md-12">
-            <div class="widget widget-default">
-                <div class="widget-header">
-                    <h6><i class="fa fa-pencil  fa-fw"></i>写文章</h6>
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-pencil  fa-fw"></i>写文章
                 </div>
-                <div class="widget-body edit-form">
-                    <form role="form" class="form-horizontal" action="{{ route('post.store') }}" method="post">
+                <div class="card-body edit-form">
+                    <form class="form-horizontal" action="{{ route('post.store') }}" method="post">
                         @include('admin.post.form-content')
                         <button type="submit" class="btn btn-primary">
                             创建

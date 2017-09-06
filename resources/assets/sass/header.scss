@@ -25,58 +25,23 @@
   color: white;
 }
 
-.main-header .branding img {
-  max-width: 100%;
-  width: 77px;
-  height: 77px;
-}
-
 a:active, a:focus, a img {
   outline: none;
 }
 
-.site-navbar {
-  align-items: center;
-}
-
-.site-navbar .navbar-toggle {
+.main-header .navbar-toggler {
   border: 1px solid $colorPrimaryDark;
 }
 
-.site-navbar .navbar-toggle:focus, .site-navbar .navbar-toggle:hover {
+.main-header .navbar-toggler:focus, .main-header .navbar-toggler:hover {
   background-color: $colorPrimaryDark;
 }
 
-.site-navbar .navbar-toggle .icon-bar {
-  background-color: #ddd
-}
-
-.site-navbar form input[type="text"] {
+.main-header form input[type="text"] {
   border: 1px solid $colorPrimaryDark;
   color: white;
   background: transparent;
   vertical-align: middle;
-}
-
-.site-navbar .open > .dropdown-menu {
-  background-color: $colorPrimary;
-  border-color: $colorPrimaryDark;
-}
-
-.site-navbar .open > .dropdown-menu > li > a {
-  color: white;
-}
-
-.site-navbar .open > .dropdown-menu > li > a:hover {
-  color: $colorAccent;
-}
-
-.navbar-toggle .icon-bar {
-  display: block;
-  width: 22px;
-  height: 2px;
-  background-color: #e1e1e1;
-  border-radius: 1px;
 }
 
 .navbar-nav > li > a {
@@ -85,53 +50,37 @@ a:active, a:focus, a img {
   border: $colorPrimaryDark solid 1px !important;
   border-radius: 50px;
   background: $colorPrimaryDarkTransparent !important;
-  color: white;
+  color: white !important;
   font-size: 1em;
   line-height: 1.1em;
   text-shadow: $shadowColor 1px 1px 2px;
-
   @extend .transition;
 }
 
 .navbar-nav > li > a:hover {
-  color: $colorAccent;
+  color: $colorAccent !important;
   border: $colorAccent solid 1px !important;
   background: $colorPrimaryDark;
   @extend .transition;
 }
 
-.navbar-nav > li > a:active {
-  background: $colorPrimaryDark;
-}
-
-.navbar-header a {
+.main-header .navbar-brand {
   font-family: 'Pacifico', cursive;
   text-decoration: none;
   font-size: 1.9em;
   color: white;
   text-shadow: 5px 5px 5px $colorPrimaryDark;
-
   @extend .transition;
 }
 
-.navbar-header a :hover {
+#blog-navbar-brand:hover {
   color: $colorAccent;
   text-shadow: 5px 5px 5px $colorPrimaryDark;
-}
-
-.navbar-header .navbar-brand:hover {
-  color: $colorAccent;
+  @extend .transition;
 }
 
 header .description {
   font-family: 'Pacifico', cursive;
   font-size: 1.4em;
   text-shadow: 5px 5px 5px $colorPrimaryDark;
-}
-
-/*dropdown-menu*/
-
-.main-header .dropdown-menu > li > a:hover {
-  border-radius: 20px !important;
-  background-color: $colorPrimaryDark !important;
 }

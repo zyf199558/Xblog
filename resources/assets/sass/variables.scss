@@ -33,6 +33,7 @@ $brand-primary: $colorPrimary;
 //$body-bg: #eee;
 $body-bg: #eee;
 
-$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "~font-awesome/scss/font-awesome.scss";
+//@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "~bootstrap/scss/bootstrap.scss";
 @import "~sweetalert/dev/sweetalert.scss";

@@ -7,20 +7,20 @@
                 赞赏
             </button>
         </div>
-        <div id="pay-content" class="collapse pay-content">
+        <div id="pay-content" class="collapse pay-content text-center">
             @if(isset($zhifubao_pay_image_url) && !empty($zhifubao_pay_image_url) && isset($wechat_pay_image_url) && !empty($wechat_pay_image_url))
-                <div class="btn-group btn-group-justified pay-buttons" role="group">
-                    <a class="btn btn-default" href="#zhifubao" role="tab" data-toggle="tab"
+                <div class="btn-group nav pay-buttons justify-content-center mt-3" role="group">
+                    <a class="btn btn-light active" href="#zhifubao" role="tab" data-toggle="tab"
                        aria-controls="zhifubao">
                         支付宝
                     </a>
-                    <a class="btn btn-default" href="#wechat" role="tab" data-toggle="tab"
+                    <a class="btn btn-light" href="#wechat" role="tab" data-toggle="tab"
                        aria-controls="wechat">
                         微信
                     </a>
                 </div>
                 <div class="tab-content pay-images">
-                    <div id="zhifubao" role="tabpanel" class="tab-pane fade in active">
+                    <div id="zhifubao" role="tabpanel" class="tab-pane fade show active">
                         <span class="center-block">扫一扫，用支付宝赞赏</span>
                         <img src="{{ $zhifubao_pay_image_url }}">
                     </div>

@@ -2,13 +2,13 @@
 @section('title','博客')
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 col-sm-12">
-                <div class="widget widget-default">
-                    <div class="widget-header">
-                        <h6><i class="fa fa-pencil fa-fw"></i>编辑评论</h6>
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fa fa-pencil fa-fw"></i>编辑评论
                     </div>
-                    <div class="widget-body">
+                    <div class="card-body">
                         <form method="post"
                               action="{{ route('comment.update',[$comment->id,'redirect'=>request('redirect')]) }}">
                             {{ csrf_field() }}

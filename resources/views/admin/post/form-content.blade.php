@@ -1,43 +1,43 @@
-<div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
+<div class="form-group">
     <label for="title" class="control-label">文章标题*</label>
-    <input id="title" type="text" class="form-control" name="title"
+    <input id="title" type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title"
            value="{{ isset($post) ? $post->title : old('title') }}"
            autofocus>
     @if ($errors->has('title'))
-        <span class="help-block">
+        <div class="invalid-feedback">
             <strong>{{ $errors->first('title') }}</strong>
-        </span>
+        </div>
     @endif
 </div>
-<div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+<div class="form-group">
     <label for="description" class="control-label">文章描述*</label>
 
     <textarea id="post-description-textarea" style="resize: vertical;" rows="3" spellcheck="false"
-              id="description" class="form-control autosize-target" placeholder="请使用 Markdown 格式书写"
+              id="description" class="form-control autosize-target{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="请使用 Markdown 格式书写"
               name="description">{{ isset($post) ? $post->description : old('description') }}</textarea>
 
     @if ($errors->has('description'))
-        <span class="help-block">
+        <div class="invalid-feedback">
             <strong>{{ $errors->first('description') }}</strong>
-        </span>
+        </div>
     @endif
 </div>
 
-<div class="form-group{{ $errors->has('slug') ? ' has-error' : '' }}">
+<div class="form-group">
     <label for="slug" class="control-label">文章slug*</label>
-    <input id="slug" type="text" class="form-control" name="slug"
+    <input id="slug" type="text" class="form-control{{ $errors->has('slug') ? ' is-invalid' : '' }}" name="slug"
            value="{{ isset($post) ? $post->slug : old('slug') }}">
 
     @if ($errors->has('slug'))
-        <span class="help-block">
+        <div class="invalid-feedback">
             <strong>{{ $errors->first('slug') }}</strong>
-        </span>
+        </div>
     @endif
 </div>
 
-<div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
+<div class="form-group">
     <label for="categories" class="control-label">文章分类*</label>
-    <select name="category_id" class="form-control">
+    <select name="category_id" class="form-control{{ $errors->has('category_id') ? ' is-invalid' : '' }}">
         @foreach($categories as $category)
             @if((isset($post) ? $post->category_id : old('category_id',-1)) == $category->id)
                 <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
@@ -47,15 +47,15 @@
         @endforeach
     </select>
 
-    @if ($errors->has('description'))
-        <span class="help-block">
-            <strong>{{ $errors->first('description') }}</strong>
-        </span>
+    @if ($errors->has('category_id'))
+        <div class="invalid-feedback">
+            <strong>{{ $errors->first('category_id') }}</strong>
+        </div>
     @endif
 </div>
-<div class="form-group{{ $errors->has('tags[]') ? ' has-error' : '' }}">
+<div class="form-group">
     <label for="tags[]" class="control-label">文章标签</label>
-    <select id="post-tags" name="tags[]" class="form-control" multiple>
+    <select id="post-tags" name="tags[]" class="form-control{{ $errors->has('tags[]') ? ' is-invalid' : '' }}" multiple>
         @foreach($tags as $tag)
             @if(isset($post) && $post->tags->contains($tag))
                 <option value="{{ $tag->name }}" selected>{{ $tag->name }}</option>
@@ -66,21 +66,21 @@
     </select>
 
     @if ($errors->has('tags[]'))
-        <span class="help-block">
+        <div class="invalid-feedback">
             <strong>{{ $errors->first('tags[]') }}</strong>
-        </span>
+        </div>
     @endif
 </div>
-<div class="form-group{{ $errors->has('content') ? ' has-error ' : ' ' }}">
+<div class="form-group">
     <label for="post-content-textarea" class="control-label">文章内容*</label>
-    <textarea spellcheck="false" id="post-content-textarea" class="form-control" name="content"
+    <textarea spellcheck="false" id="post-content-textarea" class="form-control{{ $errors->has('content') ? ' is-invalid ' : ' ' }}" name="content"
               rows="36"
               placeholder="请使用 Markdown 格式书写"
               style="resize: vertical">{{ isset($post) ? $post->content : old('content') }}</textarea>
     @if($errors->has('content'))
-        <span class="help-block">
+        <div class="invalid-feedback">
             <strong>{{ $errors->first('content') }}</strong>
-        </span>
+        </div>
     @endif
 </div>
 

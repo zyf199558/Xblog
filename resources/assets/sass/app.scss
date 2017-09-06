@@ -18,41 +18,16 @@
 @import "pay";
 
 html, body {
-  color: #505050;
+  //color: #505050;
   font-size: 14px;
   height: 100%;
-  position: relative;
+  //position: relative;
   background: $body-bg;
-  font-family: NotoSansHans-Regular, AvenirNext-Regular, arial, Hiragino Sans GB, "Microsoft Yahei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
-}
-
-h1 {
-  font-size: $font-size-h1;
-}
-
-h2 {
-  font-size: $font-size-h2;
-}
-
-h3 {
-  font-size: $font-size-h3;
-}
-
-h4 {
-  font-size: $font-size-h4;
-}
-
-h5 {
-  font-size: $font-size-h5;
-}
-
-h6 {
-  font-size: $font-size-h6;
+  //font-family: NotoSansHans-Regular, AvenirNext-Regular, arial, Hiragino Sans GB, "Microsoft Yahei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
 }
 
 h1,
 h2 {
-  font-weight: bold;
   margin-top: 30px;
   margin-bottom: 20px;
 }
@@ -127,7 +102,8 @@ blockquote {
 }
 
 /*code*/
-$codeBg: rgb(247, 249, 247)/*#20201d*/;
+$codeBg: rgb(247, 249, 247)/*#20201d*/
+;
 $codeColor: #383a42;
 
 pre, .highlight {
@@ -156,7 +132,6 @@ pre code {
   word-wrap: normal;
   white-space: pre;
 }
-
 
 @media (max-width: 768px) {
   .phone-no-padding {
