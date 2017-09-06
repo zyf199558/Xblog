@@ -5,7 +5,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2 col-sm-12 phone-no-padding">
+            <div class="col-md-10 col-md-offset-1 col-sm-12 phone-no-padding">
                 <div class="post-detail">
                     <div class="center-block">
                         <div class="post-detail-title">{{ $post->title }}</div>
