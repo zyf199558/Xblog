@@ -1,11 +1,8 @@
 @if(isset($header_bg_image) && $header_bg_image)
     <style>
-        @media screen and (min-width: 768px) {
-            .main-header {
-                background: url("{{ $header_bg_image }}") no-repeat center center;
-                background-size: 100% auto;
-                position: static;
-            }
+        .main-header {
+            background: url("{{ $header_bg_image }}") no-repeat center center;
+            background-size: cover;
         }
     </style>
 @endif
