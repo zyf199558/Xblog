@@ -26,8 +26,8 @@
     <div class="container">
         @include('admin.partials.errors')
         @include('admin.partials.success')
-        @yield('content')
     </div>
+    @yield('content')
 </div>
 @include('admin.layouts.footer')
 @if(isset($site_js) && $site_js)

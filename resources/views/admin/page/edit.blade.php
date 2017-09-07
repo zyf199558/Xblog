@@ -3,29 +3,31 @@
     <link href="//cdn.bootcss.com/simplemde/1.11.2/simplemde.min.css" rel="stylesheet">
 @endsection
 @section('content')
-    <div id="upload-img-url" data-upload-img-url="{{ route('upload.image') }}" style="display: none"></div>
-    <div class="row">
-        <div class="col-md-12">
-            <div id="data" class="card" data-id="{{ $page->id . '.by@' . request()->ip() }}">
-                <div class="card-header">
-                    <i class="fa fa-pencil fa-fw"></i>修改页面
-                </div>
-                <div class="card-body edit-form">
-                    <form role="form" class="form-horizontal" action="{{ route('page.update',$page->id) }}" method="post">
+    <div class="container">
+        <div id="upload-img-url" data-upload-img-url="{{ route('upload.image') }}" style="display: none"></div>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="data" class="card" data-id="{{ $page->id . '.by@' . request()->ip() }}">
+                    <div class="card-header">
+                        <i class="fa fa-pencil fa-fw"></i>修改页面
+                    </div>
+                    <div class="card-body edit-form">
+                        <form role="form" class="form-horizontal" action="{{ route('page.update',$page->id) }}" method="post">
 
-                        @include('admin.page.form-content')
-                        <input type="hidden" name="_method" value="put">
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    修改
-                                </button>
+                            @include('admin.page.form-content')
+                            <input type="hidden" name="_method" value="put">
+                            <div class="form-group">
+                                <div class="col-md-8 col-md-offset-4">
+                                    <button type="submit" class="btn btn-primary">
+                                        修改
+                                    </button>
+                                </div>
                             </div>
-                        </div>
 
-                    </form>
+                        </form>
+                    </div>
+
                 </div>
-
             </div>
         </div>
     </div>

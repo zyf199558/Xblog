@@ -83,7 +83,8 @@ class AdminController extends Controller
 
     public function settings()
     {
-        return view('admin.settings');
+        $variables = config('configurable_variables');
+        return view('admin.settings', compact('variables'));
     }
 
     public function saveSettings(Request $request)
