@@ -65,7 +65,7 @@
                     </form>
                 </div>
 
-                <div class="col-sm-10 col-sm-offset-1 mt-30">
+                <div class="col-sm-10 col-sm-offset-1 mt-3">
                     <table class="table table-hover table-striped table-bordered table-responsive">
                         <tbody>
                         @forelse($files as $file)

@@ -9,7 +9,7 @@
                         <span class="badge badge-pill badge-active">{{ $tag->posts_count }}</span>
                     </span>
                 @else
-                    <a  title="{{ $tag->name }}" href="{{ route('tag.show',$tag->name) }}" class="tag">
+                    <a title="{{ $tag->name }}" href="{{ route('tag.show',$tag->name) }}" class="tag">
                         {{ $tag->name }}
                         <span class="badge badge-pill">{{ $tag->posts_count }}</span>
                     </a>

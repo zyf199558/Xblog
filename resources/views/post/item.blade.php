@@ -31,7 +31,7 @@
     </div>
     {{--read more--}}
     <div class="post-permalink">
-        <a title="阅读全文" href="{{ route('post.show',$post->slug) }}" class="btn btn-more">阅读全文</a>
+        <a title="阅读全文" href="{{ route('post.show',$post->slug) }}" class="btn btn-outline-dark">阅读全文</a>
     </div>
     {{--post footer--}}
     <div class="post-footer clearfix">

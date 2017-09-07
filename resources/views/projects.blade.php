@@ -12,16 +12,16 @@
                             </a>
                         </h4>
                         <p class="card-text">[repo.description]</p>
-                        <small>
-                            <span class="meta-item">
+                        <small class="text-secondary">
+                            <span class="mr-3">
                             <i class="fa fa-code"></i>
                             [repo.language]
                             </span>
-                            <span class="meta-item">
+                            <span class="mr-3">
                             <i class="fa fa-star"></i>
                             [repo.stargazers_count]
                             </span>
-                            <span class="meta-item">
+                            <span>
                             <i class="fa fa-code-fork"></i>
                             [repo.forks_count]
                             </span>

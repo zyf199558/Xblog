@@ -18,7 +18,7 @@
                     <div class="card-user-image" id="upload-avatar">
                         <img style="background-color: #607D8B" class="rounded-circle" src="{{ $user->avatar  }}" alt="User Avatar">
                     </div>
-                    <div class="card-body mt-30">
+                    <div class="card-body mt-3">
                         @can('manager',$user)
                             @include('user.show_owner',$user)
                         @else

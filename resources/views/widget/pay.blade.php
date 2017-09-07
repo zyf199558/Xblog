@@ -30,15 +30,15 @@
                     </div>
                 </div>
             @elseif(isset($zhifubao_pay_image_url) && !empty($zhifubao_pay_image_url))
-                <div class="tab-content pay-images" style="margin:0 auto;">
-                    <div role="tabpanel" class="tab-pane fade in active">
+                <div class="tab-content pay-images">
+                    <div role="tabpanel" class="tab-pane fade show active">
                         <span class="center-block">扫一扫，用支付宝赞赏</span>
                         <img src="{{ $zhifubao_pay_image_url }}">
                     </div>
                 </div>
             @elseif(isset($wechat_pay_image_url) && !empty($wechat_pay_image_url))
-                <div class="tab-content pay-images" style="margin:0 auto;">
-                    <div role="tabpanel" class="tab-pane fade in active">
+                <div class="tab-content pay-images">
+                    <div role="tabpanel" class="tab-pane fade show active">
                         <span class="center-block">扫一扫，用微信赞赏</span>
                         <img src="{{ $wechat_pay_image_url }}">
                     </div>

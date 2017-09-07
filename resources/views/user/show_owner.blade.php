@@ -12,7 +12,7 @@
         <button class="btn btn-primary" id="upload-button" type="submit">上传头像</button>
     </form>
 
-    <form class="mt-30" method="post" action="{{ route('user.upload.profile') }}"
+    <form class="mt-3" method="post" action="{{ route('user.upload.profile') }}"
           enctype="multipart/form-data">
         {{ csrf_field() }}
         <input name="_method" type="hidden" value="patch">
@@ -24,7 +24,7 @@
     </form>
 
     @if(!$user->github_id)
-        <div class="form-group mt-30">
+        <div class="form-group mt-3">
             <a style="text-decoration: none" class="btn btn-primary" href="{{ route('github.login') }}">
                 绑定<i class="fa fa-github fa-lg fa-fw"></i>
             </a>
@@ -32,7 +32,7 @@
     @endif
 
     <div class="alone-divider"></div>
-    <form class="mt-30" action="{{ route('user.update.info') }}" method="post">
+    <form class="mt-3" action="{{ route('user.update.info') }}" method="post">
         {{ csrf_field() }}
         <input name="_method" type="hidden" value="patch">
         <div class="form-group">
