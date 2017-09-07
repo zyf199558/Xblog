@@ -6,7 +6,7 @@
         }
     </style>
 @endif
-<header class="main-header">
+<header class="main-header bg-placeholder">
     <div class="container-fluid" style="margin-top: -15px">
         <nav class="navbar navbar-dark navbar-expand-lg">
             <a href="{{ route('post.index') }}" id="blog-navbar-brand" class="navbar-brand">{{ $author or 'Blog' }}</a>

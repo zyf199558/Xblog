@@ -3,9 +3,9 @@
     if (isset($profile_image) && $profile_image)
         $style = "background: url($profile_image) no-repeat center center;background-size: cover";
     else
-        $style = "background-color: #52768e;";
+        $style = '';
     ?>
-    <div class="card-user-header" style="{{ $style }}">
+    <div class="card-user-header bg-placeholder" style="{{ $style }}">
         <h3 class="card-user-username">{{ $author or 'Author' }}</h3>
         <h5 class="card-user-desc">{{ $description or 'Description' }}</h5>
     </div>

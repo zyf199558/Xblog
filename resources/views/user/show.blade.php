@@ -9,9 +9,9 @@
                     if ($user->profile_image)
                         $style = "background: url($user->profile_image) no-repeat center center;background-size: cover";
                     else
-                        $style = "background-color: #607D8B;";
+                        $style = '';
                     ?>
-                    <div class="card-user-header" style="{{ $style }}">
+                    <div class="card-user-header bg-placeholder" style="{{ $style }}">
                         <h3 class="card-user-username">{{ $user->name }}</h3>
                         <h5 class="card-user-desc">{{ $user->description or 'No description'}}</h5>
                     </div>

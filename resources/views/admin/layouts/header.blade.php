@@ -1,4 +1,4 @@
-<header class="main-header" style="padding: 10px 0;">
+<header class="main-header bg-placeholder" style="padding: 10px 0;">
     <div class="container-fluid">
         <nav class="navbar navbar-dark navbar-expand-lg" style="margin-bottom: 0">
             <a href="{{ route('admin.index') }}" id="blog-navbar-brand" class="navbar-brand">Admin</a>
