@@ -9,7 +9,6 @@
             <div class="card-body">
                 <form class="form-inline justify-content-center" action="{{ route('upload.image') }}"
                       datatype="image"
-                      required="required"
                       enctype="multipart/form-data" method="post">
                     {{ csrf_field() }}
                     <div class="form-group">
@@ -39,7 +38,7 @@
                         </div>
                         <div class="card-footer">
                             <div class="widget-meta">
-                                <button id="clipboard-btn" class="btn btn-default"
+                                <button id="clipboard-btn" class="btn btn-clipboard btn-default"
                                         type="button"
                                         data-clipboard-text="{{ $image->url }}"
                                         data-toggle="tooltip"
@@ -81,8 +80,8 @@
     <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
     <script src="//cdn.bootcss.com/masonry/4.2.0/masonry.pkgd.min.js"></script>
     <script>
-        new Clipboard('.btn');
-        $('.btn').tooltip({
+        new Clipboard('.btn-clipboard');
+        $('.btn-clipboard').tooltip({
             trigger: 'click',
         });
         $('#images').imagesLoaded().progress(function () {

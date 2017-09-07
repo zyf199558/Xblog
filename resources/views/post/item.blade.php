@@ -38,7 +38,7 @@
         <div class="pull-left tag-list">
             <i class="fa fa-tags"></i>
             @foreach($post->tags as $tag)
-                <a  class="tag" href="{{ route('tag.show',$tag->name) }}">{{ $tag->name }}</a>
+                <a class="text-secondary mr-2" href="{{ route('tag.show',$tag->name) }}">{{ $tag->name }}</a>
             @endforeach
         </div>
     </div>

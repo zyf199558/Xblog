@@ -4,21 +4,20 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="widget widget-default">
-                    <div class="widget-header">
-                        <h6><i class="fa fa-comments fa-fw"></i>
-                            通知
-                            @if($notifications->isNotEmpty())
-                                <a class="btn btn-info" role="button" style="display: inline;margin-left: 20px"
-                                   href="{{ route('user.readNotification',"all") }}">
-                                    全部已读
-                                </a>
-                            @endif
-                        </h6>
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fa fa-comments fa-fw"></i>
+                        通知
+                        @if($notifications->isNotEmpty())
+                            <a class="btn btn-info" style="display: inline;margin-left: 20px"
+                               href="{{ route('user.readNotification',"all") }}">
+                                全部已读
+                            </a>
+                        @endif
                     </div>
-                    <div class="widget-body">
+                    <div class="card-body">
                         @if($notifications->isEmpty())
-                            <h3 class="center-block meta-item">No Notifications</h3>
+                            <h4 class="text-secondary text-center">No Notifications</h4>
                         @else
                             <table class="table table-striped table-hover table-bordered table-responsive">
                                 <thead>
