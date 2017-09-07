@@ -190,6 +190,7 @@ return [
         Laravel\Tinker\TinkerServiceProvider::class,
         Chumper\Zipper\ZipperServiceProvider::class,
         Overtrue\LaravelFilesystem\Qiniu\QiniuStorageServiceProvider::class,
+        HTMLMin\HTMLMin\HTMLMinServiceProvider::class,
         //Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
@@ -239,6 +240,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'XblogConfig' => App\Facades\XblogConfig::class,
         'Zipper' => Chumper\Zipper\Zipper::class,
+        'HTMLMin' => HTMLMin\HTMLMin\Facades\HTMLMin::class,
     ],
 
 ];

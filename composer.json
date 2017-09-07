@@ -14,7 +14,8 @@
         "league/html-to-markdown": "^4.3",
         "laravel/tinker": "^1.0",
         "chumper/zipper": "1.0.x",
-        "overtrue/laravel-filesystem-qiniu": "^0.0.3"
+        "overtrue/laravel-filesystem-qiniu": "^0.0.3",
+        "htmlmin/htmlmin": "^5.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
