@@ -1,4 +1,4 @@
-<article class="post">
+<article class="post card">
     <!-- post header -->
     <div class="post-header">
         <h1 class="post-title">
@@ -27,8 +27,6 @@
     </div>
     {{--post content--}}
     <div class="post-description">
-        {{--<p class="markdown-target" data-markdown="{{ $post->description }}">
-        </p>--}}
         {!! $post->description !!}
     </div>
     {{--read more--}}

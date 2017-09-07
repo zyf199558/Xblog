@@ -1,7 +1,9 @@
 /**
  * @author lufficc
  */
+
 require('./boot');
+
 (function ($) {
     var Xblog = {
         init: function () {
@@ -17,7 +19,6 @@ require('./boot');
             initProjects();
             initDeleteTarget();
             highLightCode();
-            imageLiquid();
         },
     };
 
@@ -239,14 +240,6 @@ require('./boot');
         autosize($('.autosize-target'));
     }
 
-    function imageLiquid() {
-        $(".js-imgLiquid").imgLiquid({
-            fill: true,
-            horizontalAlign: "center",
-            verticalAlign: "top"
-        });
-    }
-
     function initProjects() {
         var projects = $('.projects');
         if (projects.length > 0) {
@@ -269,7 +262,9 @@ require('./boot');
                             return eval(arguments[1]);
                         });
                         projects.append(item)
-                    })
+                    });
+                    projects.attr('data-masonry', '{ "itemSelector": ".col", "columnWidth":".col" }');
+                    projects.masonry();
                 });
         }
     }
@@ -279,7 +274,10 @@ require('./boot');
 $(document).ready(function () {
     Xblog.init();
 });
-function replySomeone(username) {
+
+window.replySomeone = function (username) {
+    if (!username)
+        return;
     var commentContent = $("#comment-content");
     var oldContent = commentContent.val();
     prefix = "@" + username + " ";
@@ -294,7 +292,7 @@ function replySomeone(username) {
     moveEnd(commentContent);
 }
 
-var moveEnd = function (obj) {
+window.moveEnd = function (obj) {
     obj.focus();
     var len = obj.value === undefined ? 0 : obj.value.length;
 

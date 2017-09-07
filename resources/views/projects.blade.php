@@ -3,33 +3,29 @@
 @section('content')
     <div class="container">
         <div id="repo-template" style="display:none">
-            <div class="col-md-4 col-sm-6">
-                <div class="card mb-3">
-                    <div class="card-header">
-                        <a href="[repo.html_url]" target="_blank" class="collection-card-image geopattern"
-                           data-pattern-id="[repo.name]">
-                            <h3 class="collection-card-title" style="white-space: nowrap;text-overflow: ellipsis;">[repo.name]</h3>
-                        </a>
-                    </div>
-                    <div class="card-body"
-                         style=" height: 9em;overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;">
-                        <p>[repo.description]</p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="widget-meta">
-                        <span class="meta-item">
+            <div class="col col-md-4 col-sm-6 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="[repo.html_url]" target="_blank" class="text-dark" data-pattern-id="[repo.name]">
+                                [repo.name]
+                            </a>
+                        </h4>
+                        <p class="card-text">[repo.description]</p>
+                        <small>
+                            <span class="meta-item">
                             <i class="fa fa-code"></i>
                             [repo.language]
-                        </span>
+                            </span>
                             <span class="meta-item">
                             <i class="fa fa-star"></i>
                             [repo.stargazers_count]
-                        </span>
+                            </span>
                             <span class="meta-item">
                             <i class="fa fa-code-fork"></i>
                             [repo.forks_count]
-                        </span>
-                        </div>
+                            </span>
+                        </small>
                     </div>
                 </div>
             </div>
@@ -41,4 +37,7 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script src="//cdn.bootcss.com/masonry/4.2.0/masonry.pkgd.min.js"></script>
 @endsection

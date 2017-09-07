@@ -1,16 +1,11 @@
 @import "common";
 
 .post {
-  @extend .shadow-block;
   @extend .transition;
   background: white;
   margin-bottom: 35px;
   position: relative;
   overflow: hidden;
-}
-
-.post:hover {
-  @extend .shadow-block-hover;
 }
 
 .post .post-header {
@@ -41,7 +36,6 @@
   color: $metaColor;
   font-size: 0.85em;
   padding: $postItemPaddingUpDown/2 $postItemPaddingLeftRight $postItemPaddingUpDown / 2;
-  border-top: 0.75px solid rgba(238, 238, 238, 0.5);
 }
 
 .post-description {

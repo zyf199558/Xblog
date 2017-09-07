@@ -12,7 +12,7 @@
             $commentFragment = "comment-$comment->id"
             ?>
             <a name="{{ $commentFragment }}" href="{{ $href }}">
-                <img width="40px" height="40px" class="img-circle"
+                <img width="40px" height="40px" class="rounded-circle"
                      src="{{ $imgSrc }}">
             </a>
         </div>

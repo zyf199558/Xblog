@@ -4,21 +4,21 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8 col-sm-12">
-                <div class="widget widget-user" style="overflow: hidden">
+                <div class="card card-user" style="overflow: hidden">
                     <?php
                     if ($user->profile_image)
-                        $style = "background: url($user->profile_image) center center;";
+                        $style = "background: url($user->profile_image) no-repeat center center;background-size: cover";
                     else
                         $style = "background-color: #607D8B;";
                     ?>
-                    <div class="widget-user-header" style="{{ $style }}">
-                        <h3 class="widget-user-username">{{ $user->name }}</h3>
-                        <h5 class="widget-user-desc">{{ $user->description or 'No description'}}</h5>
+                    <div class="card-user-header" style="{{ $style }}">
+                        <h3 class="card-user-username">{{ $user->name }}</h3>
+                        <h5 class="card-user-desc">{{ $user->description or 'No description'}}</h5>
                     </div>
-                    <div class="widget-user-image" id="upload-avatar">
+                    <div class="card-user-image" id="upload-avatar">
                         <img style="background-color: #607D8B" class="rounded-circle" src="{{ $user->avatar  }}" alt="User Avatar">
                     </div>
-                    <div class="widget-user-body mt-30">
+                    <div class="card-body mt-30">
                         @can('manager',$user)
                             @include('user.show_owner',$user)
                         @else
