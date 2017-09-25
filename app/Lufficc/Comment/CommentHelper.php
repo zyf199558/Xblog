@@ -31,7 +31,7 @@ trait CommentHelper
     public function isShownComment()
     {
         $configuration = $this->getCommentInfo();
-        return $configuration['comment_info'] != 'force_disable' && ($configuration['comment_info'] == 'force_enable' || XblogConfig::getValue('comment_type') != 'none');
+        return isset($configuration['comment_info']) && $configuration['comment_info'] != 'force_disable' && ($configuration['comment_info'] == 'force_enable' || XblogConfig::getValue('comment_type') != 'none');
     }
 
     /**

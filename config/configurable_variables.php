@@ -133,6 +133,10 @@ return [
         'label' => 'Header背景图片',
     ],
     [
+        'name' => 'admin_sidebar_bg_image',
+        'label' => 'Dashboard背景图片',
+    ],
+    [
         'name' => 'home_bg_images',
         'label' => 'Home背景图片',
         "type" => "textarea",

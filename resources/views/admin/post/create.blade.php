@@ -1,28 +1,18 @@
 @extends('admin.layouts.app')
+@section('title', 'Writing')
 @section('css')
     <link href="//cdn.bootcss.com/select2/4.0.3/css/select2.min.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/simplemde/1.11.2/simplemde.min.css" rel="stylesheet">
 @endsection
 @section('content')
-    <div class="container">
-        <div id="upload-img-url" data-upload-img-url="{{ route('upload.image') }}" style="display: none"></div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <i class="fa fa-pencil  fa-fw"></i>写文章
-                    </div>
-                    <div class="card-body edit-form">
-                        <form class="form-horizontal" action="{{ route('post.store') }}" method="post">
-                            @include('admin.post.form-content')
-                            <button type="submit" class="btn btn-primary">
-                                创建
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div id="upload-img-url" data-upload-img-url="{{ route('upload.image') }}" style="display: none"></div>
+    <div class="edit-form">
+        <form class="form-horizontal" action="{{ route('post.store') }}" method="post">
+            @include('admin.post.form-content')
+            <button type="submit" class="btn btn-primary">
+                创建
+            </button>
+        </form>
     </div>
 @endsection
 

@@ -55,7 +55,7 @@
 </div>
 <div class="form-group">
     <label for="tags[]" class="form-control-label">文章标签</label>
-    <select id="post-tags" name="tags[]" class="form-control{{ $errors->has('tags[]') ? ' is-invalid' : '' }}" multiple>
+    <select style="max-width: 99%" id="post-tags" name="tags[]" class="form-control{{ $errors->has('tags[]') ? ' is-invalid' : '' }}" multiple>
         @foreach($tags as $tag)
             @if(isset($post) && $post->tags->contains($tag))
                 <option value="{{ $tag->name }}" selected>{{ $tag->name }}</option>
