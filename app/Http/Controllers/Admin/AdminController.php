@@ -15,6 +15,7 @@ use App\Http\Repositories\UserRepository;
 use App\Http\Requests;
 use App\Ip;
 use App\Page;
+use App\Post;
 use DB;
 use App\User;
 use Illuminate\Http\Request;
@@ -73,7 +74,19 @@ class AdminController extends Controller
         $info['page_count'] = $this->pageRepository->count();
         $info['image_count'] = $this->imageRepository->count();
         $info['ip_count'] = Ip::count();
-        $response = view('admin.index', compact('info'));
+        $postDetail = Post::select([
+            DB::raw("CONCAT_WS('-',YEAR(created_at),MONTH(created_at)) as month_year"),
+            DB::raw('COUNT(id) AS count'),
+        ])->groupBy('month_year')
+            ->get()
+            ->toArray();
+        $labels = [];
+        $data = [];
+        foreach ($postDetail as $detail) {
+            array_push($labels, $detail['month_year']);
+            array_push($data, $detail['count']);
+        }
+        $response = view('admin.index', compact('info', 'labels', 'data'));
         if (($failed_jobs_count = DB::table('failed_jobs')->count()) > 0) {
             $failed_jobs_link = route('admin.failed-jobs');
             $response->withErrors(['failed_jobs' => "You have $failed_jobs_count failed jobs.<a href='$failed_jobs_link'>View</a>"]);
