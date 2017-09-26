@@ -3,7 +3,10 @@
 @section('content')
 @section('action')
     @if(!$failed_jobs->isEmpty())
-        <a class="meta-item swal-dialog-target"
+        <a class="btn btn-outline-success swal-dialog-target"
+           data-toggle="tooltip"
+           data-placement="left"
+           title="Delete all failed jobs"
            data-dialog-title="Failed Jobs"
            data-dialog-msg="Flush {{ count($failed_jobs) }} failed jobs ?"
            data-url="{{ route('admin.failed-jobs.flush') }}">

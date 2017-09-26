@@ -2,7 +2,7 @@
 @section('title','Posts')
 @section('content')
     @section('action')
-        <a class="btn btn-sm btn-outline-dark" href="{{ route('post.download-all') }}">Download</a>
+        <a data-toggle="tooltip" data-placement="left" title="Download all posts as markdown file" class="btn btn-sm btn-outline-dark" href="{{ route('post.download-all') }}">Download</a>
     @endsection
     <table class="table table-hover table-striped table-responsive">
         <thead>

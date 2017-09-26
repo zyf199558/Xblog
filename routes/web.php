@@ -26,6 +26,9 @@ Route::post('/github/store', ['uses' => 'Auth\AuthController@store', 'as' => 'gi
 
 // User
 Route::get('/user/{name}', ['uses' => 'UserController@show', 'as' => 'user.show']);
+Route::get('/user/me/settings', ['uses' => 'UserController@settings', 'as' => 'user.settings']);
+Route::get('/user/me/pictures', ['uses' => 'UserController@pictures', 'as' => 'user.pictures']);
+Route::get('/user/me/socials', ['uses' => 'UserController@socials', 'as' => 'user.socials']);
 Route::get('/notifications', ['uses' => 'UserController@notifications', 'as' => 'user.notifications']);
 Route::get('/readNotification/{id}', ['uses' => 'UserController@readNotification', 'as' => 'user.readNotification']);
 Route::patch('/user/upload/avatar', ['uses' => 'UserController@uploadAvatar', 'as' => 'user.upload.avatar']);

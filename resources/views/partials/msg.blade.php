@@ -7,13 +7,19 @@
             {!! session()->get('success') !!}
         </strong>
     </div>
-@elseif(isset($errors)&&count($errors) > 0)
+@endif
+@if(isset($errors)&&count($errors) > 0)
     <div class="alert alert-dismissible alert-danger fade show">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
-        @foreach ($errors->all() as $error)
-            <li><strong>{!! $error !!}</strong></li>
-        @endforeach
+        @if(count($errors) == 1)
+            <strong>{!! $errors->first() !!}</strong>
+        @else
+            @foreach ($errors->all() as $error)
+                <li><strong>{!! $error !!}</strong></li>
+            @endforeach
+        @endif
+
     </div>
 @endif

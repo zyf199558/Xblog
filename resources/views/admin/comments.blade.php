@@ -41,7 +41,7 @@
                         @if($comment->trashed())
                             {{ $commentableData['title'] }}
                         @else
-                            <a target="_blank" href="{{ $commentableData['url'].'#comment-'.$comment->id }}">{{$commentableData['title'] }}
+                            <a data-html="true" data-toggle="tooltip" title="{{ $comment->html_content }}" target="_blank" href="{{ $commentableData['url'].'#comment-'.$comment->id }}">{{$commentableData['title'] }}
                             </a>
                         @endif
                     @endif

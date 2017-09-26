@@ -68,7 +68,7 @@ class FileController extends Controller
         if ($result) {
             return back()->with('success', '删除成功');
         }
-        return back()->with('success', '删除失败');
+        return back()->withErrors('删除失败');
     }
 
     private function upload(Request $request, $type)

@@ -67,6 +67,11 @@
                                 'route' => 'admin.pages'
                             ],
                             [
+                                'name' => 'Comments',
+                                'icon' => 'comments',
+                                'route' => 'admin.comments'
+                            ],
+                            [
                                 'name' => 'Tags',
                                 'icon' => 'tags',
                                 'route' => 'admin.tags'
@@ -90,11 +95,6 @@
                                 'name' => 'Images',
                                 'icon' => 'image',
                                 'route' => 'admin.images'
-                            ],
-                            [
-                                'name' => 'Comments',
-                                'icon' => 'comments',
-                                'route' => 'admin.comments'
                             ],
                             [
                                 'name' => 'Files',

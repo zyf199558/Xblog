@@ -8,6 +8,7 @@ require('./boot');
     var Xblog = {
         init: function () {
             this.bootUp();
+            $('[data-toggle="tooltip"]').tooltip();
         },
         bootUp: function () {
             console.log('bootUp');

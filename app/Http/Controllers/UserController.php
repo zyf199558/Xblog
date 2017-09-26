@@ -33,6 +33,24 @@ class UserController extends Controller
         return view('user.show', compact('user'));
     }
 
+    public function settings()
+    {
+        $user = auth()->user();
+        return view('user.settings', compact('user'));
+    }
+
+    public function pictures()
+    {
+        $user = auth()->user();
+        return view('user.pictures', compact('user'));
+    }
+
+    public function socials()
+    {
+        $user = auth()->user();
+        return view('user.socials', compact('user'));
+    }
+
     public function notifications()
     {
         $notifications = auth()->user()->unreadNotifications;
