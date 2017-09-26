@@ -16,8 +16,8 @@
                     </label>
                     <input id="image" class="form-control-file" accept="image/*" type="file" name="image">
                 </div>
-                <button type="submit" class="btn btn-primary">
-                    上传
+                <button type="submit" class="btn btn-outline-success ml-3">
+                    Upload
                 </button>
             </form>
         </div>

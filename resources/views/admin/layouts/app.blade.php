@@ -7,7 +7,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="theme-color" content="#52768e">
     <title>@yield('title') Dashboard {{ $site_title or '' }}</title>
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ mix('css/admin.css') }}" rel="stylesheet">
     @yield('css')
     <script>

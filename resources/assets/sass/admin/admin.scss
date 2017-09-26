@@ -1,4 +1,4 @@
-@import "../common";
+@import "../app";
 
 html, body {
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -153,6 +153,7 @@ html, body {
 
 .sidebar nav a.nav-link {
   color: #bbb;
+  @extend .transition
 }
 
 .sidebar nav a.nav-link:hover {
