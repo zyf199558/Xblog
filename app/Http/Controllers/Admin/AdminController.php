@@ -16,6 +16,7 @@ use App\Http\Requests;
 use App\Ip;
 use App\Page;
 use App\Post;
+use Carbon\Carbon;
 use DB;
 use App\User;
 use Illuminate\Http\Request;
@@ -75,9 +76,10 @@ class AdminController extends Controller
         $info['image_count'] = $this->imageRepository->count();
         $info['ip_count'] = Ip::count();
         $postDetail = Post::select([
-            DB::raw("CONCAT_WS('-',YEAR(created_at),MONTH(created_at)) as month_year"),
+            DB::raw("CONCAT_WS(' ',MONTHNAME(created_at),YEAR(created_at)) as month_year"),
             DB::raw('COUNT(id) AS count'),
-        ])->groupBy('month_year')
+        ])->whereBetween('created_at', [Carbon::now()->subYear(1), Carbon::now()])
+            ->groupBy('month_year')
             ->get()
             ->toArray();
         $labels = [];

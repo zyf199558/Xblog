@@ -137,7 +137,7 @@ class PostController extends Controller
 
     public function downloadAll()
     {
-        $path = storage_path('post' . DIRECTORY_SEPARATOR . 'all.zip');
+        $path = storage_path('post' . DIRECTORY_SEPARATOR . 'posts.zip');
         if (File::exists($path)) {
             File::delete($path);
         }

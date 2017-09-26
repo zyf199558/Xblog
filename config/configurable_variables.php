@@ -92,14 +92,6 @@ return [
         'label' => 'Github用户名',
     ],
     [
-        'name' => 'site_js',
-        'label' => 'Js',
-    ],
-    [
-        'name' => 'site_css',
-        'label' => 'CSS',
-    ],
-    [
         'name' => 'site_title',
         'label' => '标题',
     ],

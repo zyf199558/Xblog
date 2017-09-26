@@ -4,7 +4,7 @@
     @section('action')
         <a class="btn btn-sm btn-outline-dark" href="{{ route('post.download-all') }}">Download</a>
     @endsection
-    <table class="table table-hover table-bordered table-responsive">
+    <table class="table table-hover table-striped table-responsive">
         <thead>
         <tr>
             <th>标题</th>
@@ -18,16 +18,16 @@
             $class = '';
             $status = '未发表';
             if ($post->trashed()) {
-                $class = 'table-danger';
-                $status = 'Deleted';
+                $class = 'badge-danger';
+                $status = '已删除';
             } else if ($post->isPublished()) {
-                $class = 'table-success';
+                $class = 'badge-success';
                 $status = '已发表';
             }
             ?>
-            <tr class="{{ $class }}">
+            <tr>
                 <td title="{{ $post->title }}">{{ str_limit($post->title,64) }}</td>
-                <td>{{ $status }}</td>
+                <td><span class="p-2 p badge {{ $class }}">{{ $status }}</span></td>
                 <td>
                     <div>
                         <a {{ $post->trashed()?'disabled':'' }} href="{{ $post->trashed()?'javascript:void(0)':route('post.edit',$post->id) }}"

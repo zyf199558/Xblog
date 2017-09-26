@@ -1,19 +1,21 @@
+@import "../common";
+
 html, body {
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   background-color: white;
   height: 100%;
 }
+
 .sidebar .nav-pills .nav-link.active, .show > .nav-pills .nav-link {
   color: #fff;
   background-color: rgba(0, 123, 255, 0.5);
 }
+
 .sidebar-wrapper {
   overflow-y: auto;
   height: 100%;
   order: 0;
-  /*background: url("12") no-repeat center center;
-  background-size: cover;*/
 }
 
 .content-wrapper {
@@ -117,7 +119,7 @@ html, body {
 }
 
 .divider {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .sidebar-header {
@@ -169,5 +171,7 @@ a.admin-brand {
   font-family: Pacifico, serif;
 }
 
-.sidebar-toggler-icon {
+a.admin-brand:hover {
+  color: $colorAccent !important;
+  @extend .transition;
 }

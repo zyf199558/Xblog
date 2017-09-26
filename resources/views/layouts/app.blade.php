@@ -14,11 +14,7 @@
     <meta property="og:description" content="{{ $site_description or '' }}">
     <meta name="theme-color" content="#52768e">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    @if(isset($site_css) && $site_css)
-        <link href="{{ $site_css }}" rel="stylesheet">
-    @else
-        <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    @endif
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @yield('css')
     <script>
         window.XblogConfig = <?php echo json_encode([
@@ -32,17 +28,12 @@
 @include('layouts.header')
 <div id="content-wrap">
     <div class="container">
-        @include('partials.errors')
-        @include('partials.success')
+        @include('partials.msg')
     </div>
     @yield('content')
 </div>
 @include('layouts.footer')
-@if(isset($site_js) && $site_js)
-    <script src="{{ $site_js }}"></script>
-@else
-    <script src="{{ mix('js/app.js') }}"></script>
-@endif
+<script src="{{ mix('js/app.js') }}"></script>
 @yield('script')
 </body>
 </html>

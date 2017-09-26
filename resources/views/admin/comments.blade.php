@@ -8,7 +8,6 @@
             data-method="delete">Delete Un Verified
     </button>
 @endsection
-
 @if($comments->isEmpty())
     <h3 class="center-block meta-item">No Comments</h3>
 @else
@@ -18,17 +17,15 @@
             <th>用户</th>
             <th>Email</th>
             <th>地址</th>
-            <th>内容</th>
+            <th>状态</th>
             <th>IP</th>
             <th>操作</th>
         </tr>
         </thead>
         <tbody>
         @foreach($comments as $comment)
-
             <?php $commentableData = $comment->getCommentableData();?>
-
-            <tr class="{{ $comment->trashed() ? 'table-danger':($comment->isVerified() ? 'table-success' : '') }}">
+            <tr>
                 <td>
                     @if($comment->user_id)
                         <a href="{{ route('user.show',$comment->username) }}">{{ $comment->username }}</a>
@@ -44,14 +41,12 @@
                         @if($comment->trashed())
                             {{ $commentableData['title'] }}
                         @else
-                            <a target="_blank"
-                               href="{{ $commentableData['url'].'#comment-'.$comment->id }}">{{$commentableData['title'] }}
+                            <a target="_blank" href="{{ $commentableData['url'].'#comment-'.$comment->id }}">{{$commentableData['title'] }}
                             </a>
                         @endif
                     @endif
                 </td>
-                <td data-toggle="tooltip" data-placement="top"
-                    title="{{ $comment->content }}">{!! $comment->html_content !!}</td>
+                <td><span class="p-2 p badge {{ $comment->trashed() ? 'badge-danger':($comment->isVerified() ? 'badge-success' : 'badge-secondary') }}">{{ $comment->trashed() ? '已删除':($comment->isVerified() ? '已审核' : '未审核') }}</span></td>
                 <td>{{ $comment->ip_id?$comment->ip_id:'NONE' }}</td>
                 <td>
                     @if($comment->trashed())

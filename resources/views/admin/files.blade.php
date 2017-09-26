@@ -1,65 +1,29 @@
 @extends('admin.layouts.app')
 @section('title','Files')
 @section('content')
-    <div>
-        <form class="form-inline mb-3" action="{{ route('upload.file') }}"
-              enctype="multipart/form-data" method="post">
-            {{ csrf_field() }}
-            <input type="hidden" name="type" value="js">
-            <div class="form-group w-50">
-                <label class="form-control-label mr-3">
-                    Js
-                </label>
-                <input class="form-control-file" type="file" name="file">
-            </div>
-            <button type="submit" class="btn btn-primary">
-                上传
-            </button>
-        </form>
-
-        <form class="form-inline mb-3" action="{{ route('upload.file') }}"
-              enctype="multipart/form-data" method="post">
-            {{ csrf_field() }}
-            <input type="hidden" name="type" value="css">
-            <div class="form-group w-50">
-                <label class="form-control-label mr-3">
-                    Css
-                </label>
-                <input class="form-control-file" type="file" name="file">
-            </div>
-            <button type="submit" class="btn btn-primary">
-                上传
-            </button>
-        </form>
-        <form class="form-inline mb-3" action="{{ route('upload.file') }}"
-              enctype="multipart/form-data" method="post">
-            {{ csrf_field() }}
-            <input type="hidden" name="type" value="font">
-            <div class="form-group w-50">
-                <label class="form-control-label mr-3">
-                    Font
-                </label>
-                <input class="form-control-file" type="file" name="file">
-            </div>
-            <button type="submit" class="btn btn-primary">上传</button>
-        </form>
-
-        <form class="form-inline" action="{{ route('upload.file') }}"
-              enctype="multipart/form-data" method="post">
-            {{ csrf_field() }}
-            <div class="form-group w-50">
-                <label class="form-control-label mr-3" for="file">
-                    其他
-                </label>
-                <input class="form-control-file" type="file" name="file">
-            </div>
-            <button type="submit" class="btn btn-primary">
-                上传
-            </button>
-        </form>
+    <div class="card mb-3">
+        <div class="card-header">
+            <h6><i class="fa fa-file-archive-o fa-fw"></i>文件</h6>
+        </div>
+        <div class="card-body">
+            <form class="form-inline justify-content-center" action="{{ route('upload.file') }}"
+                  datatype="image"
+                  enctype="multipart/form-data" method="post">
+                {{ csrf_field() }}
+                <div class="form-group">
+                    <label for="image" class="form-control-label mr-3">
+                        <i class="fa fa-file-archive-o fa-lg fa-fw"></i>
+                    </label>
+                    <input id="image" class="form-control-file" type="file" name="file">
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    上传
+                </button>
+            </form>
+        </div>
     </div>
 
-    <div class="col-sm-10 col-sm-offset-1 mt-3">
+    <div class="mt-3">
         <table class="table table-hover table-striped table-bordered table-responsive">
             <tbody>
             @forelse($files as $file)

@@ -6,12 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="theme-color" content="#52768e">
-    <title>@yield('title') Admin {{ $site_title or '' }}</title>
-    @if(isset($site_css) && $site_css)
-        <link href="{{ $site_css }}" rel="stylesheet">
-    @else
-        <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    @endif
+    <title>@yield('title') Dashboard {{ $site_title or '' }}</title>
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ mix('css/admin.css') }}" rel="stylesheet">
     @yield('css')
     <script>
@@ -33,13 +29,11 @@
     @endif
 </head>
 <body>
-
 <div class="main">
     <div class="sidebar-wrapper bg-placeholder" id="sidebar-wrapper">
         <div class="p-3" style="{{ $has_sidebar_image ?'background-color: rgba(16,16,16,0.5);height: 100%;':'' }}">
             <div class="sidebar-header">
-                <button class="sidebar-toggler" type="button" data-toggle="collapse" data-target="#sidebar"
-                        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="sidebar-toggler" type="button" data-toggle="collapse" data-target="#sidebar" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="sidebar-toggler-icon"></span>
                 </button>
                 <a href="{{ route('admin.index') }}" class="admin-brand">Admin</a>
@@ -64,12 +58,12 @@
                         'children' => [
                             [
                                 'name' => 'Posts',
-                                'icon' => 'sticky-note',
+                                'icon' => 'book',
                                 'route' => 'admin.posts'
                             ],
                             [
                                 'name' => 'Pages',
-                                'icon' => 'file',
+                                'icon' => 'file-text',
                                 'route' => 'admin.pages'
                             ],
                             [
@@ -104,7 +98,7 @@
                             ],
                             [
                                 'name' => 'Files',
-                                'icon' => 'file',
+                                'icon' => 'file-archive-o',
                                 'route' => 'admin.files'
                             ]
                         ]
@@ -179,20 +173,14 @@
             </div>
             <hr class="divider mt-3">
         </div>
-        <div class="pt-3 pr-3 pl-3">
-            @include('admin.partials.errors')
-            @include('admin.partials.success')
+        <div class="p-3">
+            @include('partials.msg')
             @yield('content')
         </div>
     </div>
 </div>
 
-{{--@include('admin.layouts.footer')--}}
-@if(isset($site_js) && $site_js)
-    <script src="{{ $site_js }}"></script>
-@else
-    <script src="{{ mix('js/app.js') }}"></script>
-@endif
+<script src="{{ mix('js/app.js') }}"></script>
 @yield('script')
 </body>
 </html>

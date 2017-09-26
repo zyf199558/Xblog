@@ -39,7 +39,7 @@
                     <div class="row">
                         <div class="col-4">
                             <div class="info-icon">
-                                <i class="fa fa-file fa-fw"></i>
+                                <i class="fa fa-file-text fa-fw"></i>
                             </div>
                         </div>
                         <div class="col-8">
@@ -57,7 +57,7 @@
                     <div class="row">
                         <div class="col-4">
                             <div class="info-icon">
-                                <i class="fa fa-sticky-note fa-fw"></i>
+                                <i class="fa fa-book fa-fw"></i>
                             </div>
                         </div>
                         <div class="col-8">
@@ -166,29 +166,20 @@
 @section('script')
     <script src="https://cdn.bootcss.com/Chart.js/2.6.0/Chart.min.js"></script>
     <script>
+        var labels = {!! json_encode($labels) !!};
+        var type = 'line'
+        if (labels.length < 5){
+            type = 'bar'
+        }
         var config = {
-            type: 'line',
+            type: type,
             data: {
-                labels: {!! json_encode($labels) !!},
+                labels: labels,
                 datasets: [{
-                    label: 'Post count',
+                    label: 'One Year Posts Summary',
                     data: {!! json_encode($data) !!},
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255,99,132,1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
+                    backgroundColor: 'rgba(82,118,142,0.2)',
+                    borderColor: 'rgba(82,118,142,1)',
                     borderWidth: 1
                 }]
             },
