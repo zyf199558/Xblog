@@ -1,15 +1,20 @@
 @extends('user.user')
-@section('title', $user->name)
+@section('title', 'Social')
 @section('user-content')
     @can('manager',$user)
         <div class="p-3">
-            @if(!$user->github_id)
-                <div class="form-group mt-3">
-                    <a style="text-decoration: none" class="btn btn-primary" href="{{ route('github.login') }}">
+            <div class="form-group">
+                <label>GitHub：</label>
+                @if(!$user->github_id)
+                    <a class="btn btn-outline-primary" href="{{ route('github.login') }}">
                         绑定<i class="fa fa-github fa-lg fa-fw"></i>
                     </a>
-                </div>
-            @endif
+                @else
+                    <a class="btn btn-outline-success" href="https://github.com/{{ $user->github_name }}">
+                        已绑定<i class="fa fa-github fa-lg fa-fw"></i>
+                    </a>
+                @endif
+            </div>
         </div>
     @endcan
 @endsection

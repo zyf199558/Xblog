@@ -6,12 +6,8 @@
 @section('content')
     <div id="upload-img-url" data-upload-img-url="{{ route('upload.image') }}" style="display: none"></div>
     <div id="data" data-id="{{ $page->id . '.by@' . request()->ip() }}">
-        <div class="card-header">
-            <i class="fa fa-pencil fa-fw"></i>修改页面
-        </div>
-        <div class="card-body edit-form">
+        <div class="edit-form">
             <form role="form" class="form-horizontal" action="{{ route('page.update',$page->id) }}" method="post">
-
                 @include('admin.page.form-content')
                 <input type="hidden" name="_method" value="put">
                 <div class="form-group">

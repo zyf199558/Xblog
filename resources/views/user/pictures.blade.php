@@ -1,5 +1,5 @@
 @extends('user.user')
-@section('title', $user->name)
+@section('title', 'My Pictures')
 @section('user-content')
     @can('manager',$user)
         <div class="p-3">
@@ -7,7 +7,9 @@
                   enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <input name="_method" type="hidden" value="patch">
-                <img class="im" src="{{ $user->avatar }}" width="256" height="256">
+                @if($user->avatar)
+                    <img src="{{ $user->avatar }}" width="256" height="256">
+                @endif
                 <div class="form-group">
                     <label class="control-label">修改头像：</label>
                     <input type="file" class="form-control" name="image" required="">
@@ -19,6 +21,9 @@
                   enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <input name="_method" type="hidden" value="patch">
+                @if($user->profile_image)
+                    <img src="{{ $user->profile_image }}" width="100%">
+                @endif
                 <div class="form-group">
                     <label>修改简介图片：</label>
                     <input class="form-control" type="file" name="image" required="">

@@ -15,7 +15,7 @@
         <tbody>
         @foreach($posts as $post)
             <?php
-            $class = '';
+            $class = 'badge-secondary';
             $status = '未发表';
             if ($post->trashed()) {
                 $class = 'badge-danger';
@@ -75,6 +75,7 @@
                             </form>
                         @endif
                         <button class="btn btn-danger swal-dialog-target"
+                                data-toggle="tooltip"
                                 data-title="{{ $post->title }}"
                                 data-dialog-msg="确定删除文章<label>{{ $post->title }}</label>？"
                                 title="删除"

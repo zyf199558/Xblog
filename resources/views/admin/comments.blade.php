@@ -36,7 +36,7 @@
                 <td><a href="mailto:{{ $comment->email }}">{{ $comment->email }}</a></td>
                 <td>
                     @if($commentableData['deleted'])
-                        {{ $commentableData['type'] }} Deleted
+                        <span data-html="true" data-toggle="tooltip" title="{{ $comment->html_content }}">{{ $commentableData['type'] }}已删除</span>
                     @else
                         @if($comment->trashed())
                             {{ $commentableData['title'] }}

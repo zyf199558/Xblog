@@ -30,7 +30,7 @@ Route::get('/user/me/settings', ['uses' => 'UserController@settings', 'as' => 'u
 Route::get('/user/me/pictures', ['uses' => 'UserController@pictures', 'as' => 'user.pictures']);
 Route::get('/user/me/socials', ['uses' => 'UserController@socials', 'as' => 'user.socials']);
 Route::get('/notifications', ['uses' => 'UserController@notifications', 'as' => 'user.notifications']);
-Route::get('/readNotification/{id}', ['uses' => 'UserController@readNotification', 'as' => 'user.readNotification']);
+Route::get('/read_notification/{id}', ['uses' => 'UserController@readNotification', 'as' => 'user.read_notification']);
 Route::patch('/user/upload/avatar', ['uses' => 'UserController@uploadAvatar', 'as' => 'user.upload.avatar']);
 Route::patch('/user/upload/profile', ['uses' => 'UserController@uploadProfile', 'as' => 'user.upload.profile']);
 Route::patch('/user/upload/info', ['uses' => 'UserController@update', 'as' => 'user.update.info']);

@@ -1,5 +1,5 @@
 @extends('user.user')
-@section('title', $user->name)
+@section('title', 'Settings')
 @section('user-content')
     @can('manager',$user)
         <div class="p-3">

@@ -1,26 +1,49 @@
 @extends('user.user')
 @section('title', $user->name)
+@section('css')
+    <style>
+        @media (max-width: 768px) {
+            .user-left {
+                min-height: 16rem;
+            }
+        }
+    </style>
+@endsection
 @section('user-content')
     <div class="row">
         <div class="col-md-6 p-3">
-            <img width="64" height="64" src="{{ $user->avatar  }}" class="rounded-circle mb-3">
+            @if($user->avatar)
+                <img width="64" height="64" src="{{ $user->avatar  }}" class="rounded-circle mb-3">
+            @endif
             <div class="form-group">
                 <label>名称：</label>
                 <span>{{ $user->name }}</span>
             </div>
             <div class="form-group">
                 <label>描述：</label>
-                <span>{{ $user->description }}</span>
+                @if($user->description)
+                    <span>{{ $user->description }}</span>
+                @else
+                    <span class="text-secondary font-italic">空</span>
+                @endif
             </div>
             <div class="form-group">
                 <label>个人网站：</label>
-                <a href="{{ httpUrl($user->website) }}">{{ httpUrl($user->website) }}</a>
+                @if($user->website)
+                    <a href="{{ httpUrl($user->website) }}">{{ httpUrl($user->website) }}</a>
+                @else
+                    <span class="text-secondary font-italic">空</span>
+                @endif
             </div>
             @if($user->meta)
                 @foreach($user->meta as $key=>$value)
                     <div class="form-group">
                         <label>{{ ucfirst($key) }}：</label>
-                        <a href="{{ $value }}">{{ $value }}</a>
+                        @if($value)
+                            <a href="{{ $value }}">{{ $value }}</a>
+                        @else
+                            <span class="text-secondary font-italic">空</span>
+                        @endif
                     </div>
                 @endforeach
             @endif
@@ -31,14 +54,6 @@
         else
             $style = '';
         ?>
-        <style>
-            @media (max-width: 768px){
-                .user-left{
-                    min-height: 16rem;
-                }
-            }
-
-        </style>
         <div class="user-left col-md-6 bg-placeholder" style="{{ $style }}">
         </div>
     </div>

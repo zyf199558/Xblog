@@ -53,8 +53,9 @@ class UserController extends Controller
 
     public function notifications()
     {
+        $user = auth()->user();
         $notifications = auth()->user()->unreadNotifications;
-        return view('user.notifications',compact('notifications'));
+        return view('user.notifications',compact('notifications', 'user'));
     }
 
     public function readNotification($id)
