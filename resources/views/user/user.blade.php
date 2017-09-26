@@ -7,7 +7,7 @@
                     <?php $isOwner = auth()->id() == $user->id?>
                     @if(auth()->check() && $isOwner)
                         <div class="col-md-3 p-3">
-                            <nav class="nav nav-pills flex-column">
+                            <nav class="nav nav-pills flex-column font-weight-bold">
                                 <a class="nav-link {{ request()->url() == route('user.show', $user->name)?'active':'' }}" href="{{ route('user.show', $user->name) }}">{{ $user->name }}</a>
                                 <a class="nav-link {{ request()->url() == route('user.settings')?'active':'' }}" href="{{ route('user.settings') }}">Settings</a>
                                 <a class="nav-link {{ request()->url() == route('user.pictures')?'active':'' }}" href="{{ route('user.pictures') }}">Pictures</a>

@@ -100,7 +100,13 @@ class AdminController extends Controller
     public function settings()
     {
         $variables = config('configurable_variables');
-        return view('admin.settings', compact('variables'));
+        $radios = array_where($variables, function ($value, $key) {
+            return isset($value['type']) && $value['type'] == 'radio';
+        });
+        $others = array_where($variables, function ($value, $key) {
+            return !isset($value['type']) || $value['type'] != 'radio';
+        });
+        return view('admin.settings', compact('variables', 'radios', 'others'));
     }
 
     public function saveSettings(Request $request)

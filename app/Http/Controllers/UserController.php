@@ -55,7 +55,7 @@ class UserController extends Controller
     {
         $user = auth()->user();
         $notifications = auth()->user()->unreadNotifications;
-        return view('user.notifications',compact('notifications', 'user'));
+        return view('user.notifications', compact('notifications', 'user'));
     }
 
     public function readNotification($id)
@@ -81,47 +81,47 @@ class UserController extends Controller
         if ($this->userRepository->update($request, $user)) {
             return back()->with('success', '修改成功');
         }
-        return back()->with('success', '修改失败');
+        return back()->withErrors('修改失败');
     }
 
 
-    public function uploadProfile(Request $request)
+    public function updateProfile(Request $request)
+    {
+        return $this->updateUserImage($request, 'profile_image', 'profile', 1024);
+    }
+
+    public function updateAvatar(Request $request)
+    {
+        return $this->updateUserImage($request, 'avatar', 'avatar');
+    }
+
+    private function updateUserImage(Request $request, $field, $path, $max = 512)
     {
         $user = auth()->user();
-
-        $milliseconds = getMilliseconds();
-
-        $key = 'user/' . $user->name . "/profile/$milliseconds." . $request->file('image')->guessClientExtension();
-
-        if ($url = $this->uploadImage($user, $request, $key, 2048)) {
-            $user->profile_image = $url;
+        $url = $request->get('url');
+        if ($url) {
+            $user->$field = $url;
+        } else {
+            $milliseconds = getMilliseconds();
+            $file = $request->file('image');
+            if ($file) {
+                $key = 'user/' . $user->name . "/$path/$milliseconds." . $file->guessClientExtension();
+                if ($url = $this->uploadImage($user, $request, $key, $max)) {
+                    $user->$field = $url;
+                }
+            } else {
+                return back()->withErrors('请输入 URL 或者上传图片');
+            }
         }
+
         if ($user->save()) {
             $this->userRepository->clearCache();
             return back()->with('success', '修改成功');
         }
-        return back()->with('success', '修改失败');
+        return back()->withErrors('修改失败');
     }
 
-    public function uploadAvatar(Request $request)
-    {
-        $user = auth()->user();
-
-        $milliseconds = getMilliseconds();
-
-        $key = 'user/' . $user->name . "/avatar/$milliseconds." . $request->file('image')->guessClientExtension();
-
-        if ($url = $this->uploadImage($user, $request, $key)) {
-            $user->avatar = $url;
-        }
-        if ($user->save()) {
-            $this->userRepository->clearCache();
-            return back()->with('success', '修改成功');
-        }
-        return back()->with('success', '修改失败');
-    }
-
-    private function uploadImage(User $user, Request $request, $key, $max = 1024, $fileName = 'image')
+    private function uploadImage(User $user, Request $request, $key, $max = 512, $fileName = 'image')
     {
         $this->checkPolicy('manager', $user);
         $this->validate($request, [

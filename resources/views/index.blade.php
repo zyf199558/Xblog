@@ -14,14 +14,14 @@
             <font aria-hidden="true">»</font>
             <a href="{{ route('post.index') }}" aria-label="点击查看博客文章列表">博客</a>
             @foreach($pages as $page)
-                <font aria-hidden="true">/</font><a href="{{ route('page.show',$page->name) }}" aria-label="查看{{ $author or 'author' }}的{{ $page->display_name }}">{{$page->display_name }}</a>
+                <font aria-hidden="true">/</font>
+                <a href="{{ route('page.show',$page->name) }}" aria-label="查看{{ $author or 'author' }}的{{ $page->display_name }}">{{$page->display_name }}</a>
             @endforeach
         </p>
         <p class="links">
             <font aria-hidden="true">»</font>
             @foreach(config('social') as $key => $value)
-                <a href="{{ $value['url'] }}" target="_blank"
-                   aria-label="{{ $author or 'author' }} 的 {{ ucfirst($key) }} 地址">
+                <a href="{{ $value['url'] }}" target="_blank" aria-label="{{ $author or 'author' }} 的 {{ ucfirst($key) }} 地址">
                     <i class="fa fa-{{ $value['icon'] }} fa-fw" title="{{ ucfirst($key) }}"></i>
                 </a>
             @endforeach

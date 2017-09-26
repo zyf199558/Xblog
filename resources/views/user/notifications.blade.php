@@ -1,15 +1,9 @@
 @extends('user.user')
 @section('title', 'Notifications')
 @section('user-content')
-    @if($notifications->isNotEmpty())
-        <a class="btn btn-info" style="display: inline;margin-left: 20px"
-           href="{{ route('user.read_notification',"all") }}">
-            全部已读
-        </a>
-    @endif
     <div class="p-3">
         @if($notifications->isEmpty())
-            <h5 class="text-secondary text-center">No Notifications</h5>
+            <h5 class="text-secondary text-center mt-3">No Notifications</h5>
         @else
             <table class="table table-striped table-hover table-bordered table-responsive">
                 <thead>
@@ -59,6 +53,9 @@
                 @endforeach
                 </tbody>
             </table>
+            <a class="btn-block btn btn-outline-success mt-3" href="{{ route('user.read_notification',"all") }}">
+                <i class="fa fa-eye fw mr-2"></i>全部已读
+            </a>
         @endif
     </div>
 @endsection
