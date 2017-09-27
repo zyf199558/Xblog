@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\UserRepository;
 use App\Http\Requests;
+use App\Http\Requests\RegisterRequest;
 use App\User;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
@@ -45,28 +46,13 @@ class AuthController extends Controller
         return $currentUser->save();
     }
 
-    public function store(Request $request)
+    public function store(RegisterRequest $request)
     {
         if (!session()->has('githubData')) {
             return redirect('login');
         }
 
         $name = $request->get('name');
-        $email = $request->get('email');
-        $this->validate($request, [
-            'name' => 'required|regex:/^[a-zA-Z-_]+$/u|max:16|min:3|unique:users',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ], [
-            'name.regex' => "Username can only contains letter,number or -,_",
-            'name.unique' => "Username  '$name'  has been registered,if it is you,then you can login to bind your github account",
-            'email.unique' => "Email  '$email'  has been registered,if it is you,then you can login to bind your github account",
-        ]);
-
-        if (mb_substr_count($request->get('name'), '_') > 1 || mb_substr_count($request->get('name'), '-') > 1) {
-            return back()->withInput()->withErrors("name's '-' and '_' max count is 1.");
-        }
-
         $githubData = session('githubData');
         $user = new User();
         $user->name = $name;
