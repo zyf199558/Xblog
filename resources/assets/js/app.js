@@ -234,7 +234,7 @@ require('./boot');
     }
 
     function initTables() {
-        $('.post-detail-content').addClass('table table-bordered table-responsive');
+        $('.post-detail-content table').addClass('table table-striped table-responsive');
     }
 
     function autoSize() {
