@@ -16,25 +16,26 @@
     <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
     <link href="{{ mix('css/home.css') }}" rel="stylesheet">
     @include('widget.google_analytics')
-    @if(isset($home_bg_images) && $home_bg_images)
-        <?php
-        $images = preg_split('/[\n\r]+/', $home_bg_images);
-        $image = $images[rand(0, count($images) - 1)];
-        ?>
-        <style>
-            .container {
-                background: url("{{ $image }}") no-repeat center center;
-                background-size: cover;
-            }
-        </style>
-    @endif
 </head>
 <body>
+@if(isset($home_bg_images) && $home_bg_images)
+    <div id="home-cover-slideshow">
+        <?php
+        $images = preg_split('/[\n\r]+/', $home_bg_images);
+        shuffle($images);
+        ?>
+        @foreach ($images as $image)
+            <div class="home-cover-img" data-src="{{ $image }}"></div>
+        @endforeach
+    </div>
+@endif
 <div class="container">
     <div class="content">
         @yield('content')
     </div>
 </div>
 @yield('js')
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"></script>
+<script src="{{ mix('js/home.js') }}"></script>
 </body>
 </html>
