@@ -17,7 +17,7 @@
 @if($failed_jobs->isEmpty())
     <div style="text-align: center;"> Congratulations! You don't have failed jobs.</div>
 @else
-    <table class="table table-hover table-bordered table-responsive">
+    <table class="table table-striped table-responsive">
         <thead>
         <tr>
             <th>ID</th>

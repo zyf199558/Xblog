@@ -7,7 +7,7 @@
         @section('action')
             <a class="btn btn-outline-danger" href="{{ route('admin.ips',['blocked'=>1]) }}">Blocked</a>
         @endsection
-        <table class="table table-hover table-striped table-bordered table-responsive">
+        <table class="table table-striped table-responsive">
             <thead>
             <tr>
                 <th>IP</th>

@@ -127,20 +127,18 @@
                                         $show = false;
                                 }
                                 ?>
-                                <a class="nav-link{{ $show ? ' active':'' }}" role="tab" data-toggle="collapse"
-                                   href="#{{ $menu['name'] }}"
-                                   aria-expanded="false"><i
-                                            class="fa fa-{{ $menu['icon'] }} fa-fw mr-3"></i>{{ $menu['name'] }}<i
-                                            class="fa fa-angle-double-down fa-fw ml-2"></i></a>
+                                <a class="nav-link{{ $show ? ' active':' collapsed' }}" role="tab" data-toggle="collapse" href="#{{ $menu['name'] }}" aria-expanded="false">
+                                    <i class="fa fa-{{ $menu['icon'] }} fa-fw mr-3"></i>
+                                    {{ $menu['name'] }}
+                                </a>
                                 <div class="collapse {{ $show ? ' show':'' }}" id="{{ $menu['name'] }}">
                                     <div class="nav-wrapper">
                                         <nav class="nav nav-pills flex-column">
                                             @foreach( $menu['children'] as $children_menu)
                                                 <?php $link = route($children_menu['route']);?>
-                                                <a class="ml-3 my-1 nav-link {{ $link == request()->url() ? ' active':'' }}"
-                                                   role="tab"
-                                                   href="{{ $link }}"><i
-                                                            class="fa fa-{{ $children_menu['icon'] }} fa-fw mr-3"></i>{{ $children_menu['name'] }}
+                                                <a class="ml-3 my-1 nav-link {{ $link == request()->url() ? ' active':'' }}" role="tab" href="{{ $link }}">
+                                                    <i class="fa fa-{{ $children_menu['icon'] }} fa-fw mr-3"></i>
+                                                    {{ $children_menu['name'] }}
                                                 </a>
                                             @endforeach
                                         </nav>
@@ -148,9 +146,9 @@
                                 </div>
                             @else
                                 <?php $link = route($menu['route']);?>
-                                <a class="nav-link {{ $link == request()->url() ? ' active':'' }}" role="tab"
-                                   href="{{ $link }}"><i
-                                            class="fa fa-{{ $menu['icon'] }} fa-fw mr-3"></i>{{ $menu['name'] }}
+                                <a class="nav-link {{ $link == request()->url() ? ' active':'' }}" role="tab" href="{{ $link }}">
+                                    <i class="fa fa-{{ $menu['icon'] }} fa-fw mr-3"></i>
+                                    {{ $menu['name'] }}
                                 </a>
                             @endif
                         @endforeach

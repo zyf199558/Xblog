@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 @section('title','Users')
 @section('content')
-    <table class="table table-striped table-hover table-bordered table-responsive">
+    <table class="table table-striped table-responsive">
         <thead>
         <tr>
             <th>ID</th>

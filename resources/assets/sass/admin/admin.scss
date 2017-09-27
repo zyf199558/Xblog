@@ -176,3 +176,13 @@ a.admin-brand:hover {
   color: $colorAccent !important;
   @extend .transition;
 }
+
+
+.sidebar nav .nav-link[data-toggle="collapse"]:after{
+  font-family: 'FontAwesome';
+  content: "\f102";
+  float: right;
+}
+.sidebar nav .nav-link[data-toggle="collapse"].collapsed:after{
+  content: "\f103";
+}

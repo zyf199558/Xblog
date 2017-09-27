@@ -141,24 +141,24 @@ require('./boot');
         var site = form.find('input[name=site]');
 
         if (window.localStorage) {
-            username.val(localStorage.getItem('comment_username') == undefined ? '' : localStorage.getItem('comment_username'));
-            email.val(localStorage.getItem('comment_email') == undefined ? '' : localStorage.getItem('comment_email'));
-            site.val(localStorage.getItem('comment_site') == undefined ? '' : localStorage.getItem('comment_site'));
+            username.val(localStorage.getItem('comment_username') === undefined ? '' : localStorage.getItem('comment_username'));
+            email.val(localStorage.getItem('comment_email') === undefined ? '' : localStorage.getItem('comment_email'));
+            site.val(localStorage.getItem('comment_site') === undefined ? '' : localStorage.getItem('comment_site'));
         }
 
         form.on('submit', function () {
             if (username.length > 0) {
-                if ($.trim(username.val()) == '') {
+                if ($.trim(username.val()) === '') {
                     username.focus();
                     return false;
                 }
-                else if ($.trim(email.val()) == '') {
+                else if ($.trim(email.val()) === '') {
                     email.focus();
                     return false;
                 }
             }
 
-            if ($.trim(commentContent.val()) == '') {
+            if ($.trim(commentContent.val()) === '') {
                 commentContent.focus();
                 return false;
             }
@@ -234,7 +234,7 @@ require('./boot');
     }
 
     function initTables() {
-        $('table').addClass('table table-bordered table-responsive');
+        $('.post-detail-content').addClass('table table-bordered table-responsive');
     }
 
     function autoSize() {

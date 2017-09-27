@@ -167,7 +167,7 @@
     <script src="https://cdn.bootcss.com/Chart.js/2.6.0/Chart.min.js"></script>
     <script>
         var labels = {!! json_encode($labels) !!};
-        var type = 'line'
+        var type = 'line';
         if (labels.length < 5){
             type = 'bar'
         }
@@ -187,7 +187,7 @@
                 scales: {
                     yAxes: [{
                         ticks: {
-                            beginAtZero: true
+                            beginAtZero: true,
                         }
                     }]
                 }

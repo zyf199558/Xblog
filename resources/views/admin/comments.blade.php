@@ -11,7 +11,7 @@
 @if($comments->isEmpty())
     <h3 class="center-block meta-item">No Comments</h3>
 @else
-    <table class="table table-striped table-hover table-bordered table-responsive">
+    <table class="table table-striped table-responsive">
         <thead>
         <tr>
             <th>用户</th>
