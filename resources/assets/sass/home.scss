@@ -57,6 +57,7 @@ a {
 @import "home-box";
 
 #home-cover-slideshow {
+  z-index: -1;
   position: absolute;
   top: 0;
   right: 0;

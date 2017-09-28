@@ -34,7 +34,7 @@
                           rows="5" spellcheck="false"
                           class="form-control markdown-content autosize-target"></textarea>
                 <span class="help-block required">
-                    <strong id="comment_error_msg"></strong>
+                    <strong id="comment_submit_msg"></strong>
                 </span>
             </div>
             <div class="form-group">
