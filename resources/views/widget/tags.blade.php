@@ -1,5 +1,5 @@
 <div class="card mb-3">
-    <div class="card-header"><i class="fa fa-tags fa-fw"></i>标签</div>
+    <div class="card-header bg-white"><i class="fa fa-tags fa-fw"></i>标签</div>
     <ul class="card-body">
         <div class="tag-list">
             @forelse($tags as $tag)
