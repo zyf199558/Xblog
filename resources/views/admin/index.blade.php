@@ -166,11 +166,4 @@
             chartjs-data='{!! json_encode($data) !!}'
             chartjs-labels='{!! json_encode($labels) !!}'>
     </canvas>
-    @if(count($hotPosts) > 0)
-        <canvas data-target="chartjs" chartjs-title="Hot Posts Summary" height="100%"
-                chartjs-type="bar"
-                chartjs-labels='{!! json_encode($hotPosts->map(function ($item, $key) { return $item['title']; })) !!}'
-                chartjs-data='{!! json_encode($hotPosts->map(function ($item, $key) { return $item['view_count']; })) !!}'>
-        </canvas>
-    @endif
 @endsection
