@@ -16,7 +16,7 @@ class ComposerServiceProvider extends ServiceProvider
     {
         View::composer('widget.categories', 'App\Http\ViewComposers\CategoriesComposer');
 
-        View::composer('widget.hot_posts', 'App\Http\ViewComposers\HotPostsComposer');
+        View::composer(['widget.hot_posts', 'admin.index'], 'App\Http\ViewComposers\HotPostsComposer');
 
         View::composer('widget.tags', 'App\Http\ViewComposers\TagsComposer');
 
