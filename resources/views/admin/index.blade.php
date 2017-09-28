@@ -161,40 +161,16 @@
             </a>
         </div>
     </div>
-    <canvas id="postChart" height="100%"></canvas>
-@endsection
-@section('script')
-    <script src="https://cdn.bootcss.com/Chart.js/2.6.0/Chart.min.js"></script>
-    <script>
-        var labels = {!! json_encode($labels) !!};
-        var type = 'line';
-        if (labels.length < 5){
-            type = 'bar'
-        }
-        var config = {
-            type: type,
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'One Year Posts Summary',
-                    data: {!! json_encode($data) !!},
-                    backgroundColor: 'rgba(82,118,142,0.2)',
-                    borderColor: 'rgba(82,118,142,1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true,
-                        }
-                    }]
-                }
-            }
-        };
-
-        var ctx = document.getElementById("postChart").getContext("2d");
-        new Chart(ctx, config);
-    </script>
+    <canvas data-target="chartjs" chartjs-title="One Year Posts Summary" height="100%"
+            chartjs-type="{{ count($labels) < 5 ? 'bar' : 'line' }}"
+            chartjs-data='{!! json_encode($data) !!}'
+            chartjs-labels='{!! json_encode($labels) !!}'>
+    </canvas>
+    @if(count($hotPosts) > 0)
+        <canvas data-target="chartjs" chartjs-title="Hot Posts Summary" height="100%"
+                chartjs-type="bar"
+                chartjs-labels='{!! json_encode($hotPosts->map(function ($item, $key) { return $item['title']; })) !!}'
+                chartjs-data='{!! json_encode($hotPosts->map(function ($item, $key) { return $item['view_count']; })) !!}'>
+        </canvas>
+    @endif
 @endsection

@@ -1,5 +1,5 @@
 <div class="card mb-3">
-    <div class="card-header"><i class="fa fa-fire fa-fw"></i>热门文章</div>
+    <div class="card-header bg-white"><i class="fa fa-fire fa-fw"></i>热门文章</div>
     <div class="card-body hot-posts">
         <ul class="list-group">
             @foreach($hotPosts as $post)
