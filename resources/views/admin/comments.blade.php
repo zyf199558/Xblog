@@ -55,15 +55,15 @@
                                 data-dialog-msg="永久删除这条评论？"
                                 data-url="{{ route('comment.destroy',[$comment->id,'force'=>'true']) }}"
                                 data-method="delete"
+                                data-toggle="tooltip"
                                 data-placement="top"
                                 title="永久删除">
                             <i class="fa fa-trash-o fa-fw"></i>
                         </button>
-                        <form style="display: inline-block" method="post"
+                        <form class="d-inline-block" method="post"
                               action="{{ route('comment.restore',$comment->id) }}">
                             {{ csrf_field() }}
-                            <button type="submit" class="btn btn-primary"
-                                    data-toggle="tooltip" data-placement="top" title="恢复">
+                            <button type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="恢复">
                                 <i class="fa fa-repeat fa-fw"></i>
                             </button>
                         </form>
@@ -71,6 +71,7 @@
                         <button type="submit"
                                 class="btn btn-danger swal-dialog-target"
                                 data-dialog-msg="确定删除此评论？"
+                                data-toggle="tooltip"
                                 data-url="{{ route('comment.destroy',$comment->id) }}"
                                 title="删除">
                             <i class="fa fa-trash-o fa-fw"></i>
@@ -80,7 +81,7 @@
                             <i class="fa fa-pencil fa-fw"></i>
                         </a>
                     @endif
-                    <form style="display: inline-block" method="post"
+                    <form class="d-inline-block" method="post"
                           action="{{ route('comment.verify',$comment->id) }}">
                         {{ csrf_field() }}
                         <button type="submit" class="btn btn-info"
@@ -93,6 +94,7 @@
                     @if($ip == null)
                         <button disabled
                                 class="btn btn-default"
+                                data-toggle="tooltip"
                                 title="NO IP">
                             <i class="fa fa-close fa-fw"></i>
                         </button>

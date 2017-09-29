@@ -19,6 +19,7 @@
                 <td>{{ $tag->posts_count }}</td>
                 <td>
                     <button type="submit"
+                            data-toggle="tooltip"
                             class="btn btn-danger swal-dialog-target"
                             data-dialog-msg="确定删除{{ $tag->name }}？"
                             data-url="{{ route('tag.destroy',$tag->id) }}"

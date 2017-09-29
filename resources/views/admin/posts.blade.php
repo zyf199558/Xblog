@@ -36,8 +36,7 @@
                             <i class="fa fa-pencil fa-fw"></i>
                         </a>
                         @if($post->trashed())
-                            <form style="display: inline" method="post"
-                                  action="{{ route('post.restore',$post->id) }}">
+                            <form style="display: inline" method="post" action="{{ route('post.restore',$post->id) }}">
                                 {{ csrf_field() }}
                                 <button type="submit" class="btn btn-primary" data-toggle="tooltip"
                                         data-placement="top" title="恢复">
@@ -68,8 +67,7 @@
                             <form style="display: inline" method="post"
                                   action="{{ route('post.publish',$post->id) }}">
                                 {{ csrf_field() }}
-                                <button type="submit" class="btn btn-default" data-toggle="tooltip"
-                                        data-placement="top" title="发布">
+                                <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="发布">
                                     <i class="fa fa-send-o fa-fw"></i>
                                 </button>
                             </form>
@@ -84,7 +82,7 @@
                                 data-dialog-confirm-text="{{ $post->trashed()?'删除(这将永久刪除)':'删除' }}">
                             <i class="fa fa-trash-o  fa-fw"></i>
                         </button>
-                        <a class="btn btn-dark" href="{{ route('post.download',$post->id) }}">
+                        <a class="btn btn-dark"  data-toggle="tooltip" title="Download as markdown file" href="{{ route('post.download',$post->id) }}">
                             <i class="fa fa-cloud-download fa-fw"></i>
                         </a>
                         <div class="btn-group">

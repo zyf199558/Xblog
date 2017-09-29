@@ -34,6 +34,8 @@
                     <td>
                         @include('admin.partials.ip_button',['ip'=>$ip])
                         <button class="btn btn-info swal-dialog-target"
+                                data-toggle="tooltip"
+                                title="删除"
                                 data-url="{{ route('ip.delete',$ip->id) }}"
                                 data-dialog-msg="确定删除IP{{ $ip->id }}?">
                             <i class="fa fa-trash-o fa-fw"></i>
