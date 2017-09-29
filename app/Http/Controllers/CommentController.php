@@ -59,7 +59,7 @@ class CommentController extends Controller
                     ['status' => 500, 'msg' => 'Username and email must not be empty !']
                 );
             }
-            $pattern = "/^([0-9A-Za-z\\-_\\.]+)@([0-9a-z]+\\.[a-z]{2,3}(\\.[a-z]{2})?)$/i";
+            $pattern = "/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/";
             if (!preg_match($pattern, request('email'))) {
                 return response()->json(
                     ['status' => 500, 'msg' => 'An Invalidate Email !']
