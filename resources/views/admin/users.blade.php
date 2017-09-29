@@ -31,7 +31,8 @@
                     @switch($user->register_from)
                         @case('github')
                         <i class="fa fa-github-alt fw" data-toggle="tooltip" title="GitHub"></i>
-                        @case('web_form')
+                        @break
+                        @default
                         <i class="fa fa-globe fw" data-toggle="tooltip" title="Website"></i>
                     @endswitch
                 </td>
