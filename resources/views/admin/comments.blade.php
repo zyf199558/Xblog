@@ -89,7 +89,7 @@
                             <i class="fa fa-{{ $comment->isVerified()?'hand-o-down':'hand-o-up' }} fa-fw"></i>
                         </button>
                     </form>
-                    <?php $ip = $comment->ip_id ?>
+                    <?php $ip = $comment->ip?$comment->ip:$comment->ip_id ?>
                     @if($ip == null)
                         <button disabled
                                 class="btn btn-default"
