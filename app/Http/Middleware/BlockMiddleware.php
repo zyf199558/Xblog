@@ -28,7 +28,7 @@ class BlockMiddleware
     public function handle($request, Closure $next)
     {
         if (!isAdminById(auth()->id()) && $this->ipRepository->isBlocked($request->ip())) {
-            return response('Sorry, you are blocked, -_-');
+            return response('Sorry, you are blocked, -_-', 403);
         }
         return $next($request);
     }

@@ -1,7 +1,12 @@
-<button class="btn swal-dialog-target {{ $ip->blocked?' btn-danger':' btn-default' }}"
-        data-dialog-msg="{{ $ip->blocked?'取消阻塞':'阻塞' }} IP {{ $ip->id }} ?{{ $ip->blocked?'':'阻塞后此IP将不能访问你的网站' }}"
-        data-url="{{ route('ip.block',$ip->id) }}"
-        data-dialog-title="{{ $ip->blocked?'取消阻塞':'阻塞' }}"
-        title="{{ $ip->blocked?'Un Block':'Block' }}">
-    <i class="fa {{ $ip->blocked?'fa-check':'fa-close' }} fa-fw"></i>
+<?php
+$blocked= is_object($ip) && $ip->blocked;
+$ip_str = is_object($ip) ? $ip->id : $ip;
+?>
+<button class="btn swal-dialog-target {{ $blocked?' btn-danger':' btn-default' }}"
+        data-dialog-msg="{{ $blocked?'取消阻塞':'阻塞' }} IP {{ $ip_str }} ? {{ $blocked?'':'阻塞后此IP将不能访问你的网站' }}"
+        data-url="{{ route('ip.block', $ip_str) }}"
+        data-toggle="tooltip"
+        data-dialog-title="{{ $blocked?'取消阻塞':'阻塞' }}"
+        title="{{ $blocked ? 'Un Block':'Block' }}">
+    <i class="fa {{ $blocked?'fa-check':'fa-close' }} fa-fw"></i>
 </button>
