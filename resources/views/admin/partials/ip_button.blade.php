@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 $blocked= is_object($ip) && $ip->blocked;
 $ip_str = is_object($ip) ? $ip->id : $ip;
@@ -7,7 +6,6 @@ $ip_str = is_object($ip) ? $ip->id : $ip;
         data-dialog-msg="{{ $blocked?'取消阻塞':'阻塞' }} IP {{ $ip_str }} ? {{ $blocked?'':'阻塞后此IP将不能访问你的网站' }}"
         data-url="{{ route('ip.block', $ip_str) }}"
         data-toggle="tooltip"
-        data-dialog-title="{{ $blocked?'取消阻塞':'阻塞' }}"
         title="{{ $blocked ? 'Un Block':'Block' }}">
     <i class="fa {{ $blocked?'fa-check':'fa-close' }} fa-fw"></i>
 </button>
