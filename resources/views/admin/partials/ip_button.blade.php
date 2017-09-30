@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 $blocked= is_object($ip) && $ip->blocked;
 $ip_str = is_object($ip) ? $ip->id : $ip;

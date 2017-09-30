@@ -27,7 +27,15 @@
                 </td>
                 <td>{{ $user->created_at }}</td>
                 <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
-                <td>{{ $user->register_from }}</td>
+                <td>
+                    @switch($user->register_from)
+                        @case('github')
+                        <i class="fa fa-github-alt fw" data-toggle="tooltip" title="GitHub"></i>
+                        @break
+                        @default
+                        <i class="fa fa-globe fw" data-toggle="tooltip" title="Website"></i>
+                    @endswitch
+                </td>
             </tr>
         @endforeach
         </tbody>
