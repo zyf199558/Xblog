@@ -55,12 +55,6 @@ Route::post('/post/{post}/config', ['uses' => 'PostController@updateConfig', 'as
 Route::get('/post/download-all', ['uses' => 'PostController@downloadAll', 'as' => 'post.download-all']);
 
 /**
- * tag
- */
-/*Route::delete('/tag/{tag}', ['uses' => 'TagController@destroy', 'as' => 'tag.destroy']);
-Route::post('/tag', ['uses' => 'TagController@store', 'as' => 'tag.store']);*/
-
-/**
  * admin resource
  */
 Route::resource('post', 'PostController', ['except' => ['show', 'index']]);
