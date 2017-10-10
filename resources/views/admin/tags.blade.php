@@ -18,6 +18,10 @@
                 <td>{{ $tag->name }}</td>
                 <td>{{ $tag->posts_count }}</td>
                 <td>
+                    <a href="{{ route('tag.edit',$tag->id) }}" class="btn btn-info"
+                       data-toggle="tooltip" data-placement="top" title="编辑">
+                        <i class="fa fa-pencil fa-fw"></i>
+                    </a>
                     <button type="submit"
                             data-toggle="tooltip"
                             class="btn btn-danger swal-dialog-target"

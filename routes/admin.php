@@ -57,14 +57,15 @@ Route::get('/post/download-all', ['uses' => 'PostController@downloadAll', 'as' =
 /**
  * tag
  */
-Route::delete('/tag/{tag}', ['uses' => 'TagController@destroy', 'as' => 'tag.destroy']);
-Route::post('/tag', ['uses' => 'TagController@store', 'as' => 'tag.store']);
+/*Route::delete('/tag/{tag}', ['uses' => 'TagController@destroy', 'as' => 'tag.destroy']);
+Route::post('/tag', ['uses' => 'TagController@store', 'as' => 'tag.store']);*/
 
 /**
  * admin resource
  */
 Route::resource('post', 'PostController', ['except' => ['show', 'index']]);
 Route::resource('category', 'CategoryController', ['except' => ['index', 'show', 'create']]);
+Route::resource('tag', 'TagController', ['except' => ['index', 'show', 'create']]);
 Route::resource('page', 'PageController', ['except' => ['show', 'index']]);
 
 /**

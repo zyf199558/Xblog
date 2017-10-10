@@ -60,4 +60,10 @@ class TagRepository extends Repository
         return TagRepository::$tag;
     }
 
+    public function update(Request $request, Tag $tag)
+    {
+        $this->clearCache();
+        return $tag->update($request->all());
+    }
+
 }
