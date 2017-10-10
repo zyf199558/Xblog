@@ -19,7 +19,14 @@ class IPController extends Controller
 
     public function toggleBlock($ip)
     {
-        $ipInstance = $this->ipRepository->getOne($ip);
+        $ipInstance = Ip::find($ip);
+        if (!$ipInstance){
+            $ipInstance = new Ip(['id' => $ip]);
+            $ipInstance->blocked = true;
+            if ($ipInstance->save()){
+                return back()->with('success', "Block $ip successfully.");
+            }
+        }
         $ipInstance->blocked = !$ipInstance->blocked;
         if ($ipInstance->save()) {
             $action = "Un Block";

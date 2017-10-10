@@ -60,8 +60,7 @@
                                 title="永久删除">
                             <i class="fa fa-trash-o fa-fw"></i>
                         </button>
-                        <form class="d-inline-block" method="post"
-                              action="{{ route('comment.restore',$comment->id) }}">
+                        <form class="d-inline-block" method="post" action="{{ route('comment.restore',$comment->id) }}">
                             {{ csrf_field() }}
                             <button type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="恢复">
                                 <i class="fa fa-repeat fa-fw"></i>
@@ -90,7 +89,7 @@
                             <i class="fa fa-{{ $comment->isVerified()?'hand-o-down':'hand-o-up' }} fa-fw"></i>
                         </button>
                     </form>
-                    <?php $ip = $comment->ip ?>
+                    <?php $ip = $comment->ip?$comment->ip:$comment->ip_id ?>
                     @if($ip == null)
                         <button disabled
                                 class="btn btn-default"
