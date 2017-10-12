@@ -70,7 +70,7 @@ Artisan::command('ip:delete-ub', function () {
     $result = \App\Ip::where('blocked', 0)->delete();
     $this->comment("Delete $result ips.");
     cache()->flush();
-})->describe("delete un verified comments");
+})->describe("delete un blocked ips");
 
 Artisan::command('files:generate-url {disk}', function ($disk) {
     $files = \App\File::all();

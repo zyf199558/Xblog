@@ -39,7 +39,7 @@
                         <span data-html="true" data-toggle="tooltip" title="{{ $comment->html_content }}">{{ $commentableData['type'] }}已删除</span>
                     @else
                         @if($comment->trashed())
-                            {{ $commentableData['title'] }}
+                            <span data-html="true" data-toggle="tooltip" title="{{ $comment->html_content }}">{{ $commentableData['title'] }}</span>
                         @else
                             <a data-html="true" data-toggle="tooltip" title="{{ $comment->html_content }}" target="_blank" href="{{ $commentableData['url'].'#comment-'.$comment->id }}">{{$commentableData['title'] }}
                             </a>

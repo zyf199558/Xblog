@@ -54,8 +54,16 @@ class UserController extends Controller
     public function notifications()
     {
         $user = auth()->user();
-        $notifications = auth()->user()->unreadNotifications;
-        return view('user.notifications', compact('notifications', 'user'));
+        $notifications = $user->notifications;
+        $readNotificationsCount = $user->readNotifications->count();
+        return view('user.notifications', compact('notifications', 'user', 'readNotificationsCount'));
+    }
+
+    public function deleteReadNotifications()
+    {
+        $user = auth()->user();
+        $count = $user->readNotifications()->delete();
+        return back()->withSuccess("Deleted $count read notifications.");
     }
 
     public function readNotification($id)

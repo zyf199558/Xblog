@@ -43,10 +43,11 @@
                             <td data-toggle="tooltip" data-placement="top">{!! $notificationData['html_content'] !!}</td>
                             <td>{{ $notificationData['ip_id']?$notificationData['ip_id']:'NONE' }}</td>
                             <td>
-                                <a class="btn btn-info"
-                                   href="{{ route('user.read_notification',$notification->id) }}">
-                                    已读
-                                </a>
+                                @if($notification->read_at)
+                                    <button class="btn btn-secondary">已读</button>
+                                @else
+                                    <a class="btn btn-success" href="{{ route('user.read_notification',$notification->id) }}">已读</a>
+                                @endif
                             </td>
                         </tr>
                     @endif
@@ -56,6 +57,12 @@
             <a class="btn-block btn btn-outline-success mt-3" href="{{ route('user.read_notification',"all") }}">
                 <i class="fa fa-eye fw mr-2"></i>全部已读
             </a>
+            <button class="btn-block btn btn-outline-danger mt-3 swal-dialog-target"
+                    data-dialog-msg="Delete {{ $readNotificationsCount }} read notifications?"
+                    data-url="{{ route('user.delete_read_notifications') }}"
+                    data-method="delete">
+                <i class="fa fa-trash fw mr-2"></i>删除已读<span class="badge badge-danger">{{ $readNotificationsCount }}</span>
+            </button>
         @endif
     </div>
 @endsection
