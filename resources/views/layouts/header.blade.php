@@ -21,8 +21,8 @@
                         <li class="nav-item"><a class="nav-link" href="{{ route('projects') }}">项目</a></li>
                     @endif
                     @foreach($pages as $page)
-                        <li class="nav-item"><a class="nav-link"
-                                                href="{{ route('page.show',$page->name) }}">{{ $page->display_name }}</a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('page.show',$page->name) }}">{{ $page->display_name }}</a>
                         </li>
                     @endforeach
                 </ul>
@@ -45,7 +45,7 @@
                                 <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="{{ route('user.show',auth()->user()->name) }}">个人中心</a>
+                                <a class="dropdown-item" href="{{ route('user.show', $user->name) }}">个人中心</a>
                                 @if(isAdmin(Auth::user()))
                                     <a class="dropdown-item" href="{{ route('admin.index') }}">后台管理</a>
                                 @endif
@@ -59,12 +59,10 @@
                                     @endif
                                     通知中心
                                 </a>
-                                <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
+                                <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                     退出登录
                                 </a>
-                                <form id="logout-form" action="{{ url('/logout') }}" method="POST"
-                                      style="display: none;">
+                                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
                             </div>

@@ -158,6 +158,33 @@
         </div>
     </div>
     <div class="content-wrapper">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light pt-1 pb-1">
+            <?php $user = auth()->user();?>
+            <a class="navbar-brand" href="{{ route('admin.index') }}">
+                <img src="{{ $user->avatar }}" width="30" height="30" class="d-inline-block align-top" alt="">
+                {{ $user->name }}
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <ul class="nav navbar-nav ml-auto justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('post.index') }}">
+                            回到站点
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                            退出登录
+                        </a>
+                    </li>
+                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                </ul>
+            </div>
+        </nav>
         <div class="pt-3 pr-3 pl-3">
             <div class="content-header">
                 <div class="content-header-title">
