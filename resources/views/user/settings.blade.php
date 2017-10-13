@@ -8,7 +8,7 @@
                 <input name="_method" type="hidden" value="patch">
                 <div class="form-group">
                     <label>名称：</label>
-                    <input class="form-control" name="name" type="text" value="{{ $user->name }}" readonly>
+                    <input class="form-control" name="name" type="text" value="{{ $user->name }}">
                 </div>
                 <div class="form-group">
                     <label>真实姓名：</label>
@@ -20,7 +20,7 @@
                 </div>
                 <div class="form-group">
                     <label>描述：</label>
-                    <input class="form-control" name="description" type="text" value="{{ $user->description }}">
+                    <textarea class="form-control autosize-target" rows="3" name="description">{{ $user->description }}</textarea>
                 </div>
                 <div class="form-group">
                     <label>Github：</label>

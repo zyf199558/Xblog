@@ -17,7 +17,12 @@
             @endif
             <div class="form-group">
                 <label>名称：</label>
-                <span>{{ $user->name }}</span>
+                <span>
+                    {{ $user->name }}
+                    @if(isAdminById($user->id))
+                        <span class="role-label">Admin</span>
+                    @endif
+                </span>
             </div>
             <div class="form-group">
                 <label>描述：</label>

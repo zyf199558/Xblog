@@ -40,6 +40,7 @@ class UserRepository extends Repository
         $user->description = $request->get('description');
         $user->website = $request->get('website');
         $user->real_name = $request->get('real_name');
+        $user->name = $request->get('name');
 
         $github_url = array_safe_get($user->meta, 'github');
 

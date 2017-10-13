@@ -28,13 +28,11 @@
                 <td>{{ $user->created_at }}</td>
                 <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
                 <td>
-                    @switch($user->register_from)
-                        @case('github')
+                    @if($user->register_from == 'github')
                         <i class="fa fa-github-alt fw" data-toggle="tooltip" title="GitHub"></i>
-                        @break
-                        @default
+                    @elseif($user->register_from == 'web_form')
                         <i class="fa fa-globe fw" data-toggle="tooltip" title="Website"></i>
-                    @endswitch
+                    @endif
                 </td>
             </tr>
         @endforeach

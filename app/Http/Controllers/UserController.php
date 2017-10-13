@@ -7,6 +7,7 @@ use App\Http\Repositories\UserRepository;
 use App\Http\Requests;
 use App\User;
 use Gate;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -83,7 +84,12 @@ class UserController extends Controller
         $user = auth()->user();
         $this->checkPolicy('manager', $user);
         $this->validate($request, [
-            'description' => 'max:66',
+            'name' => [
+                'required',
+                Rule::unique('users')->ignore($user->id),
+            ],
+            'website' => 'url',
+            'description' => 'max:255',
         ]);
 
         if ($this->userRepository->update($request, $user)) {
