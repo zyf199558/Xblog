@@ -86,7 +86,10 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => [
                 'required',
+                'max:16',
+                'min:3',
                 Rule::unique('users')->ignore($user->id),
+                'regex:/^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/',
             ],
             'website' => 'url',
             'description' => 'max:255',
