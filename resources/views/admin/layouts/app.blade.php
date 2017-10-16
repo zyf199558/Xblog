@@ -158,10 +158,10 @@
         </div>
     </div>
     <div class="content-wrapper">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light pt-1 pb-1">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light pt-1 pb-1" style="font-size: 85%">
             <?php $user = auth()->user();?>
             <a class="navbar-brand" href="{{ route('admin.index') }}">
-                <img src="{{ $user->avatar }}" width="30" height="30" class="d-inline-block align-top" alt="">
+                <img src="{{ $user->avatar }}" width="30" height="30" class="d-inline-block align-top">
                 {{ $user->name }}
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
