@@ -20,7 +20,7 @@
             @foreach(config('social') as $key => $value)
                 <div class="col border-right center-block">
                     <div class="description-block">
-                        <a href="{{ $value['url'] }}" title="{{ ucfirst($key) }}" class="description-header"><i class="{{ 'fa fa-'.$value['icon'].' fa-lg' }}"></i></a>
+                        <a href="{{ $value['url'] }}" title="{{ ucfirst($key) }}" class="description-header text-muted"><i class="{{ 'fa fa-'.$value['icon'].' fa-lg' }}"></i></a>
                     </div>
                 </div>
             @endforeach

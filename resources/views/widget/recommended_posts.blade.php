@@ -1,8 +1,8 @@
 @if(!$recommendedPosts->isEmpty())
-    <div class="alert alert-dismissable alert-info"
-         style="background-color: #fff;color:inherit;padding:15px 20px 10px;border-color:#ededed;border-radius: 0">
-        <button style="margin-right: 20px" type="button" class="close" data-dismiss="alert"
-                aria-hidden="true">&times;</button>
+    <div class="alert alert-dismissible fade show" style="background-color: #fff;color:inherit;padding:15px 20px 10px;border-color:#ededed;border-radius: 0">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
         <label>推荐阅读 :</label>
         @foreach($recommendedPosts as $post)
             <div style="padding-top: 5px;padding-bottom: 5px;">
