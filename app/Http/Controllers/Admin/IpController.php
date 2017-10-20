@@ -20,10 +20,10 @@ class IPController extends Controller
     public function toggleBlock($ip)
     {
         $ipInstance = Ip::find($ip);
-        if (!$ipInstance){
+        if (!$ipInstance) {
             $ipInstance = new Ip(['id' => $ip]);
             $ipInstance->blocked = true;
-            if ($ipInstance->save()){
+            if ($ipInstance->save()) {
                 return back()->with('success', "Block $ip successfully.");
             }
         }
@@ -36,6 +36,12 @@ class IPController extends Controller
             return back()->with('success', "$action $ip successfully.");
         }
         return back()->withErrors("Blocked $ip failed.");
+    }
+
+    public function deleteUnBlocked()
+    {
+        $result = Ip::where('blocked', 0)->delete();
+        return back()->withSuccess("Delete $result IPs.");
     }
 
     public function destroy($ip)
