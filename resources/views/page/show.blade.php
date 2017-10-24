@@ -37,3 +37,6 @@
         </div>
     </div>
 @endsection
+@section('script')
+    @include('widget.mathjax')
+@endsection
