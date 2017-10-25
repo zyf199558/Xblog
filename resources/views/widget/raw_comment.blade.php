@@ -34,10 +34,12 @@
                           rows="5" spellcheck="false"
                           class="form-control markdown-content autosize-target"></textarea>
             </div>
-            <div class="form-group d-flex">
-                <img id="captcha" class="mr-3" src="{{ captcha_src('flat') }}" onclick="this.src='/captcha/flat?'+Math.random()">
-                <input class="form-control" type="text" name="captcha">
-            </div>
+            @if($final_allow_comment)
+                <div class="form-group d-flex">
+                    <img id="captcha" class="mr-3" src="{{ captcha_src('flat') }}" onclick="this.src='/captcha/flat?'+Math.random()">
+                    <input class="form-control" type="text" name="captcha">
+                </div>
+            @endif
             <div class="form-group">
                 <span class="help-block required"><strong id="comment_submit_msg"></strong></span>
             </div>
