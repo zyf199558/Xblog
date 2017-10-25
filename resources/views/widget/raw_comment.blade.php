@@ -33,9 +33,13 @@
                           id="comment-content" name="content"
                           rows="5" spellcheck="false"
                           class="form-control markdown-content autosize-target"></textarea>
-                <span class="help-block required">
-                    <strong id="comment_submit_msg"></strong>
-                </span>
+            </div>
+            <div class="form-group d-flex">
+                <img id="captcha" class="mr-3" src="{{ captcha_src('flat') }}" onclick="this.src='/captcha/flat?'+Math.random()">
+                <input class="form-control" type="text" name="captcha">
+            </div>
+            <div class="form-group">
+                <span class="help-block required"><strong id="comment_submit_msg"></strong></span>
             </div>
             <div class="form-group">
                 <input {{ $final_allow_comment?' ':' disabled ' }} type="submit" id="comment-submit" class="btn btn-primary"

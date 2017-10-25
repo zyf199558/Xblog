@@ -10,6 +10,7 @@ namespace Lufficc\ExceptionHandler;
 
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Session\TokenMismatchException;
 use Lufficc\Exception\CommentNotAllowedException;
 
 class BlogExceptionHandler
@@ -25,6 +26,8 @@ class BlogExceptionHandler
             $msg = 'Sorry, something went wrong.';
             if ($exception instanceof CommentNotAllowedException) {
                 $msg = 'Sorry, comment is not allowed now.';
+            } else if ($exception instanceof TokenMismatchException) {
+                $msg = 'Sorry, CSRF token mismatched.';
             }
             return response()->json(
                 ['status' => $exception->getCode(), 'msg' => $msg]

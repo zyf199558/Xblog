@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use App\Http\Repositories\CommentRepository;
-use App\Http\Requests;
+use Validator;
 use Gate;
 use Illuminate\Http\Request;
 use XblogConfig;
@@ -65,6 +65,13 @@ class CommentController extends Controller
                     ['status' => 500, 'msg' => 'An Invalidate Email !']
                 );
             }
+        }
+
+        $validator = Validator::make($request->only('captcha'), ['captcha' => 'required|captcha']);
+        if ($validator->fails()) {
+            return response()->json(
+                ['status' => 500, 'msg' => 'Captcha incorrect !']
+            );
         }
 
         if ($comment = $this->commentRepository->create($request)) {

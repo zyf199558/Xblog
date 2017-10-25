@@ -191,6 +191,7 @@ return [
         Chumper\Zipper\ZipperServiceProvider::class,
         Overtrue\LaravelFilesystem\Qiniu\QiniuStorageServiceProvider::class,
         HTMLMin\HTMLMin\HTMLMinServiceProvider::class,
+        Mews\Captcha\CaptchaServiceProvider::class,
         //Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
@@ -241,6 +242,7 @@ return [
         'XblogConfig' => App\Facades\XblogConfig::class,
         'Zipper' => Chumper\Zipper\Zipper::class,
         'HTMLMin' => HTMLMin\HTMLMin\Facades\HTMLMin::class,
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
     ],
 
 ];

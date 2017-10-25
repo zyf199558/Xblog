@@ -139,6 +139,7 @@ require('./boot');
         let username = form.find('input[name=username]');
         let email = form.find('input[name=email]');
         let site = form.find('input[name=site]');
+        let captcha = form.find('input[name=captcha]');
 
         if (window.localStorage) {
             username.val(localStorage.getItem('comment_username') === undefined ? '' : localStorage.getItem('comment_username'));
@@ -166,6 +167,7 @@ require('./boot');
             let usernameValue = username.val();
             let emailValue = email.val();
             let siteValue = site.val();
+            let captchaValue = captcha ? captcha.val() : '';
 
             submitBtn.val('提交中...').addClass('disabled').prop('disabled', true);
             $.ajax({
@@ -181,6 +183,7 @@ require('./boot');
                     username: usernameValue,
                     email: emailValue,
                     site: siteValue,
+                    captcha: captchaValue,
                 },
             }).done(function (data) {
                 if (data.status === 200) {
@@ -201,6 +204,7 @@ require('./boot');
             }).always(function () {
                 submitBtn.val("回复").removeClass('disabled').prop('disabled', false);
                 form.find('#comment_submit_msg').fadeIn();
+                form.find('#captcha').attr('src', '/captcha/flat?' + Math.random());
                 setTimeout(function () {
                     form.find('#comment_submit_msg').fadeOut();
                 }, 1500);
