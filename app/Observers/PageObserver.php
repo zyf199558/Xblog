@@ -10,6 +10,7 @@ namespace App\Observers;
 
 
 use App\Contracts\XblogCache;
+use App\Http\Controllers\Admin\FileableController;
 use App\Http\Controllers\GeneratedController;
 use App\Page;
 
@@ -17,8 +18,16 @@ class PageObserver
 {
     protected $xblogCache;
 
+    protected $fileableController;
+
+    public function __construct(FileableController $fileableController)
+    {
+        $this->fileableController = $fileableController;
+    }
+
     public function saved(Page $page)
     {
+        $this->fileableController->syncPage($page);
         $this->getXblogCache()->clearCache();
     }
 

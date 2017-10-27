@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Admin\FileableController;
 use App\Http\Repositories\PostRepository;
 use App\Post;
 use Illuminate\Http\Request;
@@ -10,19 +11,23 @@ use XblogConfig;
 class HomeController extends Controller
 {
     protected $postRepository;
+    protected $fileableController;
 
     /**
      * Create a new controller instance.
      *
      * @param PostRepository $postRepository
+     * @param FileableController $fileableController
      */
-    public function __construct(PostRepository $postRepository)
+    public function __construct(PostRepository $postRepository, FileableController $fileableController)
     {
         $this->postRepository = $postRepository;
+        $this->fileableController = $fileableController;
     }
 
     public function index()
     {
+        $this->fileableController->syncAll();
         return view('index');
     }
 

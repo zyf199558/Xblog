@@ -17,6 +17,11 @@ class Page extends Model
         return $this->morphMany(Comment::class, 'commentable');
     }
 
+    public function files()
+    {
+        return $this->morphToMany(File::class, 'fileable');
+    }
+
     public function configuration()
     {
         return $this->morphOne(Configuration::class, 'configurable');

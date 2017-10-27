@@ -10,15 +10,23 @@ namespace App\Observers;
 
 
 use App\Contracts\XblogCache;
+use App\Http\Controllers\Admin\FileableController;
 use App\Http\Controllers\GeneratedController;
 use App\Post;
 
 class PostObserver
 {
     protected $xblogCache;
+    protected $fileableController;
+
+    public function __construct(FileableController $fileableController)
+    {
+        $this->fileableController = $fileableController;
+    }
 
     public function saved(Post $post)
     {
+        $this->fileableController->syncPost($post);
         $this->getXblogCache()->clearCache();
     }
 

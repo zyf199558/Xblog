@@ -62,7 +62,11 @@ class FileController extends Controller
     public function deleteFile(Request $request)
     {
         $key = $request->get('key');
-        $type = File::where('key', $key)->firstOrFail()->type;
+        $file = File::where('key', $key)->firstOrFail();
+        if (($count = $file->models()->count()) > 0) {
+            return back()->withErrors("删除失败, $count Model(s) 引用了此文件.");
+        }
+        $type = $file->type;
         $this->unknownFileRepository->setTag($type);
         $result = $this->unknownFileRepository->delete($key);
         if ($result) {

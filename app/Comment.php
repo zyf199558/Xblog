@@ -49,6 +49,11 @@ class Comment extends Model
         return $this->morphTo();
     }
 
+    public function files()
+    {
+        return $this->morphToMany(File::class, 'fileable');
+    }
+
     public function isVerified()
     {
         return $this->status == 1;

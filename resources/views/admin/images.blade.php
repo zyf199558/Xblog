@@ -28,7 +28,7 @@
                 <div class="card">
                     <img class="card-img-top" src="{{ getImageViewUrl($image->url,null,250) }}">
                     <div class="card-body">
-                        <p class="card-text">{{ $image->name }}</p>
+                        <p class="card-text">{{ $image->name }}<span class="badge badge-secondary" data-toggle="tooltip" title="{{ $image->models()->count()." Model(s) 引用了此文件" }}">{{ $image->models()->count() }}</span></p>
                         <small class="text-secondary">
                             {{ formatBytes($image->size) }}
                             <i class="fa fa-clock-o fa-fw"></i>
