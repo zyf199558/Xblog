@@ -8,7 +8,7 @@
     <thead>
     <tr>
         <th>名称</th>
-        <th>日期</th>
+        <th>描述</th>
         <th>文章</th>
         <th>操作</th>
     </tr>
@@ -17,7 +17,7 @@
     @foreach($categories as $category)
         <tr>
             <td>{{ $category->name }}</td>
-            <td>{{ $category->created_at->format('Y-m-d') }}</td>
+            <td>{{ str_limit($category->description, 64) }}</td>
             <td>{{ $category->posts_count }}</td>
             <td>
                 <div>

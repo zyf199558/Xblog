@@ -75,7 +75,6 @@
 @section('script')
     <script src="//cdn.bootcss.com/clipboard.js/1.5.12/clipboard.min.js"></script>
     <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
-    <script src="//cdn.bootcss.com/masonry/4.2.0/masonry.pkgd.min.js"></script>
     <script>
         new Clipboard('.btn-clipboard');
         $('.btn-clipboard').tooltip({

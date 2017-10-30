@@ -5,6 +5,7 @@
  * Date: 2016/8/19
  * Time: 17:41
  */
+
 namespace App\Http\Repositories;
 
 use App\Category;
@@ -18,6 +19,7 @@ use Illuminate\Http\Request;
 class CategoryRepository extends Repository
 {
     static $tag = 'category';
+
     public function model()
     {
         return app(Category::class);
@@ -64,7 +66,7 @@ class CategoryRepository extends Repository
     {
         $this->clearCache();
 
-        $category = Category::create(['name' => $request['name']]);
+        $category = Category::create($request->all());
         return $category;
     }
 

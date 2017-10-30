@@ -38,6 +38,3 @@
         </div>
     </div>
 @endsection
-@section('script')
-    <script src="//cdn.bootcss.com/masonry/4.2.0/masonry.pkgd.min.js"></script>
-@endsection

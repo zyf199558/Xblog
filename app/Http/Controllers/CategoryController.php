@@ -21,7 +21,10 @@ class CategoryController extends Controller
 
     public function index()
     {
-        return view('category.index');
+        $categories = $this->categoryRepository->getAll()->reject(function ($category) {
+            return $category->posts_count == 0;
+        });
+        return view('category.index', compact('categories'));
     }
 
     /**

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Category;
+use App\Http\Controllers\Controller;
 use App\Http\Repositories\CategoryRepository;
-use App\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use XblogConfig;
 
 class CategoryController extends Controller
@@ -42,8 +42,9 @@ class CategoryController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|unique:categories',
+            'description' => 'max:1024',
+            'cover_img' => 'max:255',
         ]);
-
         if ($this->categoryRepository->create($request))
             return back()->with('success', '分类' . $request['name'] . '创建成功');
         else
@@ -72,8 +73,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
+
         $this->validate($request, [
-            'name' => 'required|unique:categories',
+            'name' => [
+                'required',
+                Rule::unique('categories')->ignore($category->id),
+            ],
+            'description' => 'max:1024',
+            'cover_img' => 'max:255',
         ]);
 
         if ($this->categoryRepository->update($request, $category)) {

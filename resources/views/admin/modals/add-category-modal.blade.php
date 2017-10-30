@@ -1,5 +1,4 @@
-<div class="modal fade" id="add-category-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-     aria-hidden="true">
+<div class="modal fade" id="add-category-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <form role="form" class="form-inline" action="{{ route('category.store') }}" method="post">
             <div class="modal-content">
@@ -10,9 +9,17 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="name" class="form-control-label">分类名称</label>
                         <input id="name" type="text" class="form-control ml-3" name="name" autofocus>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="description" class="form-control-label">分类描述</label>
+                        <textarea id="description" class="autosize-target form-control ml-3" name="description"></textarea>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="cover_img" class="form-control-label">分类图片</label>
+                        <input id="cover_img" type="text" class="form-control ml-3" name="cover_img">
                     </div>
                     {{ csrf_field() }}
                 </div>
