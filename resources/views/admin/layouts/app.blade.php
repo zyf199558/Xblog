@@ -115,7 +115,7 @@
                 ]
                 ?>
                 <div class="nav-wrapper">
-                    <nav class="nav flex-column nav-pills">
+                    <nav class="nav flex-column nav-pills font-weight-bold">
                         @foreach( $menus as $menu)
                             @if(isset($menu['is_parent']) && $menu['is_parent'])
                                 <?php
