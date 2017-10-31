@@ -76,17 +76,19 @@ class AdminController extends Controller
         $info['image_count'] = $this->imageRepository->count();
         $info['ip_count'] = Ip::count();
         $postDetail = Post::select([
-            DB::raw("CONCAT_WS('-',YEAR(created_at),MONTH(created_at)) as month_year"),
+            DB::raw("YEAR(created_at) as year"),
+            DB::raw("MONTH(created_at) as month"),
             DB::raw('COUNT(id) AS count'),
         ])->whereBetween('created_at', [Carbon::now()->subYear(1), Carbon::now()])
-            ->groupBy('month_year')
-            ->orderBy('month_year', 'asc')
+            ->groupBy('year', 'month')
+            ->orderBy('year', 'asc')
+            ->orderBy('month', 'asc')
             ->get()
             ->toArray();
         $labels = [];
         $data = [];
         foreach ($postDetail as $detail) {
-            array_push($labels, $detail['month_year']);
+            array_push($labels, $detail['year'] . '-' . $detail['month']);
             array_push($data, $detail['count']);
         }
         $response = view('admin.index', compact('info', 'labels', 'data'));
