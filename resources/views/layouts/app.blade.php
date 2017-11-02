@@ -28,7 +28,7 @@
 @include('layouts.header')
 <div id="content-wrap">
     <div class="container">
-        @include('partials.msg')
+        @includeWhen(!isset($include_msg) || $include_msg, 'partials.msg')
     </div>
     @yield('content')
 </div>

@@ -14,9 +14,9 @@
                             <img class="card-img-top" src="{{ $category->cover_img }}">
                         @endif
                         <div class="card-body">
-                            <h4 class="card-title">
+                            <h3 class="card-title">
                                 <a class="text-dark" href="{{ route('category.show', $category->name) }}">{{ $category->name }}</a>
-                            </h4>
+                            </h3>
                             @if($category->description)
                                 <p class="card-text">{{ $category->description }}</p>
                             @endif

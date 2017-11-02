@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['include_msg'=>false])
 @section('title','Login')
 @section('content')
     <div class="container">
