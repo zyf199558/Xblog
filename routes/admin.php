@@ -35,6 +35,8 @@ Route::get('/categories', ['uses' => 'AdminController@categories', 'as' => 'admi
 Route::get('/images', ['uses' => 'ImageController@images', 'as' => 'admin.images']);
 Route::get('/files', ['uses' => 'FileController@files', 'as' => 'admin.files']);
 Route::get('/ips', ['uses' => 'AdminController@ips', 'as' => 'admin.ips']);
+Route::get('/app', ['uses' => 'AppController@index', 'as' => 'admin.app']);
+Route::post('/app/email', ['uses' => 'AppController@sendMail', 'as' => 'admin.app.send-mail']);
 
 /**
  * comment

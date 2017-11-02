@@ -112,6 +112,11 @@
                         'icon' => 'heartbeat',
                         'route' => 'admin.failed-jobs'
                     ],
+                    [
+                        'name' => 'Application',
+                        'icon' => 'cube',
+                        'route' => 'admin.app'
+                    ],
                 ]
                 ?>
                 <div class="nav-wrapper">
