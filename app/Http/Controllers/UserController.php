@@ -91,7 +91,7 @@ class UserController extends Controller
                 Rule::unique('users')->ignore($user->id),
                 'regex:/^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/',
             ],
-            'website' => 'url',
+            'website' => 'nullable|url',
             'description' => 'max:255',
         ]);
 
