@@ -32,6 +32,7 @@ Route::get('/user/me/socials', ['uses' => 'UserController@socials', 'as' => 'use
 Route::get('/notifications', ['uses' => 'UserController@notifications', 'as' => 'user.notifications']);
 Route::delete('/notifications', ['uses' => 'UserController@deleteReadNotifications', 'as' => 'user.delete_read_notifications']);
 Route::get('/read_notification/{id}', ['uses' => 'UserController@readNotification', 'as' => 'user.read_notification']);
+Route::get('/delete_notification/{id}', ['uses' => 'UserController@deleteNotification', 'as' => 'user.delete_notification']);
 Route::patch('/user/update/avatar', ['uses' => 'UserController@updateAvatar', 'as' => 'user.update.avatar']);
 Route::patch('/user/update/profile', ['uses' => 'UserController@updateProfile', 'as' => 'user.update.profile']);
 Route::patch('/user/update/info', ['uses' => 'UserController@update', 'as' => 'user.update.info']);

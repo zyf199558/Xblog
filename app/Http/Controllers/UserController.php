@@ -60,18 +60,34 @@ class UserController extends Controller
         return view('user.notifications', compact('notifications', 'user', 'readNotificationsCount'));
     }
 
-    public function deleteReadNotifications()
+    public function deleteReadNotifications(Request $request)
     {
+        $type = $request->get('type');
         $user = auth()->user();
-        $count = $user->readNotifications()->delete();
+        $builder = $user->readNotifications();
+        if ($type)
+            $builder = $builder->where('type', $type);
+        $count = $builder->delete();
         return back()->withSuccess("Deleted $count read notifications.");
     }
 
-    public function readNotification($id)
+    public function deleteNotification($id)
+    {
+        $notification = auth()->user()->notifications()->findOrFail($id);
+        if ($notification->delete())
+            return back()->withSuccess('Deleted succeed.');
+        return back()->withErrors('Deleted failed.');
+    }
+
+    public function readNotification(Request $request, $id)
     {
         if ($id == "all") {
-            auth()->user()->unreadNotifications->markAsRead();
-            return back()->with('success', '修改成功');
+            $type = $request->get('type');
+            $builder = auth()->user()->unreadNotifications();
+            if ($type)
+                $builder = $builder->where('type', $type);
+            $count = $builder->get()->markAsRead();
+            return back()->with('success', '修改成功'.$count);
         } else {
             $notification = auth()->user()->unreadNotifications()->findOrFail($id);
             $notification->markAsRead();
