@@ -8,6 +8,7 @@
 namespace App\Http\Repositories;
 
 use App\Comment;
+use App\Notifications\ReceivedComment;
 use App\Scopes\VerifiedCommentScope;
 use Illuminate\Http\Request;
 use Lufficc\Exception\CommentNotAllowedException;
@@ -106,9 +107,11 @@ class CommentRepository extends Repository
         $comment->html_content = $this->markdownParser->parse($comment->content);
         $result = $commentable->comments()->save($comment);
 
+
         /**
          * mention user after comment saved
          */
+        getAdminUser()->notify(new ReceivedComment($comment));
         $this->mention->mentionUsers($comment, getMentionedUsers($content), $content);
 
         return $result;
