@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Repositories\IpRepository;
 use Mail;
 use Gate;
+use DB;
 use Illuminate\Http\Request;
 
 class AppController extends Controller
@@ -19,7 +20,8 @@ class AppController extends Controller
 
     public function index()
     {
-        return view('admin.app');
+        $failed_jobs = DB::table('failed_jobs')->get();
+        return view('admin.app', compact('failed_jobs'));
     }
 
     public function sendMail(Request $request)

@@ -49,5 +49,44 @@
             <button type="submit" class="btn btn-primary">Send test email</button>
         </form>
     </div>
-
+    <div class="mt-3">
+        <h4>
+            Failed Jobs
+            @if(!$failed_jobs->isEmpty())
+                <a class="btn btn-outline-success swal-dialog-target"
+                   data-toggle="tooltip"
+                   data-placement="right"
+                   title="Delete all failed jobs"
+                   data-dialog-title="Failed Jobs"
+                   data-dialog-msg="Flush {{ count($failed_jobs) }} failed jobs ?"
+                   data-url="{{ route('admin.failed-jobs.flush') }}">
+                    Flush
+                </a>
+            @endif
+        </h4>
+        @if($failed_jobs->isEmpty())
+            <div style="text-align: center;"> Congratulations! You don't have failed jobs.</div>
+        @else
+            <table class="table table-striped table-responsive">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Connection</th>
+                    <th>Date</th>
+                    <th>Exception</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($failed_jobs as $failed_job)
+                    <tr>
+                        <td>{{ $failed_job->id }}</td>
+                        <td>{{ $failed_job->connection }}</td>
+                        <td>{{ $failed_job->failed_at }}</td>
+                        <td title="{{ $failed_job->exception }}">Hover Me</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        @endif
+    </div>
 @endsection

@@ -108,11 +108,6 @@
                         'route' => 'admin.settings'
                     ],
                     [
-                        'name' => 'Failed jobs',
-                        'icon' => 'heartbeat',
-                        'route' => 'admin.failed-jobs'
-                    ],
-                    [
                         'name' => 'Application',
                         'icon' => 'cube',
                         'route' => 'admin.app'

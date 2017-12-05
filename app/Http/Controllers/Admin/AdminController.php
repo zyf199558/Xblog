@@ -167,12 +167,6 @@ class AdminController extends Controller
         return view('admin.ips', compact('ips'));
     }
 
-    public function failedJobs()
-    {
-        $failed_jobs = DB::table('failed_jobs')->get();
-        return view('admin.failed_jobs', compact('failed_jobs'));
-    }
-
     public function flushFailedJobs()
     {
         $result = DB::table('failed_jobs')->delete();
