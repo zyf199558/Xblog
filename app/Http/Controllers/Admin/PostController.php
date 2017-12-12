@@ -151,15 +151,17 @@ class PostController extends Controller
 
     private function getPostContent(Post $post)
     {
-        $info = "title: " . $post->title;
-        $info = $info . "\ndate: " . $post->created_at->format('Y-m-d H:i');
-        $info = $info . "\npermalink: " . $post->slug;
+        $info = "---\ntitle: " . $post->title;
+        $info = $info . "\ncreated_at: " . $post->created_at;
+        $info = $info . "\nslug: " . $post->slug;
         $info = $info . "\ncategory: " . $post->category->name;
-        $info = $info . "\ntags:\n";
-        foreach ($post->tags as $tag) {
-            $info = $info . "- $tag->name\n";
+        if ($post->tags) {
+            $info = $info . "\ntags:\n";
+            foreach ($post->tags as $tag) {
+                $info = $info . "  - $tag->name\n";
+            }
         }
-        $info = $info . "---\n\n" . $post->content;
+        $info = $info . "\n---\n\n" . $post->content;
         return $info;
     }
 
