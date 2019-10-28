@@ -7,10 +7,10 @@ services:
       - data:/var/lib/mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: Passw0rd
-      MYSQL_DATABASE: lumen
-      MYSQL_USER: lumen
-      MYSQL_PASSWORD: lumen
+      MYSQL_ROOT_PASSWORD: iamafateson2
+      MYSQL_DATABASE: xblog
+      MYSQL_USER: zyf
+      MYSQL_PASSWORD: iamafateson2
 
   php:
     depends_on:
